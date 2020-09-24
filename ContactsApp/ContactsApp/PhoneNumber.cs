@@ -9,8 +9,8 @@ namespace ContactsApp
     /// </summary>
     public class PhoneNumber
     {
-        private int _number;
-        public int Number
+        private long _number;
+        public long Number
         {
             get
             {
@@ -18,9 +18,18 @@ namespace ContactsApp
             }
             set
             {
-                const int numbersLength = 11;
-                
+                const int minNumbersLength = 11;
+                const int maxNumbersLength = 11;
+                ValueValidator.AssertCorrectValue(Convert.ToString(value),
+                   Convert.ToString(minNumbersLength),
+                   Convert.ToString(maxNumbersLength), CheckType.IsPhoneNumber,
+                   "номер телефона");
+                _number = value;
             }
+        }
+        public PhoneNumber(long number)
+        {
+            Number = number;
         }
     }
 }

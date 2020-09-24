@@ -3,24 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsAppUI", "ContactsAppUI\ContactsAppUI.csproj", "{AFC482E2-1BEB-4D5D-9CD2-64F96BB1DD74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsAppUI", "ContactsAppUI\ContactsAppUI.csproj", "{AFC482E2-1BEB-4D5D-9CD2-64F96BB1DD74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsApp", "ContactsApp\ContactsApp.csproj", "{E43C0524-D201-4F4C-B511-DA04250CBD5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsApp", "ContactsApp\ContactsApp.csproj", "{E43C0524-D201-4F4C-B511-DA04250CBD5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{B5FBC6E5-F33D-4D02-ACCC-B6FB93ECC1C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Test|Any CPU = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AFC482E2-1BEB-4D5D-9CD2-64F96BB1DD74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AFC482E2-1BEB-4D5D-9CD2-64F96BB1DD74}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFC482E2-1BEB-4D5D-9CD2-64F96BB1DD74}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFC482E2-1BEB-4D5D-9CD2-64F96BB1DD74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC482E2-1BEB-4D5D-9CD2-64F96BB1DD74}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC482E2-1BEB-4D5D-9CD2-64F96BB1DD74}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{AFC482E2-1BEB-4D5D-9CD2-64F96BB1DD74}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{AFC482E2-1BEB-4D5D-9CD2-64F96BB1DD74}.Test|Any CPU.Build.0 = Test|Any CPU
 		{E43C0524-D201-4F4C-B511-DA04250CBD5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E43C0524-D201-4F4C-B511-DA04250CBD5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E43C0524-D201-4F4C-B511-DA04250CBD5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E43C0524-D201-4F4C-B511-DA04250CBD5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E43C0524-D201-4F4C-B511-DA04250CBD5C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{E43C0524-D201-4F4C-B511-DA04250CBD5C}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E43C0524-D201-4F4C-B511-DA04250CBD5C}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{E43C0524-D201-4F4C-B511-DA04250CBD5C}.Test|Any CPU.Build.0 = Test|Any CPU
+		{B5FBC6E5-F33D-4D02-ACCC-B6FB93ECC1C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5FBC6E5-F33D-4D02-ACCC-B6FB93ECC1C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5FBC6E5-F33D-4D02-ACCC-B6FB93ECC1C5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5FBC6E5-F33D-4D02-ACCC-B6FB93ECC1C5}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{B5FBC6E5-F33D-4D02-ACCC-B6FB93ECC1C5}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{B5FBC6E5-F33D-4D02-ACCC-B6FB93ECC1C5}.Test|Any CPU.Build.0 = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

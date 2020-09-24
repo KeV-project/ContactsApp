@@ -43,7 +43,7 @@ namespace ContactsApp
         /// <returns>Значение показывает, начинается ли номер телефона с цифры 7</returns>
         public static bool IsFirstDigitIs7(string number)
         {
-            return number[0] == 7;
+            return number[0] == '7';
         }
         /// <summary>
         /// Метод предназначен для генерации исключения при несоответствии значения
@@ -83,7 +83,7 @@ namespace ContactsApp
                             Convert.ToInt32(maxLimit)))
                         {
                             throw new ArgumentException("ИСКЛЮЧЕНИЕ: " + value
-                                + "\n" + context + "должен содержать 11 цифр");
+                                + "\n" + context + " должен содержать 11 цифр");
                         }
                         break;
                     }
