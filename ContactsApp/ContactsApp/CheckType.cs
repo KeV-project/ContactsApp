@@ -24,6 +24,6 @@ namespace ContactsApp
         /// Значение предназначено для идентификации проверки
         /// на допустимое количества символов в строке
         /// </summary>
-        IsLenghtLessThen
+        IsLenghtInRange
     }
 }
