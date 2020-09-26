@@ -6,5 +6,6 @@ namespace ContactsApp
 {
     class Project
     {
+        LinkedList<Contact> _contacts = new LinkedList<Contact>();
     }
 }
