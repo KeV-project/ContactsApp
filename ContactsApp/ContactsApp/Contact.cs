@@ -7,7 +7,7 @@ namespace ContactsApp
     /// <summary>
     /// Класс "Контакт" предназначен для создания контактов 
     /// </summary>
-    public class Contact
+    public class Contact : ICloneable
     {
         /// <summary>
         /// Поле "id" содержит идентификатор контакта
@@ -156,6 +156,18 @@ namespace ContactsApp
             Number = number;
             Email = email;
             BirthDate = birthDate;
+        }
+
+        /// <summary>
+        /// Позволяет создать объект класса, скопировав значения полей другого объекта
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            PhoneNumber number = new PhoneNumber(Number.Number);
+            Date birthDate = new Date(BirthDate.Day, 
+                BirthDate.Month, BirthDate.Year);
+            return new Contact(Id, FirstName, LastName, number, Email, birthDate);
         }
     }
 }
