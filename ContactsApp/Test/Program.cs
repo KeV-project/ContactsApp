@@ -9,9 +9,15 @@ namespace Test
         {
             try
             {
-                //Contact contact = new Contact("катя", "кабанова", "katovskaya009@gmail.com", "123");
-                //Console.WriteLine($"Имя: {contact.FirstName}");
-                //Console.WriteLine($"Фамилия: {contact.LastName}");
+                Contact contact = new Contact("123", "катя", "кабанова", 
+                    new PhoneNumber(79521777644), "katovskaya009@gmail.com", 
+                    new Date(13, 12, 2015));
+                Console.WriteLine($"Id: {contact.Id}");
+                Console.WriteLine($"Имя: {contact.FirstName}");
+                Console.WriteLine($"Фамилия: {contact.LastName}");
+                Console.WriteLine($"Номер телефона: {contact.Number.Number}");
+                Console.WriteLine($"E-mail: {contact.Email}");
+                Console.WriteLine($"Дата рождения: {contact.BirthDate.GetData()}");
             }
             catch(Exception ex)
             {

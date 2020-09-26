@@ -80,7 +80,28 @@ namespace ContactsApp
                 ValueValidator.AssertCorrectValue(Convert.ToString(value),
                     Convert.ToString(minYear), Convert.ToString(maxYear),
                     CheckType.IsValueInRange, "год");
+                _year = value;
             }
+        }
+
+        /// <summary>
+        /// Инициализирует поля при создании объекта
+        /// </summary>
+        /// <param name="day">День</param>
+        /// <param name="month">Месяц</param>
+        /// <param name="year">Год</param>
+        public Date(int day, int month, int year)
+        {
+            Day = day;
+            Month = month;
+            Year = year;
+        }
+
+        public string GetData()
+        {
+            return Convert.ToString(_day) + "."
+                + Convert.ToString(_month) + "."
+                + Convert.ToString(_year);
         }
     }
 }
