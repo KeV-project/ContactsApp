@@ -7,7 +7,7 @@ namespace ContactsApp
     /// <summary>
     /// Класс "Дата" предназначен для хранения даты события
     /// </summary>
-    class Date
+    public class Date
     {
         /// <summary>
         /// Поле "день" хранит день события
