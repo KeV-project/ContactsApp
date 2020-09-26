@@ -5,11 +5,18 @@ using System.Text;
 namespace ContactsApp
 {
     /// <summary>
-    /// Класс номера телефона, хранящий номер телефона контакта
+    /// Класс "Номера телефона", хранящий номер телефона контакта
     /// </summary>
     public class PhoneNumber
     {
+        /// <summary>
+        /// Поле "номер" предназначено для хранения номера телефона контакта
+        /// </summary>
         private long _number;
+        /// <summary>
+        /// Возвращает и создает номер телефона контакта
+        /// Номер телефона должен начинаться с цифры "7" и состоять из 11 цифр
+        /// </summary>
         public long Number
         {
             get
@@ -27,6 +34,10 @@ namespace ContactsApp
                 _number = value;
             }
         }
+        /// <summary>
+        /// Инициализирует поля класса при создании объекта
+        /// </summary>
+        /// <param name="number">Номер телефона контакта</param>
         public PhoneNumber(long number)
         {
             Number = number;
