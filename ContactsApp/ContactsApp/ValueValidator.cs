@@ -6,7 +6,7 @@ using System.Text;
 namespace ContactsApp
 {
     /// <summary>
-    /// Класс валидатор значений предназначен для проверки значений 
+    /// Класс "Валидатор значений" предназначен для проверки значений 
     /// перед непосредственным их использованием
     /// </summary>
     public static class ValueValidator
