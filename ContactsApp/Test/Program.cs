@@ -29,7 +29,7 @@ namespace Test
 
                 ProjectManager.SaveProject(project1);
 
-                Project project2 = ProjectManager.ReadProject();
+                //Project project2 = ProjectManager.ReadProject();
                
             } 
             catch(Exception ex)

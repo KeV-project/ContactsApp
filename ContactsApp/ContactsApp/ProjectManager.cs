@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
+using System.Text.Json;
 
 namespace ContactsApp
 {
@@ -35,7 +31,7 @@ namespace ContactsApp
 			using (StreamWriter file = new StreamWriter(
 				_path, false, Encoding.UTF8))
 			{
-				file.Write(JsonConvert.SerializeObject(project));
+				file.Write(JsonSerializer.Serialize<Project>(project));
 			}
 		}
 
@@ -57,7 +53,7 @@ namespace ContactsApp
 					return null;
 				}
 				
-				project = JsonConvert.DeserializeObject<Project>(projectContent);
+				project = JsonSerializer.Deserialize<Project>(projectContent);
 			}
 
 			return project;

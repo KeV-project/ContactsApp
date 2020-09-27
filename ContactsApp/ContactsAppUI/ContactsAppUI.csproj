@@ -4,11 +4,6 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <Configurations>Debug;Release;Test</Configurations>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ContactsApp\ContactsApp.csproj" />
-  </ItemGroup>
 
 </Project>
