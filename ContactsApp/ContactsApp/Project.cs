@@ -4,8 +4,18 @@ using System.Text;
 
 namespace ContactsApp
 {
-    class Project
+    public class Project
     {
-        LinkedList<Contact> _contacts = new LinkedList<Contact>();
+        public LinkedList<Contact> _contacts;
+        
+        public Project()
+        {
+            _contacts = new LinkedList<Contact>();
+        }
+
+        public void AddContact(Contact contacts)
+        {
+            _contacts.AddLast(contacts);
+        }
     }
 }
