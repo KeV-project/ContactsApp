@@ -16,11 +16,15 @@ namespace ContactsAppUI
         public MainForm()
         {
             InitializeComponent();
-        }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
+            AddContactButton.FlatAppearance.BorderSize = 0;
+            AddContactButton.FlatStyle = FlatStyle.Flat;
 
+            EditContactButton.FlatAppearance.BorderSize = 0;
+            EditContactButton.FlatStyle = FlatStyle.Flat;
+
+            RemoveContactButton.FlatAppearance.BorderSize = 0;
+            RemoveContactButton.FlatStyle = FlatStyle.Flat;
         }
 
         private void AddContactButton_Click(object sender, EventArgs e)
@@ -33,6 +37,11 @@ namespace ContactsAppUI
         {
             EditContactForm editContactForm = new EditContactForm();
             editContactForm.Show();
+        }
+
+        private void SurnameLable_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
