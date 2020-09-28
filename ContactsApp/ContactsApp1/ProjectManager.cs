@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace ContactsApp
 {
@@ -28,10 +28,15 @@ namespace ContactsApp
 
 		public static void SaveProject(Project project)
 		{
+			//using (StreamWriter file = new StreamWriter(
+			//	_path, false, Encoding.UTF8))
+			//{
+			//	file.Write(JsonSerializer.Serialize<Project>(project));
+			//}
 			using (StreamWriter file = new StreamWriter(
-				_path, false, Encoding.UTF8))
+				_path, false, System.Text.Encoding.UTF8))
 			{
-				file.Write(JsonSerializer.Serialize<Project>(project));
+				file.Write(JsonConvert.SerializeObject(project));
 			}
 		}
 
@@ -52,8 +57,9 @@ namespace ContactsApp
 				{
 					return null;
 				}
-				
-				project = JsonSerializer.Deserialize<Project>(projectContent);
+
+				//project = JsonSerializer.Deserialize<Project>(projectContent);
+				project = JsonConvert.DeserializeObject<Project>(projectContent);
 			}
 
 			return project;

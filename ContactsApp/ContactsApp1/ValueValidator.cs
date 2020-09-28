@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ContactsApp
 {
@@ -18,7 +19,7 @@ namespace ContactsApp
         /// <param name="minLimit">Минимальное допустимое значение числа</param>
         /// <param name="maxLimit">Максимальное допустимое значение числа</param>
         /// <returns>Значение показывает, входит ли число в допустимый диапазон </returns>
-        public static bool IsValueInRange(double number, 
+        public static bool IsValueInRange(double number,
             double minLimit, double maxLimit)
         {
             return minLimit <= number && maxLimit >= number;
@@ -33,7 +34,7 @@ namespace ContactsApp
         public static bool IsLengthInRange(string value, int minLength,
             int maxLength)
         {
-            return minLength <= value.Length 
+            return minLength <= value.Length
                 && maxLength >= value.Length;
         }
         /// <summary>
@@ -54,18 +55,18 @@ namespace ContactsApp
         /// <param name="maxLimit">Максимальная граница</param>
         /// <param name="checkType">Тип проверки</param>
         /// <param name="context">Назначение проверяемого значения</param>
-        public static void AssertCorrectValue(string value, 
-            string minLimit, string maxLimit, 
+        public static void AssertCorrectValue(string value,
+            string minLimit, string maxLimit,
             CheckType checkType, string context)
         {
-            switch(checkType)
+            switch (checkType)
             {
                 case CheckType.IsValueInRange:
                     {
-                        if(!IsValueInRange(Convert.ToDouble(value), 
+                        if (!IsValueInRange(Convert.ToDouble(value),
                             Convert.ToDouble(minLimit), Convert.ToDouble(maxLimit)))
                         {
-                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: Число " + value 
+                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: Число " + value
                                 + "\nне входит в допустимый дипапазон ["
                                 + minLimit + ", " + maxLimit + "]"
                                 + "\nи не может определять " + context);
@@ -74,12 +75,12 @@ namespace ContactsApp
                     }
                 case CheckType.IsPhoneNumber:
                     {
-                        if(!IsFirstDigitIs7(value))
+                        if (!IsFirstDigitIs7(value))
                         {
                             throw new ArgumentException("ИСКЛЮЧЕНИЕ: " + value
                                + "\n" + context + " должен начинаться с цифры 7");
                         }
-                        if(!IsLengthInRange(value, Convert.ToInt32(minLimit),
+                        if (!IsLengthInRange(value, Convert.ToInt32(minLimit),
                             Convert.ToInt32(maxLimit)))
                         {
                             throw new ArgumentException("ИСКЛЮЧЕНИЕ: " + value
@@ -94,7 +95,7 @@ namespace ContactsApp
                         {
                             throw new ArgumentException("ИСКЛЮЧЕНИЕ: строка " + value
                                 + "\n превышает допустимую длину [" + minLimit + ", "
-                                + maxLimit + "]"  + "\nи не может определять " + context);
+                                + maxLimit + "]" + "\nи не может определять " + context);
                         }
                         break;
                     }

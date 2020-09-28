@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ContactsApp
 {
@@ -55,12 +57,12 @@ namespace ContactsApp
             {
                 const int minLength = 1;
                 const int maxLength = 50;
-                ValueValidator.AssertCorrectValue(value, 
-                    Convert.ToString(minLength), 
+                ValueValidator.AssertCorrectValue(value,
+                    Convert.ToString(minLength),
                     Convert.ToString(maxLength),
-                    CheckType.IsLenghtInRange, 
+                    CheckType.IsLenghtInRange,
                     "имя контакта");
-                _firstName = Convert.ToString(value[0]).ToUpper() 
+                _firstName = Convert.ToString(value[0]).ToUpper()
                     + value.Substring(1);
             }
         }
@@ -89,9 +91,9 @@ namespace ContactsApp
                     Convert.ToString(maxLength),
                     CheckType.IsLenghtInRange,
                     "фамилию контакта");
-                if(value.Length > 0)
+                if (value.Length > 0)
                 {
-                    _lastName = Convert.ToString(value[0]).ToUpper() 
+                    _lastName = Convert.ToString(value[0]).ToUpper()
                         + value.Substring(1);
                 }
                 else
@@ -147,7 +149,7 @@ namespace ContactsApp
         /// <param name="number">Номер телефона контакта</param>
         /// <param name="email">Адрес электронной почты контакта</param>
         /// <param name="birthDate">Дата рождения контакта</param>
-        public Contact(string id, string firstName, string lastName, 
+        public Contact(string id, string firstName, string lastName,
             PhoneNumber number, string email, Date birthDate)
         {
             Id = id;
@@ -165,7 +167,7 @@ namespace ContactsApp
         public object Clone()
         {
             PhoneNumber number = new PhoneNumber(Number.Number);
-            Date birthDate = new Date(BirthDate.Day, 
+            Date birthDate = new Date(BirthDate.Day,
                 BirthDate.Month, BirthDate.Year);
             return new Contact(Id, FirstName, LastName, number, Email, birthDate);
         }
