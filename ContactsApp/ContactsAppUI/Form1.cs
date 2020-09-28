@@ -18,8 +18,7 @@ namespace ContactsAppUI
             InitializeComponent();
 
             this.Text = "ContactsApp";
-            
+            this.Size = new Size(1200, 750);
         }
-
     }
 }

@@ -28,17 +28,13 @@ namespace ContactsApp
 
 		public static void SaveProject(Project project)
 		{
-			//using (StreamWriter file = new StreamWriter(
-			//	_path, false, Encoding.UTF8))
-			//{
-			//	file.Write(JsonSerializer.Serialize<Project>(project));
-			//}
-			using (StreamWriter file = new StreamWriter(
-				_path, false, System.Text.Encoding.UTF8))
-			{
-				file.Write(JsonConvert.SerializeObject(project));
-			}
-		}
+            using (StreamWriter file = new StreamWriter(
+                _path, false, Encoding.UTF8))
+            {
+                //file.Write(JsonSerializer.Serialize<Project>(project));
+                file.Write(JsonConvert.SerializeObject(project));
+            }
+        }
 
 		public static Project ReadProject()
 		{
