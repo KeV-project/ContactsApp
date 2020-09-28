@@ -37,6 +37,7 @@
             this.AddContactButton = new System.Windows.Forms.Button();
             this.EditContactButton = new System.Windows.Forms.Button();
             this.RemoveContactButton = new System.Windows.Forms.Button();
+            this.ContactsListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // FindTextBox
@@ -91,9 +92,9 @@
             this.AddContactButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddContactButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddContactButton.Image = ((System.Drawing.Image)(resources.GetObject("AddContactButton.Image")));
-            this.AddContactButton.Location = new System.Drawing.Point(12, 591);
+            this.AddContactButton.Location = new System.Drawing.Point(24, 584);
             this.AddContactButton.Name = "AddContactButton";
-            this.AddContactButton.Size = new System.Drawing.Size(30, 29);
+            this.AddContactButton.Size = new System.Drawing.Size(30, 28);
             this.AddContactButton.TabIndex = 5;
             this.AddContactButton.UseVisualStyleBackColor = true;
             this.AddContactButton.Click += new System.EventHandler(this.AddContactButton_Click);
@@ -102,7 +103,7 @@
             // 
             this.EditContactButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.EditContactButton.Image = ((System.Drawing.Image)(resources.GetObject("EditContactButton.Image")));
-            this.EditContactButton.Location = new System.Drawing.Point(48, 591);
+            this.EditContactButton.Location = new System.Drawing.Point(60, 583);
             this.EditContactButton.Name = "EditContactButton";
             this.EditContactButton.Size = new System.Drawing.Size(28, 29);
             this.EditContactButton.TabIndex = 6;
@@ -113,17 +114,26 @@
             // 
             this.RemoveContactButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RemoveContactButton.Image = ((System.Drawing.Image)(resources.GetObject("RemoveContactButton.Image")));
-            this.RemoveContactButton.Location = new System.Drawing.Point(82, 591);
+            this.RemoveContactButton.Location = new System.Drawing.Point(94, 583);
             this.RemoveContactButton.Name = "RemoveContactButton";
             this.RemoveContactButton.Size = new System.Drawing.Size(29, 29);
             this.RemoveContactButton.TabIndex = 7;
             this.RemoveContactButton.UseVisualStyleBackColor = true;
             // 
+            // ContactsListBox
+            // 
+            this.ContactsListBox.FormattingEnabled = true;
+            this.ContactsListBox.Location = new System.Drawing.Point(24, 60);
+            this.ContactsListBox.Name = "ContactsListBox";
+            this.ContactsListBox.Size = new System.Drawing.Size(341, 511);
+            this.ContactsListBox.TabIndex = 8;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1119, 632);
+            this.ClientSize = new System.Drawing.Size(1073, 638);
+            this.Controls.Add(this.ContactsListBox);
             this.Controls.Add(this.RemoveContactButton);
             this.Controls.Add(this.EditContactButton);
             this.Controls.Add(this.AddContactButton);
@@ -151,6 +161,7 @@
         private System.Windows.Forms.Button AddContactButton;
         private System.Windows.Forms.Button EditContactButton;
         private System.Windows.Forms.Button RemoveContactButton;
+        private System.Windows.Forms.ListBox ContactsListBox;
     }
 }
 
