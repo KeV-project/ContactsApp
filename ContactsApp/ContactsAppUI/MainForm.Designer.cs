@@ -36,15 +36,16 @@
             this.RemoveContactButton = new System.Windows.Forms.Button();
             this.ContactsListBox = new System.Windows.Forms.ListBox();
             this.ContactsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.EmailTextBox = new System.Windows.Forms.TextBox();
-            this.PhoneTextBox = new System.Windows.Forms.TextBox();
-            this.NameTextBox = new System.Windows.Forms.TextBox();
-            this.EmailLable = new System.Windows.Forms.Label();
-            this.BirthdayLable = new System.Windows.Forms.Label();
-            this.PhoneLable = new System.Windows.Forms.Label();
-            this.SurnameLable = new System.Windows.Forms.Label();
-            this.NameLabel = new System.Windows.Forms.Label();
-            this.SurnameTextBox = new System.Windows.Forms.TextBox();
+            this.ContactEmailTextBox = new System.Windows.Forms.TextBox();
+            this.ContactNameTextBox = new System.Windows.Forms.TextBox();
+            this.ContactEmailLable = new System.Windows.Forms.Label();
+            this.ContactBirthdayLable = new System.Windows.Forms.Label();
+            this.ContactPhoneLable = new System.Windows.Forms.Label();
+            this.ContactSurnameLable = new System.Windows.Forms.Label();
+            this.ContactNameLabel = new System.Windows.Forms.Label();
+            this.ContactSurnameTextBox = new System.Windows.Forms.TextBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.ContactsTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,6 +108,7 @@
             this.ContactsListBox.FormattingEnabled = true;
             this.ContactsListBox.Location = new System.Drawing.Point(24, 60);
             this.ContactsListBox.Name = "ContactsListBox";
+            this.ContactsListBox.ScrollAlwaysVisible = true;
             this.ContactsListBox.Size = new System.Drawing.Size(341, 485);
             this.ContactsListBox.TabIndex = 8;
             // 
@@ -115,15 +117,16 @@
             this.ContactsTableLayoutPanel.ColumnCount = 2;
             this.ContactsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11F));
             this.ContactsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89F));
-            this.ContactsTableLayoutPanel.Controls.Add(this.EmailTextBox, 1, 4);
-            this.ContactsTableLayoutPanel.Controls.Add(this.PhoneTextBox, 1, 3);
-            this.ContactsTableLayoutPanel.Controls.Add(this.NameTextBox, 1, 1);
-            this.ContactsTableLayoutPanel.Controls.Add(this.EmailLable, 0, 4);
-            this.ContactsTableLayoutPanel.Controls.Add(this.BirthdayLable, 0, 2);
-            this.ContactsTableLayoutPanel.Controls.Add(this.PhoneLable, 0, 3);
-            this.ContactsTableLayoutPanel.Controls.Add(this.SurnameLable, 0, 0);
-            this.ContactsTableLayoutPanel.Controls.Add(this.NameLabel, 0, 1);
-            this.ContactsTableLayoutPanel.Controls.Add(this.SurnameTextBox, 1, 0);
+            this.ContactsTableLayoutPanel.Controls.Add(this.ContactEmailTextBox, 1, 4);
+            this.ContactsTableLayoutPanel.Controls.Add(this.ContactNameTextBox, 1, 1);
+            this.ContactsTableLayoutPanel.Controls.Add(this.ContactEmailLable, 0, 4);
+            this.ContactsTableLayoutPanel.Controls.Add(this.ContactBirthdayLable, 0, 2);
+            this.ContactsTableLayoutPanel.Controls.Add(this.ContactPhoneLable, 0, 3);
+            this.ContactsTableLayoutPanel.Controls.Add(this.ContactSurnameLable, 0, 0);
+            this.ContactsTableLayoutPanel.Controls.Add(this.ContactNameLabel, 0, 1);
+            this.ContactsTableLayoutPanel.Controls.Add(this.ContactSurnameTextBox, 1, 0);
+            this.ContactsTableLayoutPanel.Controls.Add(this.maskedTextBox1, 1, 3);
+            this.ContactsTableLayoutPanel.Controls.Add(this.dateTimePicker1, 1, 2);
             this.ContactsTableLayoutPanel.Location = new System.Drawing.Point(401, 41);
             this.ContactsTableLayoutPanel.Name = "ContactsTableLayoutPanel";
             this.ContactsTableLayoutPanel.RowCount = 5;
@@ -135,125 +138,135 @@
             this.ContactsTableLayoutPanel.Size = new System.Drawing.Size(742, 185);
             this.ContactsTableLayoutPanel.TabIndex = 9;
             // 
-            // EmailTextBox
+            // ContactEmailTextBox
             // 
-            this.EmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ContactEmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.EmailTextBox.Enabled = false;
-            this.EmailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.EmailTextBox.Location = new System.Drawing.Point(84, 149);
-            this.EmailTextBox.Name = "EmailTextBox";
-            this.EmailTextBox.Size = new System.Drawing.Size(655, 22);
-            this.EmailTextBox.TabIndex = 14;
+            this.ContactEmailTextBox.Enabled = false;
+            this.ContactEmailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactEmailTextBox.Location = new System.Drawing.Point(84, 149);
+            this.ContactEmailTextBox.Name = "ContactEmailTextBox";
+            this.ContactEmailTextBox.Size = new System.Drawing.Size(655, 22);
+            this.ContactEmailTextBox.TabIndex = 14;
             // 
-            // PhoneTextBox
+            // ContactNameTextBox
             // 
-            this.PhoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ContactNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PhoneTextBox.Enabled = false;
-            this.PhoneTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PhoneTextBox.Location = new System.Drawing.Point(84, 112);
-            this.PhoneTextBox.Name = "PhoneTextBox";
-            this.PhoneTextBox.Size = new System.Drawing.Size(655, 22);
-            this.PhoneTextBox.TabIndex = 13;
+            this.ContactNameTextBox.Enabled = false;
+            this.ContactNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactNameTextBox.Location = new System.Drawing.Point(84, 39);
+            this.ContactNameTextBox.Name = "ContactNameTextBox";
+            this.ContactNameTextBox.Size = new System.Drawing.Size(655, 22);
+            this.ContactNameTextBox.TabIndex = 11;
             // 
-            // NameTextBox
+            // ContactEmailLable
             // 
-            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameTextBox.Enabled = false;
-            this.NameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameTextBox.Location = new System.Drawing.Point(84, 39);
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(655, 22);
-            this.NameTextBox.TabIndex = 11;
-            // 
-            // EmailLable
-            // 
-            this.EmailLable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ContactEmailLable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.EmailLable.AutoSize = true;
-            this.EmailLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.EmailLable.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.EmailLable.Location = new System.Drawing.Point(3, 146);
-            this.EmailLable.Name = "EmailLable";
-            this.EmailLable.Size = new System.Drawing.Size(75, 39);
-            this.EmailLable.TabIndex = 10;
-            this.EmailLable.Text = "E-mail:";
-            this.EmailLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ContactEmailLable.AutoSize = true;
+            this.ContactEmailLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactEmailLable.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ContactEmailLable.Location = new System.Drawing.Point(3, 146);
+            this.ContactEmailLable.Name = "ContactEmailLable";
+            this.ContactEmailLable.Size = new System.Drawing.Size(75, 39);
+            this.ContactEmailLable.TabIndex = 10;
+            this.ContactEmailLable.Text = "E-mail:";
+            this.ContactEmailLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // BirthdayLable
+            // ContactBirthdayLable
             // 
-            this.BirthdayLable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ContactBirthdayLable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BirthdayLable.AutoSize = true;
-            this.BirthdayLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BirthdayLable.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BirthdayLable.Location = new System.Drawing.Point(3, 72);
-            this.BirthdayLable.Name = "BirthdayLable";
-            this.BirthdayLable.Size = new System.Drawing.Size(75, 37);
-            this.BirthdayLable.TabIndex = 10;
-            this.BirthdayLable.Text = "Birthday:";
-            this.BirthdayLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ContactBirthdayLable.AutoSize = true;
+            this.ContactBirthdayLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactBirthdayLable.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ContactBirthdayLable.Location = new System.Drawing.Point(3, 72);
+            this.ContactBirthdayLable.Name = "ContactBirthdayLable";
+            this.ContactBirthdayLable.Size = new System.Drawing.Size(75, 37);
+            this.ContactBirthdayLable.TabIndex = 10;
+            this.ContactBirthdayLable.Text = "Birthday:";
+            this.ContactBirthdayLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // PhoneLable
+            // ContactPhoneLable
             // 
-            this.PhoneLable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ContactPhoneLable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PhoneLable.AutoSize = true;
-            this.PhoneLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PhoneLable.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.PhoneLable.Location = new System.Drawing.Point(3, 109);
-            this.PhoneLable.Name = "PhoneLable";
-            this.PhoneLable.Size = new System.Drawing.Size(75, 37);
-            this.PhoneLable.TabIndex = 10;
-            this.PhoneLable.Text = "Phone:";
-            this.PhoneLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ContactPhoneLable.AutoSize = true;
+            this.ContactPhoneLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactPhoneLable.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ContactPhoneLable.Location = new System.Drawing.Point(3, 109);
+            this.ContactPhoneLable.Name = "ContactPhoneLable";
+            this.ContactPhoneLable.Size = new System.Drawing.Size(75, 37);
+            this.ContactPhoneLable.TabIndex = 10;
+            this.ContactPhoneLable.Text = "Phone:";
+            this.ContactPhoneLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // SurnameLable
+            // ContactSurnameLable
             // 
-            this.SurnameLable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ContactSurnameLable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SurnameLable.AutoSize = true;
-            this.SurnameLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SurnameLable.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.SurnameLable.Location = new System.Drawing.Point(3, 0);
-            this.SurnameLable.Name = "SurnameLable";
-            this.SurnameLable.Size = new System.Drawing.Size(75, 36);
-            this.SurnameLable.TabIndex = 0;
-            this.SurnameLable.Text = "Surname:";
-            this.SurnameLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SurnameLable.Click += new System.EventHandler(this.SurnameLable_Click);
+            this.ContactSurnameLable.AutoSize = true;
+            this.ContactSurnameLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactSurnameLable.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ContactSurnameLable.Location = new System.Drawing.Point(3, 0);
+            this.ContactSurnameLable.Name = "ContactSurnameLable";
+            this.ContactSurnameLable.Size = new System.Drawing.Size(75, 36);
+            this.ContactSurnameLable.TabIndex = 0;
+            this.ContactSurnameLable.Text = "Surname:";
+            this.ContactSurnameLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ContactSurnameLable.Click += new System.EventHandler(this.SurnameLable_Click);
             // 
-            // NameLabel
+            // ContactNameLabel
             // 
-            this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ContactNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.NameLabel.Location = new System.Drawing.Point(3, 36);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(75, 36);
-            this.NameLabel.TabIndex = 10;
-            this.NameLabel.Text = "Name:";
-            this.NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ContactNameLabel.AutoSize = true;
+            this.ContactNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ContactNameLabel.Location = new System.Drawing.Point(3, 36);
+            this.ContactNameLabel.Name = "ContactNameLabel";
+            this.ContactNameLabel.Size = new System.Drawing.Size(75, 36);
+            this.ContactNameLabel.TabIndex = 10;
+            this.ContactNameLabel.Text = "Name:";
+            this.ContactNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // SurnameTextBox
+            // ContactSurnameTextBox
             // 
-            this.SurnameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ContactSurnameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SurnameTextBox.Enabled = false;
-            this.SurnameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SurnameTextBox.Location = new System.Drawing.Point(84, 3);
-            this.SurnameTextBox.Name = "SurnameTextBox";
-            this.SurnameTextBox.Size = new System.Drawing.Size(655, 22);
-            this.SurnameTextBox.TabIndex = 10;
+            this.ContactSurnameTextBox.Enabled = false;
+            this.ContactSurnameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactSurnameTextBox.Location = new System.Drawing.Point(84, 3);
+            this.ContactSurnameTextBox.Name = "ContactSurnameTextBox";
+            this.ContactSurnameTextBox.Size = new System.Drawing.Size(655, 22);
+            this.ContactSurnameTextBox.TabIndex = 10;
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.maskedTextBox1.Enabled = false;
+            this.maskedTextBox1.Location = new System.Drawing.Point(84, 112);
+            this.maskedTextBox1.Mask = "+7 (000) 00-00-00";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(655, 20);
+            this.maskedTextBox1.TabIndex = 15;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker1.Enabled = false;
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(84, 75);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(159, 22);
+            this.dateTimePicker1.TabIndex = 16;
             // 
             // MainForm
             // 
@@ -288,15 +301,16 @@
         private System.Windows.Forms.Button RemoveContactButton;
         private System.Windows.Forms.ListBox ContactsListBox;
         private System.Windows.Forms.TableLayoutPanel ContactsTableLayoutPanel;
-        private System.Windows.Forms.Label SurnameLable;
-        private System.Windows.Forms.Label NameLabel;
-        private System.Windows.Forms.Label BirthdayLable;
-        private System.Windows.Forms.Label EmailLable;
-        private System.Windows.Forms.Label PhoneLable;
-        private System.Windows.Forms.TextBox SurnameTextBox;
-        private System.Windows.Forms.TextBox EmailTextBox;
-        private System.Windows.Forms.TextBox PhoneTextBox;
-        private System.Windows.Forms.TextBox NameTextBox;
+        private System.Windows.Forms.Label ContactSurnameLable;
+        private System.Windows.Forms.Label ContactNameLabel;
+        private System.Windows.Forms.Label ContactBirthdayLable;
+        private System.Windows.Forms.Label ContactEmailLable;
+        private System.Windows.Forms.Label ContactPhoneLable;
+        private System.Windows.Forms.TextBox ContactSurnameTextBox;
+        private System.Windows.Forms.TextBox ContactEmailTextBox;
+        private System.Windows.Forms.TextBox ContactNameTextBox;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 

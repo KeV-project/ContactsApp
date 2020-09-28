@@ -46,17 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddContactForm.cs">
+    <Compile Include="ContactForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddContactForm.Designer.cs">
-      <DependentUpon>AddContactForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EditContactForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditContactForm.Designer.cs">
-      <DependentUpon>EditContactForm.cs</DependentUpon>
+    <Compile Include="ContactForm.Designer.cs">
+      <DependentUpon>ContactForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -66,11 +60,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddContactForm.resx">
-      <DependentUpon>AddContactForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditContactForm.resx">
-      <DependentUpon>EditContactForm.cs</DependentUpon>
+    <EmbeddedResource Include="ContactForm.resx">
+      <DependentUpon>ContactForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

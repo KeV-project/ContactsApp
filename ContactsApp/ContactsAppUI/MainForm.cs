@@ -29,13 +29,15 @@ namespace ContactsAppUI
 
         private void AddContactButton_Click(object sender, EventArgs e)
         {
-            AddContactForm addContactForm = new AddContactForm();
+            ContactForm addContactForm = new ContactForm();
+            addContactForm.Text = "Add contact";
             addContactForm.Show();
         }
 
         private void EditContactButton_Click(object sender, EventArgs e)
         {
-            EditContactForm editContactForm = new EditContactForm();
+            ContactForm editContactForm = new ContactForm();
+            editContactForm.Text = "Edit contact";
             editContactForm.Show();
         }
 
