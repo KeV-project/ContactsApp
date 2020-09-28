@@ -11,14 +11,16 @@ using ContactsApp;
 
 namespace ContactsAppUI
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+        }
 
-            this.Text = "ContactsApp";
-            this.Size = new Size(1200, 750);
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
