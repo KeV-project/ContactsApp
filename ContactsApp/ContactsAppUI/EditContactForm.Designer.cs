@@ -1,6 +1,6 @@
 ﻿namespace ContactsAppUI
 {
-    partial class AddContactForm
+    partial class EditContactForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // AddContactForm
+            // EditContactForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 400);
-            this.Name = "AddContactForm";
+            this.Name = "EditContactForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add contact";
+            this.Text = "Edit contact";
             this.ResumeLayout(false);
 
         }

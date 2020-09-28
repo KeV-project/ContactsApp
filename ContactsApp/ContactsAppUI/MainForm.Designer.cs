@@ -96,6 +96,7 @@
             this.AddContactButton.Size = new System.Drawing.Size(30, 29);
             this.AddContactButton.TabIndex = 5;
             this.AddContactButton.UseVisualStyleBackColor = true;
+            this.AddContactButton.Click += new System.EventHandler(this.AddContactButton_Click);
             // 
             // EditContactButton
             // 
@@ -106,6 +107,7 @@
             this.EditContactButton.Size = new System.Drawing.Size(28, 29);
             this.EditContactButton.TabIndex = 6;
             this.EditContactButton.UseVisualStyleBackColor = true;
+            this.EditContactButton.Click += new System.EventHandler(this.EditContactButton_Click);
             // 
             // RemoveContactButton
             // 

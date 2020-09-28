@@ -22,5 +22,17 @@ namespace ContactsAppUI
         {
 
         }
+
+        private void AddContactButton_Click(object sender, EventArgs e)
+        {
+            AddContactForm addContactForm = new AddContactForm();
+            addContactForm.Show();
+        }
+
+        private void EditContactButton_Click(object sender, EventArgs e)
+        {
+            EditContactForm editContactForm = new EditContactForm();
+            editContactForm.Show();
+        }
     }
 }
