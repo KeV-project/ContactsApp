@@ -35,8 +35,8 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.BirthdayLabel = new System.Windows.Forms.Label();
             this.AddContactButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.EditContactButton = new System.Windows.Forms.Button();
+            this.RemoveContactButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FindTextBox
@@ -88,39 +88,42 @@
             // 
             // AddContactButton
             // 
+            this.AddContactButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddContactButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddContactButton.Image = ((System.Drawing.Image)(resources.GetObject("AddContactButton.Image")));
-            this.AddContactButton.Location = new System.Drawing.Point(12, 630);
+            this.AddContactButton.Location = new System.Drawing.Point(12, 591);
             this.AddContactButton.Name = "AddContactButton";
             this.AddContactButton.Size = new System.Drawing.Size(30, 29);
             this.AddContactButton.TabIndex = 5;
             this.AddContactButton.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // EditContactButton
             // 
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(48, 630);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(28, 29);
-            this.button1.TabIndex = 6;
-            this.button1.UseVisualStyleBackColor = true;
+            this.EditContactButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.EditContactButton.Image = ((System.Drawing.Image)(resources.GetObject("EditContactButton.Image")));
+            this.EditContactButton.Location = new System.Drawing.Point(48, 591);
+            this.EditContactButton.Name = "EditContactButton";
+            this.EditContactButton.Size = new System.Drawing.Size(28, 29);
+            this.EditContactButton.TabIndex = 6;
+            this.EditContactButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // RemoveContactButton
             // 
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(82, 630);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(28, 29);
-            this.button2.TabIndex = 7;
-            this.button2.UseVisualStyleBackColor = true;
+            this.RemoveContactButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RemoveContactButton.Image = ((System.Drawing.Image)(resources.GetObject("RemoveContactButton.Image")));
+            this.RemoveContactButton.Location = new System.Drawing.Point(82, 591);
+            this.RemoveContactButton.Name = "RemoveContactButton";
+            this.RemoveContactButton.Size = new System.Drawing.Size(29, 29);
+            this.RemoveContactButton.TabIndex = 7;
+            this.RemoveContactButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1070, 671);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1119, 632);
+            this.Controls.Add(this.RemoveContactButton);
+            this.Controls.Add(this.EditContactButton);
             this.Controls.Add(this.AddContactButton);
             this.Controls.Add(this.BirthdayLabel);
             this.Controls.Add(this.NameLabel);
@@ -144,8 +147,8 @@
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label BirthdayLabel;
         private System.Windows.Forms.Button AddContactButton;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button EditContactButton;
+        private System.Windows.Forms.Button RemoveContactButton;
     }
 }
 
