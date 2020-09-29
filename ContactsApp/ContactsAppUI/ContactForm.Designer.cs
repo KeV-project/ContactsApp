@@ -198,6 +198,7 @@
             this.MakeContactOkButton.TabIndex = 1;
             this.MakeContactOkButton.Text = "Ok";
             this.MakeContactOkButton.UseVisualStyleBackColor = true;
+            this.MakeContactOkButton.Click += new System.EventHandler(this.MakeContactOkButton_Click);
             // 
             // MakeContactCancelButton
             // 

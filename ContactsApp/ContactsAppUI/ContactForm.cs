@@ -16,5 +16,10 @@ namespace ContactsAppUI
         {
             InitializeComponent();
         }
+
+        private void MakeContactOkButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
