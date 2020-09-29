@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContactsApp1
+namespace ContactsApp
 {
-    static class ValueCorrector
+    static public class ValueCorrector
     {
-        static public long ConvertPhoneNumberToIn(string number)
+        static public long ConvertPhoneNumberToInt(string number)
         {
             number = number.Replace(" ", "");
             number = number.Replace("+", "");

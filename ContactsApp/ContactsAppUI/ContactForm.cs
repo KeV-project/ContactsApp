@@ -27,14 +27,9 @@ namespace ContactsAppUI
                 NewContact.FirstName = MakeContactNameTextBox.Text;
                 NewContact.LastName = MakeContactSurnameTextBox.Text;
                 NewContact.BirthDate = MakeContactBirthDateTimePicker.Value;
-                string phone = MakeContactPhoneMaskedTextBox.Text;
-                phone = phone.Replace("+", "");
-                phone = phone.Replace("-", "");
-                phone = phone.Replace("(", "");
-                phone = phone.Replace(")", "");
-                phone = phone.Replace(" ", "");
-                NewContact.Number =
-                    new PhoneNumber(Convert.ToInt64(phone));
+                NewContact.Number = new PhoneNumber(ValueCorrector.
+                    ConvertPhoneNumberToInt(
+                    MakeContactPhoneMaskedTextBox.Text));
                 NewContact.Email = MakeContactEmailTtextBox.Text;
             }
             catch(Exception ex)
@@ -42,6 +37,12 @@ namespace ContactsAppUI
                 MessageBox.Show(ex.Message);
             }
             DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void MakeContactCancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }

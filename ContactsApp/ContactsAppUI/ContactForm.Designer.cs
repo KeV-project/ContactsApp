@@ -210,6 +210,7 @@
             this.MakeContactCancelButton.TabIndex = 2;
             this.MakeContactCancelButton.Text = "Cancel";
             this.MakeContactCancelButton.UseVisualStyleBackColor = true;
+            this.MakeContactCancelButton.Click += new System.EventHandler(this.MakeContactCancelButton_Click);
             // 
             // ContactForm
             // 

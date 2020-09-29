@@ -105,11 +105,13 @@
             // 
             this.ContactsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.ContactsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ContactsListBox.FormattingEnabled = true;
+            this.ContactsListBox.ItemHeight = 16;
             this.ContactsListBox.Location = new System.Drawing.Point(24, 60);
             this.ContactsListBox.Name = "ContactsListBox";
             this.ContactsListBox.ScrollAlwaysVisible = true;
-            this.ContactsListBox.Size = new System.Drawing.Size(341, 485);
+            this.ContactsListBox.Size = new System.Drawing.Size(341, 484);
             this.ContactsListBox.TabIndex = 8;
             // 
             // ContactsTableLayoutPanel

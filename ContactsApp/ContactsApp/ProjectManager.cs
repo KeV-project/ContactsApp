@@ -38,12 +38,12 @@ namespace ContactsApp
 
 		public static Project ReadProject()
 		{
+			Project project = new Project();
+
 			if (!File.Exists(_path))
 			{
-				return null;
+				return project;
 			}
-
-			Project project = new Project();
 
 			using (StreamReader file = new StreamReader(
 					_path, Encoding.Default))
@@ -51,7 +51,7 @@ namespace ContactsApp
 				string projectContent = file.ReadLine();
 				if (string.IsNullOrEmpty(projectContent))
 				{
-					return null;
+					return project;
 				}
 
 				//project = JsonSerializer.Deserialize<Project>(projectContent);

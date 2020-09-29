@@ -19,5 +19,20 @@ namespace ContactsApp
         {
             _contacts.AddLast(contacts);
         }
+
+        public int FindContactIndex(string firstName, string lastName)
+        {
+            foreach(Contact currentContact in _contacts)
+            {
+                int i = 0;
+                if(currentContact.FirstName == firstName
+                    && currentContact.LastName == lastName)
+                {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
+        }
     }
 }

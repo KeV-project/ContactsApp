@@ -13,17 +13,18 @@ namespace ContactsAppUI
 {
     public partial class MainForm : Form
     {
-        Project project;
+        Project _project;
         public MainForm()
         {
-            project = ProjectManager.ReadProject();
-            if(project != null)
-            {
-                CopyContactsNameInListBox(project);
-            }
-           
+            _project = ProjectManager.ReadProject();
+
             InitializeComponent();
 
+            if (_project._contacts.Count != 0)
+            {
+                CopyContactsNameInListBox(_project);
+            }
+           
             AddContactButton.FlatAppearance.BorderSize = 0;
             AddContactButton.FlatStyle = FlatStyle.Flat;
 
@@ -44,7 +45,7 @@ namespace ContactsAppUI
             foreach(Contact currentContact in project._contacts)
             {
                 AddContactNameInListBox(currentContact.LastName 
-                    + currentContact.FirstName);
+                    + " " + currentContact.FirstName);
             }
         }
 
@@ -53,16 +54,29 @@ namespace ContactsAppUI
             ContactForm addContactForm = new ContactForm();
             addContactForm.Text = "Add contact";
             addContactForm.ShowDialog();
-            Contact newContact = addContactForm.NewContact;
-            project.AddContact(newContact);
-            ContactsListBox.Items.Add(newContact.LastName + newContact.FirstName);
+            if(addContactForm.DialogResult == DialogResult.OK)
+            {
+                Contact newContact = addContactForm.NewContact;
+                _project.AddContact(newContact);
+                ContactsListBox.Items.Add(newContact.LastName
+                    + " " + newContact.FirstName);
+                ProjectManager.SaveProject(_project);
+            }
         }
 
         private void EditContactButton_Click(object sender, EventArgs e)
         {
+            var selectedIndex = ContactsListBox.SelectedIndex;
+            string[] names = Convert.ToString(ContactsListBox.
+                Items[selectedIndex]).
+                Split(new char[] { ' ' }, 
+                StringSplitOptions.RemoveEmptyEntries);
+            int contactIndex = _project.FindContactIndex(names[0], names[1]);
+            /// Продолжить здесь
             ContactForm editContactForm = new ContactForm();
             editContactForm.Text = "Edit contact";
-            editContactForm.Show();
+            editContactForm.ShowDialog();
+            
         }
 
         private void SurnameLable_Click(object sender, EventArgs e)
