@@ -138,7 +138,7 @@ namespace ContactsApp
         /// <summary>
         /// Возвращает и создает дату рождения контакта
         /// </summary>
-        public Date BirthDate { get; set; }
+        public EventDate BirthDate { get; set; }
 
         /// <summary>
         /// Инициализирует поля при создании объекта
@@ -150,7 +150,7 @@ namespace ContactsApp
         /// <param name="email">Адрес электронной почты контакта</param>
         /// <param name="birthDate">Дата рождения контакта</param>
         public Contact(string id, string firstName, string lastName,
-            PhoneNumber number, string email, Date birthDate)
+            PhoneNumber number, string email, EventDate birthDate)
         {
             Id = id;
             FirstName = firstName;
@@ -167,8 +167,9 @@ namespace ContactsApp
         public object Clone()
         {
             PhoneNumber number = new PhoneNumber(Number.Number);
-            Date birthDate = new Date(BirthDate.Day,
-                BirthDate.Month, BirthDate.Year);
+            EventDate birthDate = new EventDate
+                (new DateTime(BirthDate.Date.Year, 
+                BirthDate.Date.Month, BirthDate.Date.Day));
             return new Contact(Id, FirstName, LastName, number, Email, birthDate);
         }
     }

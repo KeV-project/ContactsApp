@@ -54,7 +54,8 @@ namespace ContactsApp
         /// <param name="minLimit">Минимальная граница</param>
         /// <param name="maxLimit">Максимальная граница</param>
         /// <param name="checkType">Тип проверки</param>
-        /// <param name="context">Назначение проверяемого значения</param>
+        /// <param name="context">Назначение проверяемого значения
+        /// Задается в родительном падеже в нижнем регистре</param>
         public static void AssertCorrectValue(string value,
             string minLimit, string maxLimit,
             CheckType checkType, string context)

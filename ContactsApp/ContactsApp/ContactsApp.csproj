@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="CheckType.cs" />
     <Compile Include="Contact.cs" />
-    <Compile Include="Data.cs" />
+    <Compile Include="EventDate.cs" />
     <Compile Include="ICloneable.cs" />
     <Compile Include="PhoneNumber.cs" />
     <Compile Include="Project.cs" />
