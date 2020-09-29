@@ -13,8 +13,15 @@ namespace ContactsAppUI
 {
     public partial class MainForm : Form
     {
+        Project project;
         public MainForm()
         {
+            project = ProjectManager.ReadProject();
+            if(project != null)
+            {
+                CopyContactsNameInListBox(project);
+            }
+           
             InitializeComponent();
 
             AddContactButton.FlatAppearance.BorderSize = 0;
@@ -27,11 +34,28 @@ namespace ContactsAppUI
             RemoveContactButton.FlatStyle = FlatStyle.Flat;
         }
 
+        public void AddContactNameInListBox(string contactName)
+        {
+            ContactsListBox.Items.Add(contactName);
+        }
+
+        private void CopyContactsNameInListBox(Project project)
+        {
+            foreach(Contact currentContact in project._contacts)
+            {
+                AddContactNameInListBox(currentContact.LastName 
+                    + currentContact.FirstName);
+            }
+        }
+
         private void AddContactButton_Click(object sender, EventArgs e)
         {
             ContactForm addContactForm = new ContactForm();
             addContactForm.Text = "Add contact";
-            addContactForm.Show();
+            addContactForm.ShowDialog();
+            Contact newContact = addContactForm.NewContact;
+            project.AddContact(newContact);
+            ContactsListBox.Items.Add(newContact.LastName + newContact.FirstName);
         }
 
         private void EditContactButton_Click(object sender, EventArgs e)

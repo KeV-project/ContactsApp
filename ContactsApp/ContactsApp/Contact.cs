@@ -14,12 +14,12 @@ namespace ContactsApp
         /// <summary>
         /// Поле "id" содержит идентификатор контакта
         /// </summary>
-        private string _id;
+        private int _id;
         /// <summary>
         /// Возвращает и создает id контакта
         /// Id контакта должно состоять не более чем из 15 символом
         /// </summary>
-        public string Id
+        public int Id
         {
             get
             {
@@ -29,7 +29,7 @@ namespace ContactsApp
             {
                 const int minLength = 0;
                 const int maxLength = 15;
-                ValueValidator.AssertCorrectValue(value,
+                ValueValidator.AssertCorrectValue(Convert.ToString(value),
                     Convert.ToString(minLength),
                     Convert.ToString(maxLength),
                     CheckType.IsLenghtInRange,
@@ -135,10 +135,36 @@ namespace ContactsApp
                 _email = value;
             }
         }
+        private DateTime _birthDate;
         /// <summary>
         /// Возвращает и создает дату рождения контакта
         /// </summary>
-        public EventDate BirthDate { get; set; }
+        public DateTime BirthDate
+        {
+            get
+            {
+                return _birthDate;
+            }
+            set
+            {
+                const int minYear = 1900;
+                int maxYear = Convert.ToInt32(DateTime.Now.Year);
+                ValueValidator.AssertCorrectValue(Convert.ToString(value.Year),
+                    Convert.ToString(minYear), Convert.ToString(maxYear),
+                    CheckType.IsValueInRange, "дату рождения");
+                _birthDate = value;
+            }
+        }
+
+        public Contact()
+        {
+            Id = 0;
+            FirstName = "Не определено";
+            LastName = "Не определено";
+            Number = null;
+            Email = "Не определен";
+            BirthDate = DateTime.Now;
+        }
 
         /// <summary>
         /// Инициализирует поля при создании объекта
@@ -149,8 +175,8 @@ namespace ContactsApp
         /// <param name="number">Номер телефона контакта</param>
         /// <param name="email">Адрес электронной почты контакта</param>
         /// <param name="birthDate">Дата рождения контакта</param>
-        public Contact(string id, string firstName, string lastName,
-            PhoneNumber number, string email, EventDate birthDate)
+        public Contact(int id, string firstName, string lastName,
+            PhoneNumber number, string email, DateTime birthDate)
         {
             Id = id;
             FirstName = firstName;
@@ -167,9 +193,8 @@ namespace ContactsApp
         public object Clone()
         {
             PhoneNumber number = new PhoneNumber(Number.Number);
-            EventDate birthDate = new EventDate
-                (new DateTime(BirthDate.Date.Year, 
-                BirthDate.Date.Month, BirthDate.Date.Day));
+            DateTime birthDate = new DateTime(BirthDate.Year, 
+                BirthDate.Month, BirthDate.Day);
             return new Contact(Id, FirstName, LastName, number, Email, birthDate);
         }
     }

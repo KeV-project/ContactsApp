@@ -37,8 +37,8 @@
             this.MakeContactBirthdayLabel = new System.Windows.Forms.Label();
             this.MakeContactPhoneLabel = new System.Windows.Forms.Label();
             this.MakeContactEmailLabel = new System.Windows.Forms.Label();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.MakeContactPhoneMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.MakeContactBirthDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.MakeContactOkButton = new System.Windows.Forms.Button();
             this.MakeContactCancelButton = new System.Windows.Forms.Button();
             this.MakeContactTableLayoutPanel.SuspendLayout();
@@ -59,8 +59,8 @@
             this.MakeContactTableLayoutPanel.Controls.Add(this.MakeContactBirthdayLabel, 0, 2);
             this.MakeContactTableLayoutPanel.Controls.Add(this.MakeContactPhoneLabel, 0, 3);
             this.MakeContactTableLayoutPanel.Controls.Add(this.MakeContactEmailLabel, 0, 4);
-            this.MakeContactTableLayoutPanel.Controls.Add(this.maskedTextBox2, 1, 3);
-            this.MakeContactTableLayoutPanel.Controls.Add(this.dateTimePicker1, 1, 2);
+            this.MakeContactTableLayoutPanel.Controls.Add(this.MakeContactPhoneMaskedTextBox, 1, 3);
+            this.MakeContactTableLayoutPanel.Controls.Add(this.MakeContactBirthDateTimePicker, 1, 2);
             this.MakeContactTableLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MakeContactTableLayoutPanel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.MakeContactTableLayoutPanel.Location = new System.Drawing.Point(32, 27);
@@ -171,22 +171,22 @@
             this.MakeContactEmailLabel.Text = "E-mail:";
             this.MakeContactEmailLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // maskedTextBox2
+            // MakeContactPhoneMaskedTextBox
             // 
-            this.maskedTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MakeContactPhoneMaskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.maskedTextBox2.Location = new System.Drawing.Point(82, 108);
-            this.maskedTextBox2.Mask = "+7 (000) 00-00-00";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(445, 22);
-            this.maskedTextBox2.TabIndex = 11;
+            this.MakeContactPhoneMaskedTextBox.Location = new System.Drawing.Point(82, 108);
+            this.MakeContactPhoneMaskedTextBox.Mask = "+7 (000) 000-00-00";
+            this.MakeContactPhoneMaskedTextBox.Name = "MakeContactPhoneMaskedTextBox";
+            this.MakeContactPhoneMaskedTextBox.Size = new System.Drawing.Size(445, 22);
+            this.MakeContactPhoneMaskedTextBox.TabIndex = 11;
             // 
-            // dateTimePicker1
+            // MakeContactBirthDateTimePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(82, 73);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(162, 22);
-            this.dateTimePicker1.TabIndex = 12;
+            this.MakeContactBirthDateTimePicker.Location = new System.Drawing.Point(82, 73);
+            this.MakeContactBirthDateTimePicker.Name = "MakeContactBirthDateTimePicker";
+            this.MakeContactBirthDateTimePicker.Size = new System.Drawing.Size(162, 22);
+            this.MakeContactBirthDateTimePicker.TabIndex = 12;
             // 
             // MakeContactOkButton
             // 
@@ -242,8 +242,8 @@
         private System.Windows.Forms.Label MakeContactEmailLabel;
         private System.Windows.Forms.TextBox MakeContactEmailTtextBox;
         private System.Windows.Forms.TextBox MakeContactNameTextBox;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.MaskedTextBox MakeContactPhoneMaskedTextBox;
+        private System.Windows.Forms.DateTimePicker MakeContactBirthDateTimePicker;
         private System.Windows.Forms.Button MakeContactOkButton;
         private System.Windows.Forms.Button MakeContactCancelButton;
     }
