@@ -36,6 +36,10 @@ namespace ContactsApp
                 _number = value;
             }
         }
+        public PhoneNumber()
+        {
+            Number = 70000000000;
+        }
         /// <summary>
         /// Инициализирует поля класса при создании объекта
         /// </summary>

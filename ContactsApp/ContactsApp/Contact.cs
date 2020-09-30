@@ -44,8 +44,7 @@ namespace ContactsApp
         private string _firstName;
         /// <summary>
         /// Возвращает и создает имя контакта
-        /// Имя контакта должна состоять не более чем из 50 символов,
-        /// но и не менее чем их одного
+        /// Имя контакта должна состоять не более чем из 50 символов
         /// </summary>
         public string FirstName
         {
@@ -161,7 +160,7 @@ namespace ContactsApp
             Id = 0;
             FirstName = "Не определено";
             LastName = "Не определено";
-            Number = null;
+            Number = new PhoneNumber();
             Email = "Не определен";
             BirthDate = DateTime.Now;
         }

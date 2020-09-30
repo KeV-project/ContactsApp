@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.MakeContactTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.MakeContactEmailTtextBox = new System.Windows.Forms.TextBox();
+            this.MakeContactEmailTextBox = new System.Windows.Forms.TextBox();
             this.MakeContactNameTextBox = new System.Windows.Forms.TextBox();
             this.MakeContactNameLabel = new System.Windows.Forms.Label();
             this.MakeContactSurnameLabel = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@
             this.MakeContactTableLayoutPanel.ColumnCount = 2;
             this.MakeContactTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.MakeContactTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.MakeContactTableLayoutPanel.Controls.Add(this.MakeContactEmailTtextBox, 1, 4);
+            this.MakeContactTableLayoutPanel.Controls.Add(this.MakeContactEmailTextBox, 1, 4);
             this.MakeContactTableLayoutPanel.Controls.Add(this.MakeContactNameTextBox, 1, 1);
             this.MakeContactTableLayoutPanel.Controls.Add(this.MakeContactNameLabel, 0, 1);
             this.MakeContactTableLayoutPanel.Controls.Add(this.MakeContactSurnameLabel, 0, 0);
@@ -74,14 +74,14 @@
             this.MakeContactTableLayoutPanel.Size = new System.Drawing.Size(530, 178);
             this.MakeContactTableLayoutPanel.TabIndex = 0;
             // 
-            // MakeContactEmailTtextBox
+            // MakeContactEmailTextBox
             // 
-            this.MakeContactEmailTtextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MakeContactEmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.MakeContactEmailTtextBox.Location = new System.Drawing.Point(82, 143);
-            this.MakeContactEmailTtextBox.Name = "MakeContactEmailTtextBox";
-            this.MakeContactEmailTtextBox.Size = new System.Drawing.Size(445, 22);
-            this.MakeContactEmailTtextBox.TabIndex = 9;
+            this.MakeContactEmailTextBox.Location = new System.Drawing.Point(82, 143);
+            this.MakeContactEmailTextBox.Name = "MakeContactEmailTextBox";
+            this.MakeContactEmailTextBox.Size = new System.Drawing.Size(445, 22);
+            this.MakeContactEmailTextBox.TabIndex = 9;
             // 
             // MakeContactNameTextBox
             // 
@@ -241,7 +241,7 @@
         private System.Windows.Forms.Label MakeContactBirthdayLabel;
         private System.Windows.Forms.Label MakeContactPhoneLabel;
         private System.Windows.Forms.Label MakeContactEmailLabel;
-        private System.Windows.Forms.TextBox MakeContactEmailTtextBox;
+        private System.Windows.Forms.TextBox MakeContactEmailTextBox;
         private System.Windows.Forms.TextBox MakeContactNameTextBox;
         private System.Windows.Forms.MaskedTextBox MakeContactPhoneMaskedTextBox;
         private System.Windows.Forms.DateTimePicker MakeContactBirthDateTimePicker;
