@@ -133,5 +133,19 @@ namespace ContactsAppUI
                 ProjectManager.SaveProject(_project);
             }
         }
+
+        private void ContactsListBox_SelectedIndexChanged(object sender, 
+            EventArgs e)
+        {
+            var selectedIndex = ContactsListBox.SelectedIndex;
+
+            Contact selectedContact = _project.GetContact(selectedIndex);
+            ContactSurnameTextBox.Text = selectedContact.LastName;
+            ContactNameTextBox.Text = selectedContact.FirstName;
+            ContactBirthDateTimePicker.Value = selectedContact.BirthDate;
+            ContactPhoneMaskedTextBox.Text = 
+                Convert.ToString(selectedContact.Number.Number);
+            ContactEmailTextBox.Text = selectedContact.Email;
+        }
     }
 }

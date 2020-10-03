@@ -44,8 +44,8 @@
             this.ContactSurnameLable = new System.Windows.Forms.Label();
             this.ContactNameLabel = new System.Windows.Forms.Label();
             this.ContactSurnameTextBox = new System.Windows.Forms.TextBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.ContactPhoneMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.ContactBirthDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.ContactsTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,6 +120,7 @@
             this.ContactsListBox.ScrollAlwaysVisible = true;
             this.ContactsListBox.Size = new System.Drawing.Size(341, 484);
             this.ContactsListBox.TabIndex = 8;
+            this.ContactsListBox.SelectedIndexChanged += new System.EventHandler(this.ContactsListBox_SelectedIndexChanged);
             // 
             // ContactsTableLayoutPanel
             // 
@@ -134,8 +135,8 @@
             this.ContactsTableLayoutPanel.Controls.Add(this.ContactSurnameLable, 0, 0);
             this.ContactsTableLayoutPanel.Controls.Add(this.ContactNameLabel, 0, 1);
             this.ContactsTableLayoutPanel.Controls.Add(this.ContactSurnameTextBox, 1, 0);
-            this.ContactsTableLayoutPanel.Controls.Add(this.maskedTextBox1, 1, 3);
-            this.ContactsTableLayoutPanel.Controls.Add(this.dateTimePicker1, 1, 2);
+            this.ContactsTableLayoutPanel.Controls.Add(this.ContactPhoneMaskedTextBox, 1, 3);
+            this.ContactsTableLayoutPanel.Controls.Add(this.ContactBirthDateTimePicker, 1, 2);
             this.ContactsTableLayoutPanel.Location = new System.Drawing.Point(401, 41);
             this.ContactsTableLayoutPanel.Name = "ContactsTableLayoutPanel";
             this.ContactsTableLayoutPanel.RowCount = 5;
@@ -255,26 +256,27 @@
             this.ContactSurnameTextBox.Size = new System.Drawing.Size(655, 22);
             this.ContactSurnameTextBox.TabIndex = 10;
             // 
-            // maskedTextBox1
+            // ContactPhoneMaskedTextBox
             // 
-            this.maskedTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ContactPhoneMaskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.maskedTextBox1.Enabled = false;
-            this.maskedTextBox1.Location = new System.Drawing.Point(84, 112);
-            this.maskedTextBox1.Mask = "+7 (000) 00-00-00";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(655, 20);
-            this.maskedTextBox1.TabIndex = 15;
+            this.ContactPhoneMaskedTextBox.Enabled = false;
+            this.ContactPhoneMaskedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactPhoneMaskedTextBox.Location = new System.Drawing.Point(84, 112);
+            this.ContactPhoneMaskedTextBox.Mask = "+7 (000) 00-00-00";
+            this.ContactPhoneMaskedTextBox.Name = "ContactPhoneMaskedTextBox";
+            this.ContactPhoneMaskedTextBox.Size = new System.Drawing.Size(655, 22);
+            this.ContactPhoneMaskedTextBox.TabIndex = 15;
             // 
-            // dateTimePicker1
+            // ContactBirthDateTimePicker
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(84, 75);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(159, 22);
-            this.dateTimePicker1.TabIndex = 16;
+            this.ContactBirthDateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactBirthDateTimePicker.Enabled = false;
+            this.ContactBirthDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ContactBirthDateTimePicker.Location = new System.Drawing.Point(84, 75);
+            this.ContactBirthDateTimePicker.Name = "ContactBirthDateTimePicker";
+            this.ContactBirthDateTimePicker.Size = new System.Drawing.Size(159, 22);
+            this.ContactBirthDateTimePicker.TabIndex = 16;
             // 
             // MainForm
             // 
@@ -317,8 +319,8 @@
         private System.Windows.Forms.TextBox ContactSurnameTextBox;
         private System.Windows.Forms.TextBox ContactEmailTextBox;
         private System.Windows.Forms.TextBox ContactNameTextBox;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.MaskedTextBox ContactPhoneMaskedTextBox;
+        private System.Windows.Forms.DateTimePicker ContactBirthDateTimePicker;
     }
 }
 
