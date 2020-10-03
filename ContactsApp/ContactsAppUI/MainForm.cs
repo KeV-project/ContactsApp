@@ -50,17 +50,17 @@ namespace ContactsAppUI
 
         private void AddContactButton_Click(object sender, EventArgs e)
         {
-            ContactForm addContactForm = new ContactForm(0, new Contact());
+            Contact newContact = new Contact();
+
+            ContactForm addContactForm = new ContactForm(0, newContact);
             addContactForm.Text = "Add contact";
             addContactForm.ShowDialog();
             if(addContactForm.DialogResult == DialogResult.OK)
             {
-                Contact newContact = addContactForm.NewContact;
-
                 _project.AddContact(newContact);
 
-                ContactsListBox.Items.Add(newContact.LastName
-                    + " " + newContact.FirstName);
+                ContactsListBox.Items.Clear();
+                CopyContactsNameInListBox(_project);
 
                 ProjectManager.SaveProject(_project);
             }
@@ -76,35 +76,26 @@ namespace ContactsAppUI
                 return;
             }
 
-            string[] names = Convert.ToString(ContactsListBox.
-                Items[selectedIndex]).
-                Split(new char[] { ' ' },
-                StringSplitOptions.RemoveEmptyEntries);
-
-            int contactIndex = _project.FindContactIndex(names[0], names[1]);
-            if (contactIndex == -1)
+            Contact editContact = _project.GetContact(selectedIndex);
+            if (editContact == null)
             {
-                MessageBox.Show("Контакт " + names[0]
-                    + " " + names[1]
-                    + " не существует или был удален");
+                MessageBox.Show("Контакт не существует или был удален");
                 return;
             }
 
-            ContactForm editContactForm = new ContactForm(contactIndex,
-                _project.GetContact(contactIndex));
+            ContactForm editContactForm = new ContactForm(selectedIndex,
+                editContact);
 
             editContactForm.Text = "Edit contact";
             editContactForm.ShowDialog();
 
             if (editContactForm.DialogResult == DialogResult.OK)
             {
-                Contact newContact = editContactForm.NewContact;
-                _project.ChangeContact(contactIndex, newContact);
+                _project.RemoveContact(editContact);
+                _project.AddContact(editContact);
 
-                ContactsListBox.Items.RemoveAt(selectedIndex);
-                ContactsListBox.Items.Insert(selectedIndex,
-                    Convert.ToString(newContact.LastName)
-                    + " " + Convert.ToString(newContact.FirstName));
+                ContactsListBox.Items.Clear();
+                CopyContactsNameInListBox(_project);
 
                 ProjectManager.SaveProject(_project);
             }

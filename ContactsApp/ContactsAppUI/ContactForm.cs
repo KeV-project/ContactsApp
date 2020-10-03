@@ -14,6 +14,7 @@ namespace ContactsAppUI
     public partial class ContactForm : Form
     {
         public Contact NewContact { get; set; }
+
         private int _contactIndex;
         public int ContactIndex 
         { 
@@ -76,7 +77,6 @@ namespace ContactsAppUI
 
         private void MakeContactOkButton_Click(object sender, EventArgs e)
         {
-            NewContact = new Contact();
             try
             {
                 NewContact.FirstName = MakeContactNameTextBox.Text.Trim();

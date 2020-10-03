@@ -30,10 +30,45 @@ namespace ContactsApp
             return Contacts.Count;
         }
 
+        public LinkedListNode<Contact> GetNodeBeforeInsert(Contact newContact)
+        {
+            if(Contacts.Count == 0)
+            {
+                return null;
+            }
+
+            if(newContact.LastName[0] >= 'A' && newContact.LastName[0] <= 'Z'
+                || newContact.LastName[0] >= 'А' && newContact.LastName[0] <= 'Я')
+            {
+                LinkedListNode<Contact> currentNode = Contacts.First;
+                for (int i = 0; i < Contacts.Count; i++)
+                {
+                    if (newContact.LastName[0] < currentNode.Value.LastName[0]
+                        || !(currentNode.Value.LastName[0] >= 'A' && currentNode.Value.LastName[0] <= 'Z'
+                        || currentNode.Value.LastName[0] >= 'А' && currentNode.Value.LastName[0] <= 'Я'))
+                    {
+                        return currentNode;
+                    }
+                    currentNode = currentNode.Next;
+                }
+            }
+
+            return null;
+        }
+
         public void AddContact(Contact newContact)
         {
             newContact.Id = NewId;
-            Contacts.AddLast(newContact);
+            LinkedListNode<Contact> afterInserted = 
+                GetNodeBeforeInsert(newContact);
+            if(afterInserted == null)
+            {
+                Contacts.AddLast(newContact);
+            }
+            else
+            {
+                Contacts.AddBefore(afterInserted, newContact);
+            }
         }
 
         public Contact GetContact(int index)
@@ -56,33 +91,9 @@ namespace ContactsApp
             return null;
         }
 
-        public int FindContactIndex(string lastName, string firstName)
+        public void RemoveContact(Contact removableContact)
         {
-            int i = 0;
-            foreach (Contact currentContact in Contacts)
-            {
-                if(currentContact.FirstName == firstName
-                    && currentContact.LastName == lastName)
-                {
-                    return i;
-                }
-                i++;
-            }
-            return -1;
-        }
-
-        public void ChangeContact(int index, Contact changedContact)
-        {
-            LinkedListNode<Contact> currentContact = Contacts.First;
-            for (int i = 0; i <= index; i++)
-            {
-                if (i == index)
-                {
-                    Contacts.AddBefore(currentContact, changedContact);
-                    Contacts.Remove(currentContact);
-                }
-                currentContact = currentContact.Next;
-            }
+            Contacts.Remove(removableContact);
         }
     }
 }
