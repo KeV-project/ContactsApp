@@ -51,10 +51,12 @@
             // 
             // FindTextBox
             // 
+            this.FindTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FindTextBox.Location = new System.Drawing.Point(64, 34);
             this.FindTextBox.Name = "FindTextBox";
-            this.FindTextBox.Size = new System.Drawing.Size(301, 20);
+            this.FindTextBox.Size = new System.Drawing.Size(301, 22);
             this.FindTextBox.TabIndex = 0;
+            this.FindTextBox.TextChanged += new System.EventHandler(this.FindTextBox_TextChanged);
             // 
             // FindLabel
             // 

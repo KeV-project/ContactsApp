@@ -96,6 +96,22 @@ namespace ContactsApp
             return null;
         }
 
+        public LinkedList<Contact> GetContactsWithText(string text)
+        {
+            LinkedList <Contact> contactsWithText = new LinkedList<Contact>();
+
+            foreach (Contact currentContact in Contacts)
+            {
+                if((currentContact.LastName + " "
+                    + currentContact.FirstName).Contains(text))
+                {
+                    contactsWithText.AddLast(currentContact);
+                }
+            }
+
+            return contactsWithText;
+        }
+
         public void RemoveContact(Contact removableContact)
         {
             Contacts.Remove(removableContact);

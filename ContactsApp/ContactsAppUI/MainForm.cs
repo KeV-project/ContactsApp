@@ -14,9 +14,13 @@ namespace ContactsAppUI
     public partial class MainForm : Form
     {
         Project _project;
+        Contact _currentContact;
+        LinkedList<Contact> _listBoxContacts;
         public MainForm()
         {
             _project = ProjectManager.ReadProject();
+            _currentContact = null;
+            _listBoxContacts = new LinkedList<Contact>();
 
             InitializeComponent();
 
@@ -27,6 +31,33 @@ namespace ContactsAppUI
 
         }
 
+        public void ContactsTextBoxClear()
+        {
+            ContactSurnameTextBox.Text = "";
+            ContactNameTextBox.Text = "";
+            ContactBirthDateTimePicker.Value = DateTime.Today;
+            ContactPhoneMaskedTextBox.Text = "";
+            ContactEmailTextBox.Text = "";
+        }
+
+        public void SetCurrentContact(int selectedIndex)
+        {
+            if(selectedIndex >= _listBoxContacts.Count)
+            {
+                return;
+            }
+
+            LinkedListNode<Contact> currentContact = _listBoxContacts.First;
+            for(int i = 0; i <= selectedIndex; i++)
+            {
+                if(i == selectedIndex)
+                {
+                    _currentContact =  currentContact.Value;
+                }
+                currentContact = currentContact.Next;
+            }
+        }
+
         public void AddContactNameInListBox(string contactName)
         {
             ContactsListBox.Items.Add(contactName);
@@ -34,7 +65,10 @@ namespace ContactsAppUI
 
         private void CopyContactsNameInListBox(Project project)
         {
-            for(int i = 0; i < _project.GetContactsCount(); i++)
+            ContactsListBox.Items.Clear();
+            _listBoxContacts.Clear();
+
+            for (int i = 0; i < _project.GetContactsCount(); i++)
             {
                 Contact currentContact = _project.GetContact(i);
                 if(currentContact == null)
@@ -45,22 +79,38 @@ namespace ContactsAppUI
 
                 AddContactNameInListBox(currentContact.LastName
                     + " " + currentContact.FirstName);
+                _listBoxContacts.AddLast(currentContact);
+            }
+        }
+
+        private void FillListBoxItems(LinkedList<Contact> contacts)
+        {
+            ContactsListBox.Items.Clear();
+
+            foreach (Contact currentContact in contacts)
+            {
+                AddContactNameInListBox(currentContact.LastName
+                   + " " + currentContact.FirstName);
             }
         }
 
         private void AddContactButton_Click(object sender, EventArgs e)
         {
+            FindTextBox.Clear();
+
             Contact newContact = new Contact();
 
-            ContactForm addContactForm = new ContactForm(0, newContact);
+            ContactForm addContactForm = new ContactForm(newContact);
             addContactForm.Text = "Add contact";
             addContactForm.ShowDialog();
             if(addContactForm.DialogResult == DialogResult.OK)
             {
                 _project.AddContact(newContact);
 
-                ContactsListBox.Items.Clear();
                 CopyContactsNameInListBox(_project);
+
+                FindTextBox.Text = "";
+                ContactsTextBoxClear();
 
                 ProjectManager.SaveProject(_project);
             }
@@ -76,26 +126,20 @@ namespace ContactsAppUI
                 return;
             }
 
-            Contact editContact = _project.GetContact(selectedIndex);
-            if (editContact == null)
-            {
-                MessageBox.Show("Контакт не существует или был удален");
-                return;
-            }
-
-            ContactForm editContactForm = new ContactForm(selectedIndex,
-                editContact);
+            ContactForm editContactForm = new ContactForm(_currentContact);
 
             editContactForm.Text = "Edit contact";
             editContactForm.ShowDialog();
 
             if (editContactForm.DialogResult == DialogResult.OK)
             {
-                _project.RemoveContact(editContact);
-                _project.AddContact(editContact);
+                _project.RemoveContact(_currentContact);
+                _project.AddContact(_currentContact);
 
-                ContactsListBox.Items.Clear();
                 CopyContactsNameInListBox(_project);
+
+                FindTextBox.Text = "";
+                ContactsTextBoxClear();
 
                 ProjectManager.SaveProject(_project);
             }
@@ -111,41 +155,66 @@ namespace ContactsAppUI
                 return;
             }
 
-            Contact removableContact = _project.GetContact(selectedIndex);
-            if (removableContact == null)
-            {
-                MessageBox.Show("Контакт не существует или был удален");
-                return;
-            }
-
             DialogResult result = MessageBox.Show("Удалить контакт \""
-                + removableContact.LastName + " " 
-                + removableContact.FirstName + "\"?",
+                + _currentContact.LastName + " " 
+                + _currentContact.FirstName + "\"?",
                 "Delete contact",
                 MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
-                _project.RemoveContact(removableContact);
+                _project.RemoveContact(_currentContact);
 
-                ContactsListBox.Items.Clear();
                 CopyContactsNameInListBox(_project);
+
+                FindTextBox.Text = "";
+                ContactsTextBoxClear();
 
                 ProjectManager.SaveProject(_project);
             }
+
         }
 
         private void ContactsListBox_SelectedIndexChanged(object sender, 
             EventArgs e)
-        {
+        { 
             var selectedIndex = ContactsListBox.SelectedIndex;
+            if(selectedIndex == -1)
+            {
+                ContactsTextBoxClear();
+            }
+            else
+            {
+                SetCurrentContact(selectedIndex);
+                if (_currentContact == null)
+                {
+                    MessageBox.Show("Контакт не существует или был удален");
+                    return;
+                }
 
-            Contact selectedContact = _project.GetContact(selectedIndex);
-            ContactSurnameTextBox.Text = selectedContact.LastName;
-            ContactNameTextBox.Text = selectedContact.FirstName;
-            ContactBirthDateTimePicker.Value = selectedContact.BirthDate;
-            ContactPhoneMaskedTextBox.Text = 
-                Convert.ToString(selectedContact.Number.Number);
-            ContactEmailTextBox.Text = selectedContact.Email;
+                ContactSurnameTextBox.Text = _currentContact.LastName;
+                ContactNameTextBox.Text = _currentContact.FirstName;
+                ContactBirthDateTimePicker.Value = _currentContact.BirthDate;
+                ContactPhoneMaskedTextBox.Text =
+                    Convert.ToString(_currentContact.Number.Number);
+                ContactEmailTextBox.Text = _currentContact.Email;
+            }
+        }
+
+        private void FindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ContactsTextBoxClear();
+
+            string text = FindTextBox.Text;
+
+            if(text != "")
+            {
+                _listBoxContacts = _project.GetContactsWithText(text);
+                FillListBoxItems(_listBoxContacts);
+            }
+            else
+            {
+                CopyContactsNameInListBox(_project);
+            }
         }
     }
 }

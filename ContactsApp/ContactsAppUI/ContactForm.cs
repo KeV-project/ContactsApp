@@ -14,30 +14,12 @@ namespace ContactsAppUI
     public partial class ContactForm : Form
     {
         public Contact NewContact { get; set; }
-
-        private int _contactIndex;
-        public int ContactIndex 
-        { 
-            get
-            {
-                return _contactIndex;
-            }
-            set
-            {
-                const int minIndex = 0;
-                const int maxIndex = Int32.MaxValue;
-                ValueValidator.AssertCorrectValue(Convert.ToString(value),
-                    Convert.ToString(minIndex), Convert.ToString(maxIndex),
-                    CheckType.IsValueInRange, "индекс контакта в списке");
-                _contactIndex = value;
-            }
-        }
-        public ContactForm(int contacIndex, Contact newContact)
+        
+        public ContactForm(Contact newContact)
         { 
             InitializeComponent();
 
             NewContact = newContact;
-            ContactIndex = contacIndex;
 
             if(NewContact.LastName == "Не определено")
             {
