@@ -1,23 +1,59 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.Serialization;
+using System.Xml;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ContactsApp
 {
+    [DataContract]
     public class Project
     {
-        public LinkedList<Contact> Contacts;
+        [DataMember]
+        private int _lastId;
+        public int NewId => ++_lastId;
+
+        [DataMember]
+        private LinkedList<Contact> Contacts { get; set; }
 
         public Project()
         {
+            _lastId = 0;
             Contacts = new LinkedList<Contact>();
         }
 
-        public void AddContact(Contact contacts)
+        public int GetContactsCount()
         {
-            Contacts.AddLast(contacts);
+            return Contacts.Count;
+        }
+
+        public void AddContact(Contact newContact)
+        {
+            newContact.Id = NewId;
+            Contacts.AddLast(newContact);
+        }
+
+        public Contact GetContact(int index)
+        {
+            if(index >= Contacts.Count)
+            {
+                return null;
+            }
+
+            LinkedListNode<Contact> currentContact = Contacts.First;
+            for(int i = 0; i <= index; i++)
+            {
+                if(i == index)
+                {
+                    return currentContact.Value;
+                }
+                currentContact = currentContact.Next;
+            }
+
+            return null;
         }
 
         public int FindContactIndex(string lastName, string firstName)
@@ -33,20 +69,6 @@ namespace ContactsApp
                 i++;
             }
             return -1;
-        }
-
-        public Contact GetContact(int index)
-        {
-            int i = 0;
-            foreach (Contact currentContact in Contacts)
-            {
-                if (i == index)
-                {
-                    return currentContact;
-                }
-                i++;
-            }
-            return null;
         }
 
         public void ChangeContact(int index, Contact changedContact)

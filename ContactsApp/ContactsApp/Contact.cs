@@ -174,10 +174,10 @@ namespace ContactsApp
         /// <param name="number">Номер телефона контакта</param>
         /// <param name="email">Адрес электронной почты контакта</param>
         /// <param name="birthDate">Дата рождения контакта</param>
-        public Contact(int id, string firstName, string lastName,
+        public Contact(string firstName, string lastName,
             PhoneNumber number, string email, DateTime birthDate)
         {
-            Id = id;
+            Id = 0;
             FirstName = firstName;
             LastName = lastName;
             Number = number;
@@ -194,7 +194,7 @@ namespace ContactsApp
             PhoneNumber number = new PhoneNumber(Number.Number);
             DateTime birthDate = new DateTime(BirthDate.Year, 
                 BirthDate.Month, BirthDate.Day);
-            return new Contact(Id, FirstName, LastName, number, Email, birthDate);
+            return new Contact(FirstName, LastName, number, Email, birthDate);
         }
     }
 }

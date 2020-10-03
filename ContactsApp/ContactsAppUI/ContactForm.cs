@@ -79,13 +79,13 @@ namespace ContactsAppUI
             NewContact = new Contact();
             try
             {
-                NewContact.FirstName = MakeContactNameTextBox.Text;
-                NewContact.LastName = MakeContactSurnameTextBox.Text;
+                NewContact.FirstName = MakeContactNameTextBox.Text.Trim();
+                NewContact.LastName = MakeContactSurnameTextBox.Text.Trim();
                 NewContact.BirthDate = MakeContactBirthDateTimePicker.Value;
                 NewContact.Number = new PhoneNumber(ValueCorrector.
                     ConvertPhoneNumberToInt(
                     MakeContactPhoneMaskedTextBox.Text));
-                NewContact.Email = MakeContactEmailTextBox.Text;
+                NewContact.Email = MakeContactEmailTextBox.Text.Trim();
             }
             catch(Exception ex)
             {

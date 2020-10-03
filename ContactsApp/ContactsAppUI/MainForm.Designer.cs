@@ -70,6 +70,8 @@
             // AddContactButton
             // 
             this.AddContactButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AddContactButton.FlatAppearance.BorderSize = 0;
+            this.AddContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddContactButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddContactButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.AddContactButton.Image = ((System.Drawing.Image)(resources.GetObject("AddContactButton.Image")));
@@ -83,6 +85,8 @@
             // EditContactButton
             // 
             this.EditContactButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.EditContactButton.FlatAppearance.BorderSize = 0;
+            this.EditContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditContactButton.Image = ((System.Drawing.Image)(resources.GetObject("EditContactButton.Image")));
             this.EditContactButton.Location = new System.Drawing.Point(60, 558);
             this.EditContactButton.Name = "EditContactButton";
@@ -94,6 +98,8 @@
             // RemoveContactButton
             // 
             this.RemoveContactButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RemoveContactButton.FlatAppearance.BorderSize = 0;
+            this.RemoveContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RemoveContactButton.Image = ((System.Drawing.Image)(resources.GetObject("RemoveContactButton.Image")));
             this.RemoveContactButton.Location = new System.Drawing.Point(96, 558);
             this.RemoveContactButton.Name = "RemoveContactButton";
@@ -221,7 +227,6 @@
             this.ContactSurnameLable.TabIndex = 0;
             this.ContactSurnameLable.Text = "Surname:";
             this.ContactSurnameLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ContactSurnameLable.Click += new System.EventHandler(this.SurnameLable_Click);
             // 
             // ContactNameLabel
             // 

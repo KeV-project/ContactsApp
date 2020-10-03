@@ -30,8 +30,7 @@ namespace ContactsApp
 		{
             using (StreamWriter file = new StreamWriter(
                 _path, false, Encoding.UTF8))
-            {
-                //file.Write(JsonSerializer.Serialize<Project>(project));
+			{ 
                 file.Write(JsonConvert.SerializeObject(project));
             }
         }
@@ -54,7 +53,6 @@ namespace ContactsApp
 					return project;
 				}
 
-				//project = JsonSerializer.Deserialize<Project>(projectContent);
 				project = JsonConvert.DeserializeObject<Project>(projectContent);
 			}
 
