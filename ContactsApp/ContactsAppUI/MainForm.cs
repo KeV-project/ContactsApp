@@ -100,5 +100,38 @@ namespace ContactsAppUI
                 ProjectManager.SaveProject(_project);
             }
         }
+
+        private void RemoveContactButton_Click(object sender, EventArgs e)
+        {
+            var selectedIndex = ContactsListBox.SelectedIndex;
+
+            if (selectedIndex == -1)
+            {
+                MessageBox.Show("Выберите контакт для редактирования");
+                return;
+            }
+
+            Contact removableContact = _project.GetContact(selectedIndex);
+            if (removableContact == null)
+            {
+                MessageBox.Show("Контакт не существует или был удален");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("Удалить контакт \""
+                + removableContact.LastName + " " 
+                + removableContact.FirstName + "\"?",
+                "Delete contact",
+                MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                _project.RemoveContact(removableContact);
+
+                ContactsListBox.Items.Clear();
+                CopyContactsNameInListBox(_project);
+
+                ProjectManager.SaveProject(_project);
+            }
+        }
     }
 }

@@ -37,15 +37,20 @@ namespace ContactsApp
                 return null;
             }
 
-            if(newContact.LastName[0] >= 'A' && newContact.LastName[0] <= 'Z'
-                || newContact.LastName[0] >= 'А' && newContact.LastName[0] <= 'Я')
+            if(newContact.LastName[0] >= 'A' 
+                && newContact.LastName[0] <= 'Z'
+                || newContact.LastName[0] >= 'А' 
+                && newContact.LastName[0] <= 'Я')
             {
                 LinkedListNode<Contact> currentNode = Contacts.First;
                 for (int i = 0; i < Contacts.Count; i++)
                 {
-                    if (newContact.LastName[0] < currentNode.Value.LastName[0]
-                        || !(currentNode.Value.LastName[0] >= 'A' && currentNode.Value.LastName[0] <= 'Z'
-                        || currentNode.Value.LastName[0] >= 'А' && currentNode.Value.LastName[0] <= 'Я'))
+                    if (newContact.LastName[0] 
+                        < currentNode.Value.LastName[0]
+                        || !(currentNode.Value.LastName[0] >= 'A' 
+                        && currentNode.Value.LastName[0] <= 'Z'
+                        || currentNode.Value.LastName[0] >= 'А' 
+                        && currentNode.Value.LastName[0] <= 'Я'))
                     {
                         return currentNode;
                     }
