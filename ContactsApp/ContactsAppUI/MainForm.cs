@@ -29,6 +29,12 @@ namespace ContactsAppUI
                 CopyContactsNameInListBox(_project);
             }
 
+            LinkedList<Contact> birthCotacts = _project.GetAllBirthContacts();
+            if(birthCotacts.Count != 0)
+			{
+
+			}
+
         }
 
         public void ContactsTextBoxClear()

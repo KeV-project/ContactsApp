@@ -147,5 +147,20 @@ namespace ContactsApp
         {
             Contacts.Remove(removableContact);
         }
+
+        public LinkedList<Contact> GetAllBirthContacts()
+		{
+            LinkedList <Contact> birthCotacts = new LinkedList<Contact>();
+
+            foreach(Contact currentContact in Contacts)
+			{
+                if(currentContact.BirthDate.Date == DateTime.Today.Date
+                    && currentContact.BirthDate.Month == DateTime.Today.Month)
+				{
+                    birthCotacts.AddLast(currentContact);
+				}
+			}
+            return birthCotacts;
+        }
     }
 }

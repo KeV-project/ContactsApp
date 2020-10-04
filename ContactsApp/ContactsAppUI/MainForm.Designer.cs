@@ -50,13 +50,18 @@
 			this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.EditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.AddContactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.EditContactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.RemoveContactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ExclamationMarkTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+			this.BirthTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+			this.BirthLabel = new System.Windows.Forms.Label();
+			this.BirthTextBox = new System.Windows.Forms.TextBox();
 			this.ContactsTableLayoutPanel.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
+			this.BirthTableLayoutPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// FindTextBox
@@ -136,6 +141,8 @@
 			// 
 			// ContactsTableLayoutPanel
 			// 
+			this.ContactsTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.ContactsTableLayoutPanel.ColumnCount = 2;
 			this.ContactsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11F));
 			this.ContactsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89F));
@@ -315,7 +322,7 @@
 			// 
 			this.ExitToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-			this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.ExitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
 			this.ExitToolStripMenuItem.Text = "Exit (Alt + F4)";
 			this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
 			// 
@@ -330,6 +337,27 @@
 			this.EditToolStripMenuItem.Size = new System.Drawing.Size(42, 21);
 			this.EditToolStripMenuItem.Text = "Edit";
 			// 
+			// AddContactToolStripMenuItem
+			// 
+			this.AddContactToolStripMenuItem.Name = "AddContactToolStripMenuItem";
+			this.AddContactToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+			this.AddContactToolStripMenuItem.Text = "Add contact";
+			this.AddContactToolStripMenuItem.Click += new System.EventHandler(this.AddContactToolStripMenuItem_Click);
+			// 
+			// EditContactToolStripMenuItem
+			// 
+			this.EditContactToolStripMenuItem.Name = "EditContactToolStripMenuItem";
+			this.EditContactToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+			this.EditContactToolStripMenuItem.Text = "Edit contact";
+			this.EditContactToolStripMenuItem.Click += new System.EventHandler(this.EditContactToolStripMenuItem_Click);
+			// 
+			// RemoveContactToolStripMenuItem
+			// 
+			this.RemoveContactToolStripMenuItem.Name = "RemoveContactToolStripMenuItem";
+			this.RemoveContactToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+			this.RemoveContactToolStripMenuItem.Text = "Remove contact";
+			this.RemoveContactToolStripMenuItem.Click += new System.EventHandler(this.RemoveContactToolStripMenuItem_Click);
+			// 
 			// HelpToolStripMenuItem
 			// 
 			this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -339,27 +367,6 @@
 			this.HelpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
 			this.HelpToolStripMenuItem.Text = "Help";
 			// 
-			// AddContactToolStripMenuItem
-			// 
-			this.AddContactToolStripMenuItem.Name = "AddContactToolStripMenuItem";
-			this.AddContactToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.AddContactToolStripMenuItem.Text = "Add contact";
-			this.AddContactToolStripMenuItem.Click += new System.EventHandler(this.AddContactToolStripMenuItem_Click);
-			// 
-			// EditContactToolStripMenuItem
-			// 
-			this.EditContactToolStripMenuItem.Name = "EditContactToolStripMenuItem";
-			this.EditContactToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.EditContactToolStripMenuItem.Text = "Edit contact";
-			this.EditContactToolStripMenuItem.Click += new System.EventHandler(this.EditContactToolStripMenuItem_Click);
-			// 
-			// RemoveContactToolStripMenuItem
-			// 
-			this.RemoveContactToolStripMenuItem.Name = "RemoveContactToolStripMenuItem";
-			this.RemoveContactToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.RemoveContactToolStripMenuItem.Text = "Remove contact";
-			this.RemoveContactToolStripMenuItem.Click += new System.EventHandler(this.RemoveContactToolStripMenuItem_Click);
-			// 
 			// AboutToolStripMenuItem
 			// 
 			this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
@@ -367,11 +374,73 @@
 			this.AboutToolStripMenuItem.Text = "About (F1)";
 			this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
 			// 
+			// ExclamationMarkTableLayoutPanel
+			// 
+			this.ExclamationMarkTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.ExclamationMarkTableLayoutPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ExclamationMarkTableLayoutPanel.BackgroundImage")));
+			this.ExclamationMarkTableLayoutPanel.ColumnCount = 1;
+			this.ExclamationMarkTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.14815F));
+			this.ExclamationMarkTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+			this.ExclamationMarkTableLayoutPanel.MaximumSize = new System.Drawing.Size(100, 100);
+			this.ExclamationMarkTableLayoutPanel.MinimumSize = new System.Drawing.Size(100, 100);
+			this.ExclamationMarkTableLayoutPanel.Name = "ExclamationMarkTableLayoutPanel";
+			this.ExclamationMarkTableLayoutPanel.RowCount = 1;
+			this.ExclamationMarkTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.ExclamationMarkTableLayoutPanel.Size = new System.Drawing.Size(100, 100);
+			this.ExclamationMarkTableLayoutPanel.TabIndex = 11;
+			// 
+			// BirthTableLayoutPanel
+			// 
+			this.BirthTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.BirthTableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			this.BirthTableLayoutPanel.ColumnCount = 3;
+			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 568F));
+			this.BirthTableLayoutPanel.Controls.Add(this.BirthTextBox, 2, 2);
+			this.BirthTableLayoutPanel.Controls.Add(this.ExclamationMarkTableLayoutPanel, 0, 0);
+			this.BirthTableLayoutPanel.Controls.Add(this.BirthLabel, 2, 1);
+			this.BirthTableLayoutPanel.Location = new System.Drawing.Point(413, 462);
+			this.BirthTableLayoutPanel.Name = "BirthTableLayoutPanel";
+			this.BirthTableLayoutPanel.RowCount = 3;
+			this.BirthTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.BirthTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+			this.BirthTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+			this.BirthTableLayoutPanel.Size = new System.Drawing.Size(727, 106);
+			this.BirthTableLayoutPanel.TabIndex = 12;
+			// 
+			// BirthLabel
+			// 
+			this.BirthLabel.AutoSize = true;
+			this.BirthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.BirthLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.BirthLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.BirthLabel.Location = new System.Drawing.Point(153, 21);
+			this.BirthLabel.Name = "BirthLabel";
+			this.BirthLabel.Size = new System.Drawing.Size(181, 18);
+			this.BirthLabel.TabIndex = 13;
+			this.BirthLabel.Text = "Сегодня день рождения:";
+			// 
+			// BirthTextBox
+			// 
+			this.BirthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.BirthTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			this.BirthTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.BirthTextBox.Location = new System.Drawing.Point(153, 48);
+			this.BirthTextBox.Name = "BirthTextBox";
+			this.BirthTextBox.Size = new System.Drawing.Size(571, 13);
+			this.BirthTextBox.TabIndex = 13;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1158, 598);
+			this.Controls.Add(this.BirthTableLayoutPanel);
 			this.Controls.Add(this.ContactsTableLayoutPanel);
 			this.Controls.Add(this.ContactsListBox);
 			this.Controls.Add(this.RemoveContactButton);
@@ -389,6 +458,8 @@
 			this.ContactsTableLayoutPanel.PerformLayout();
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
+			this.BirthTableLayoutPanel.ResumeLayout(false);
+			this.BirthTableLayoutPanel.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -422,6 +493,10 @@
 		private System.Windows.Forms.ToolStripMenuItem RemoveContactToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+		private System.Windows.Forms.TableLayoutPanel ExclamationMarkTableLayoutPanel;
+		private System.Windows.Forms.TableLayoutPanel BirthTableLayoutPanel;
+		private System.Windows.Forms.Label BirthLabel;
+		private System.Windows.Forms.TextBox BirthTextBox;
 	}
 }
 
