@@ -17,5 +17,15 @@ namespace ContactsApp
             number = number.Replace("-", "");
             return Convert.ToInt64(number);
         }
+
+        static public string ToUpperFirstLetter(string value)
+		{
+            if (value.Length > 0)
+            {
+                value = Convert.ToString(value[0]).ToUpper()
+                    + value.Substring(1);
+            }
+            return value;
+        }
     }
 }

@@ -46,8 +46,15 @@ namespace ContactsApp
         {
             return number[0] == '7';
         }
-
-        public static bool IsName(string value, int minLenght,
+        /// <summary>
+        /// Метод предназначен для проверки длины строки
+        /// и вхождения всех символов имени в допустимый диапазон значений
+        /// </summary>
+        /// <param name="value">Проверяемая строка</param>
+        /// <param name="minLenght">Минимальная длина строки</param>
+        /// <param name="maxLength">Максимальная длина строки</param>
+        /// <returns></returns>
+        public static bool IsCorrectName(string value, int minLenght,
             int maxLength)
         {
             if (!IsLengthInRange(value, minLenght, maxLength))
@@ -61,7 +68,8 @@ namespace ContactsApp
                     && !(symbol >= 'a' && symbol <= 'z')
                     && !(symbol >= 'А' && symbol <= 'Я')
                     && !(symbol >= 'а' && symbol <= 'я')
-                    && !(symbol >= '0' && symbol <= '9'))
+                    && !(symbol >= '0' && symbol <= '9')
+                    && symbol != ' ')
 				{
                     return false;
 				}
@@ -69,6 +77,12 @@ namespace ContactsApp
 
             return true;
         }
+
+        public static bool IsCorrectDate(DateTime date,
+            DateTime minDate, DateTime maxDate)
+		{
+            return minDate <= date && date <= maxDate;
+		}
         /// <summary>
         /// Метод предназначен для генерации исключения при несоответствии значения
         /// заданным условиям
@@ -124,16 +138,30 @@ namespace ContactsApp
                         }
                         break;
                     }
-                case CheckType.IsName:
+                case CheckType.IsCorrectName:
 					{
-                        if(!IsName(value, Convert.ToInt32(minLimit), 
+                        if(!IsCorrectName(value, Convert.ToInt32(minLimit), 
                             Convert.ToInt32(maxLimit)))
                         {
-                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: строка "
-                                + value + ",\nопределяющая " + context
-                                + "\nможет соделжать только цифры и буквы"
-                                + "\n но не более " + maxLimit);
+                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: строка \""
+                                + value + "\",\nопределяющая " + context
+                                + ",\nможет соделжать только цифры и буквы"
+                                + "\nи состоять не более чем из " + maxLimit
+                                + " символов");
                         }
+                        break;
+					}
+                case CheckType.IsCorrectDate:
+					{
+                        if(!IsCorrectDate(Convert.ToDateTime(value),
+                            Convert.ToDateTime(minLimit), 
+                            Convert.ToDateTime(maxLimit)))
+						{
+                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: "
+                                + "выбранная дата " + context +  " \"" + value
+                                + "\"\nне может быть раньше " 
+                                + minLimit + " и позже " + maxLimit);
+						}
                         break;
 					}
             }

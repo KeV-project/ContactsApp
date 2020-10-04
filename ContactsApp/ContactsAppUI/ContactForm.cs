@@ -61,17 +61,18 @@ namespace ContactsAppUI
         {
             try
             {
-                NewContact.FirstName = MakeContactNameTextBox.Text.Trim();
-                NewContact.LastName = MakeContactSurnameTextBox.Text.Trim();
+                NewContact.FirstName = MakeContactNameTextBox.Text;
+                NewContact.LastName = MakeContactSurnameTextBox.Text;
                 NewContact.BirthDate = MakeContactBirthDateTimePicker.Value;
                 NewContact.Number = new PhoneNumber(ValueCorrector.
                     ConvertPhoneNumberToInt(
                     MakeContactPhoneMaskedTextBox.Text));
-                NewContact.Email = MakeContactEmailTextBox.Text.Trim();
+                NewContact.Email = MakeContactEmailTextBox.Text;
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
             DialogResult = DialogResult.OK;
             this.Close();

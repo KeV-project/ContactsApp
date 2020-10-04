@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,15 +55,19 @@ namespace ContactsApp
             }
             set
             {
+                value = value.TrimStart();
+
                 const int minLength = 1;
                 const int maxLength = 50;
                 ValueValidator.AssertCorrectValue(value,
                     Convert.ToString(minLength),
                     Convert.ToString(maxLength),
-                    CheckType.IsLenghtInRange,
+                    CheckType.IsCorrectName,
                     "имя контакта");
-                _firstName = Convert.ToString(value[0]).ToUpper()
-                    + value.Substring(1);
+
+                ValueCorrector.ToUpperFirstLetter(value);
+
+                _firstName = value;
             }
         }
 
@@ -83,22 +88,19 @@ namespace ContactsApp
             }
             set
             {
+                value = value.TrimStart();
+
                 const int minLength = 0;
                 const int maxLength = 50;
                 ValueValidator.AssertCorrectValue(value,
                     Convert.ToString(minLength),
                     Convert.ToString(maxLength),
-                    CheckType.IsLenghtInRange,
+                    CheckType.IsCorrectName,
                     "фамилию контакта");
-                if (value.Length > 0)
-                {
-                    _lastName = Convert.ToString(value[0]).ToUpper()
-                        + value.Substring(1);
-                }
-                else
-                {
-                    _lastName = value;
-                }
+
+                ValueCorrector.ToUpperFirstLetter(value);
+
+                _lastName = value;
             }
         }
 
@@ -124,6 +126,8 @@ namespace ContactsApp
             }
             set
             {
+                value = value.TrimStart();
+
                 const int minLength = 0;
                 const int maxLength = 50;
                 ValueValidator.AssertCorrectValue(value,
@@ -146,11 +150,12 @@ namespace ContactsApp
             }
             set
             {
-                const int minYear = 1900;
-                int maxYear = Convert.ToInt32(DateTime.Now.Year);
-                ValueValidator.AssertCorrectValue(Convert.ToString(value.Year),
-                    Convert.ToString(minYear), Convert.ToString(maxYear),
-                    CheckType.IsValueInRange, "дату рождения");
+                string minDate = Convert.ToString(new DateTime(1900, 12, 31, 23, 59, 59));
+                string maxDate = Convert.ToString(new DateTime(DateTime.Today.Year,
+                    DateTime.Today.Month, DateTime.Today.Day, 23, 59, 59));
+                ValueValidator.AssertCorrectValue(Convert.ToString(value),
+                    minDate, maxDate,
+                    CheckType.IsCorrectDate, "рождения");
                 _birthDate = value;
             }
         }
