@@ -316,7 +316,7 @@
 			this.ExitToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
 			this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.ExitToolStripMenuItem.Text = "Exit";
+			this.ExitToolStripMenuItem.Text = "Exit (Alt + F4)";
 			this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
 			// 
 			// EditToolStripMenuItem
@@ -364,7 +364,7 @@
 			// 
 			this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
 			this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.AboutToolStripMenuItem.Text = "About";
+			this.AboutToolStripMenuItem.Text = "About (F1)";
 			this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
 			// 
 			// MainForm
