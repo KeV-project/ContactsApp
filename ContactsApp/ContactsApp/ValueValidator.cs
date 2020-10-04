@@ -46,6 +46,29 @@ namespace ContactsApp
         {
             return number[0] == '7';
         }
+
+        public static bool IsName(string value, int minLenght,
+            int maxLength)
+        {
+            if (!IsLengthInRange(value, minLenght, maxLength))
+			{
+                return false;
+			}
+
+            foreach(char symbol in value)
+			{
+                if(!(symbol >= 'A' && symbol <='Z')
+                    && !(symbol >= 'a' && symbol <= 'z')
+                    && !(symbol >= 'А' && symbol <= 'Я')
+                    && !(symbol >= 'а' && symbol <= 'я')
+                    && !(symbol >= '0' && symbol <= '9'))
+				{
+                    return false;
+				}
+			}
+
+            return true;
+        }
         /// <summary>
         /// Метод предназначен для генерации исключения при несоответствии значения
         /// заданным условиям
@@ -74,6 +97,7 @@ namespace ContactsApp
                         }
                         break;
                     }
+
                 case CheckType.IsPhoneNumber:
                     {
                         if (!IsFirstDigitIs7(value))
@@ -100,6 +124,18 @@ namespace ContactsApp
                         }
                         break;
                     }
+                case CheckType.IsName:
+					{
+                        if(!IsName(value, Convert.ToInt32(minLimit), 
+                            Convert.ToInt32(maxLimit)))
+                        {
+                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: строка "
+                                + value + ",\nопределяющая " + context
+                                + "\nможет соделжать только цифры и буквы"
+                                + "\n но не более " + maxLimit);
+                        }
+                        break;
+					}
             }
         }
     }

@@ -37,24 +37,55 @@ namespace ContactsApp
                 return null;
             }
 
-            if(newContact.LastName[0] >= 'A' 
-                && newContact.LastName[0] <= 'Z'
-                || newContact.LastName[0] >= 'А' 
-                && newContact.LastName[0] <= 'Я')
+            LinkedListNode<Contact> currentContact = Contacts.First;
+            for (int i = 0; i < Contacts.Count; i++)
             {
-                LinkedListNode<Contact> currentNode = Contacts.First;
-                for (int i = 0; i < Contacts.Count; i++)
+                int minLenght = 0;
+                if (newContact.LastName.Length < currentContact.Value.LastName.Length)
                 {
-                    if (newContact.LastName[0] 
-                        < currentNode.Value.LastName[0]
-                        || !(currentNode.Value.LastName[0] >= 'A' 
-                        && currentNode.Value.LastName[0] <= 'Z'
-                        || currentNode.Value.LastName[0] >= 'А' 
-                        && currentNode.Value.LastName[0] <= 'Я'))
+                    minLenght = newContact.LastName.Length;
+                }
+                else
+                {
+                    minLenght = currentContact.Value.LastName.Length;
+                }
+
+                for (int currentSymbol = 0; currentSymbol < minLenght; currentSymbol++)
+                {
+                    if (!char.IsLetter(newContact.LastName[currentSymbol]) && char.IsLetter(currentContact.Value.LastName[currentSymbol]))
                     {
-                        return currentNode;
+                        currentContact = currentContact.Next;
+                        break;
                     }
-                    currentNode = currentNode.Next;
+                    if (char.IsLetter(newContact.LastName[currentSymbol]) && !char.IsLetter(currentContact.Value.LastName[currentSymbol]))
+                    {
+                        return currentContact;
+                    }
+                    if (newContact.LastName[currentSymbol] == currentContact.Value.LastName[currentSymbol])
+                    {
+                        if (currentSymbol == minLenght - 1)
+                        {
+                            if (newContact.LastName.Length < currentContact.Value.LastName.Length)
+                            {
+                                return currentContact;
+                            }
+                            else
+                            {
+                                currentContact = currentContact.Next;
+                                break;
+                            }
+                        }
+                        continue;
+                    }
+                    if (newContact.LastName[currentSymbol] < currentContact.Value.LastName[currentSymbol])
+                    {
+                        return currentContact;
+                    }
+                    if (newContact.LastName[currentSymbol] > currentContact.Value.LastName[currentSymbol])
+                    {
+                        currentContact = currentContact.Next;
+                        break;
+                    }
                 }
             }
 
