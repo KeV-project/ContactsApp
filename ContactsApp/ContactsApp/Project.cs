@@ -154,7 +154,7 @@ namespace ContactsApp
 
             foreach(Contact currentContact in Contacts)
 			{
-                if(currentContact.BirthDate.Date == DateTime.Today.Date
+                if(currentContact.BirthDate.Day == DateTime.Today.Day
                     && currentContact.BirthDate.Month == DateTime.Today.Month)
 				{
                     birthCotacts.AddLast(currentContact);

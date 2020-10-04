@@ -400,9 +400,9 @@
 			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
 			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 568F));
-			this.BirthTableLayoutPanel.Controls.Add(this.BirthTextBox, 2, 2);
 			this.BirthTableLayoutPanel.Controls.Add(this.ExclamationMarkTableLayoutPanel, 0, 0);
 			this.BirthTableLayoutPanel.Controls.Add(this.BirthLabel, 2, 1);
+			this.BirthTableLayoutPanel.Controls.Add(this.BirthTextBox, 2, 2);
 			this.BirthTableLayoutPanel.Location = new System.Drawing.Point(413, 462);
 			this.BirthTableLayoutPanel.Name = "BirthTableLayoutPanel";
 			this.BirthTableLayoutPanel.RowCount = 3;
@@ -411,6 +411,7 @@
 			this.BirthTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 61F));
 			this.BirthTableLayoutPanel.Size = new System.Drawing.Size(727, 106);
 			this.BirthTableLayoutPanel.TabIndex = 12;
+			this.BirthTableLayoutPanel.Visible = false;
 			// 
 			// BirthLabel
 			// 
@@ -430,9 +431,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.BirthTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
 			this.BirthTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.BirthTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.BirthTextBox.Location = new System.Drawing.Point(153, 48);
 			this.BirthTextBox.Name = "BirthTextBox";
-			this.BirthTextBox.Size = new System.Drawing.Size(571, 13);
+			this.BirthTextBox.Size = new System.Drawing.Size(571, 15);
 			this.BirthTextBox.TabIndex = 13;
 			// 
 			// MainForm

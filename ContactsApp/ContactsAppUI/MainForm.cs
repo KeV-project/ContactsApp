@@ -32,7 +32,20 @@ namespace ContactsAppUI
             LinkedList<Contact> birthCotacts = _project.GetAllBirthContacts();
             if(birthCotacts.Count != 0)
 			{
+                int contactCount = 0;
+                foreach(Contact currentContact in birthCotacts)
+				{
+                    BirthTextBox.Text =  " " + BirthTextBox.Text
+                        + currentContact.LastName + " "
+                        + currentContact.FirstName;
+                    if(contactCount != birthCotacts.Count - 1)
+					{
+                        BirthTextBox.Text = BirthTextBox.Text + ",";
 
+                    }
+                    contactCount++;
+                }
+                BirthTableLayoutPanel.Visible = true;
 			}
 
         }
