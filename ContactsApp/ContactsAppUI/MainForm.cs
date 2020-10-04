@@ -216,5 +216,30 @@ namespace ContactsAppUI
                 CopyContactsNameInListBox(_project);
             }
         }
-    }
+
+		private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            this.Close();
+		}
+
+		private void AddContactToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            AddContactButton_Click(null, null);
+		}
+
+		private void EditContactToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            EditContactButton_Click(null, null);
+        }
+
+		private void RemoveContactToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            RemoveContactButton_Click(null, null);
+		}
+
+		private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }
