@@ -11,10 +11,22 @@ using ContactsApp;
 
 namespace ContactsAppUI
 {
+    /// <summary>
+    /// Класс "ContactForm" создает форму для окна 
+    /// добавления и редактирования контакта
+    /// </summary>
     public partial class ContactForm : Form
     {
+        /// <summary>
+        /// Новые или изменяемый контакт
+        /// </summary>
         public Contact NewContact { get; set; }
         
+        /// <summary>
+        /// Инициализирует элементы формы
+        /// и устанавливает значение нового или изменяемого контакта
+        /// </summary>
+        /// <param name="newContact">Новый или изменяемый контакт</param>
         public ContactForm(Contact newContact)
         { 
             InitializeComponent();
@@ -57,6 +69,10 @@ namespace ContactsAppUI
             }
         }
 
+        /// <summary>
+        /// Метод устанавливает введенные данные в поля нового 
+        /// или изменяемого контакта
+        /// </summary>
         private void MakeContactOkButton_Click(object sender, EventArgs e)
         {
             try
@@ -78,7 +94,11 @@ namespace ContactsAppUI
             this.Close();
         }
 
-        private void MakeContactCancelButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Метод закрывает форму при нажатии на кновку Cancel
+        /// </summary>
+        private void MakeContactCancelButton_Click(object sender, 
+            EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             this.Close();

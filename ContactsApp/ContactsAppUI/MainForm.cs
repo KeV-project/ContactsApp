@@ -12,7 +12,7 @@ using ContactsApp;
 namespace ContactsAppUI
 {
     /// <summary>
-    /// Класс "MainForm" создает стартовое окно приложения
+    /// Класс "MainForm" создает форму для стартового окна приложения
     /// </summary>
     public partial class MainForm : Form
     {
