@@ -370,7 +370,7 @@
 			// AboutToolStripMenuItem
 			// 
 			this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-			this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.AboutToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
 			this.AboutToolStripMenuItem.Text = "About (F1)";
 			this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
 			// 
@@ -398,8 +398,8 @@
 			this.BirthTableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
 			this.BirthTableLayoutPanel.ColumnCount = 3;
 			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 568F));
+			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
+			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 566F));
 			this.BirthTableLayoutPanel.Controls.Add(this.ExclamationMarkTableLayoutPanel, 0, 0);
 			this.BirthTableLayoutPanel.Controls.Add(this.BirthLabel, 2, 1);
 			this.BirthTableLayoutPanel.Controls.Add(this.BirthTextBox, 2, 2);
@@ -419,7 +419,7 @@
 			this.BirthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.BirthLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.BirthLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.BirthLabel.Location = new System.Drawing.Point(153, 21);
+			this.BirthLabel.Location = new System.Drawing.Point(164, 21);
 			this.BirthLabel.Name = "BirthLabel";
 			this.BirthLabel.Size = new System.Drawing.Size(181, 18);
 			this.BirthLabel.TabIndex = 13;
@@ -432,9 +432,9 @@
 			this.BirthTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
 			this.BirthTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.BirthTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.BirthTextBox.Location = new System.Drawing.Point(153, 48);
+			this.BirthTextBox.Location = new System.Drawing.Point(164, 48);
 			this.BirthTextBox.Name = "BirthTextBox";
-			this.BirthTextBox.Size = new System.Drawing.Size(571, 15);
+			this.BirthTextBox.Size = new System.Drawing.Size(560, 15);
 			this.BirthTextBox.TabIndex = 13;
 			// 
 			// MainForm
