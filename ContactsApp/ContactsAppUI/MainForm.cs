@@ -11,11 +11,28 @@ using ContactsApp;
 
 namespace ContactsAppUI
 {
+    /// <summary>
+    /// Класс "MainForm" создает стартовое окно приложения
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Содержит объект класса Project
+        /// </summary>
         Project _project;
+        /// <summary>
+        /// Содержит выбранный пользователем контакт
+        /// </summary>
         Contact _currentContact;
+        /// <summary>
+        /// Содержит список контактов,
+        /// отображаемых в ListBox
+        /// </summary>
         LinkedList<Contact> _listBoxContacts;
+        /// <summary>
+        /// Создает стартовое окно приложения,
+        /// выполняет десереализацию объекта Project
+        /// </summary>
         public MainForm()
         {
             _project = ProjectManager.ReadProject();
@@ -49,6 +66,10 @@ namespace ContactsAppUI
 
         }
 
+        /// <summary>
+        /// Очищает текстовые поля,
+        /// демонстрирующие инвормацию о текущем контакте
+        /// </summary>
         public void ContactsTextBoxClear()
         {
             ContactSurnameTextBox.Text = "";
@@ -58,6 +79,10 @@ namespace ContactsAppUI
             ContactEmailTextBox.Text = "";
         }
 
+        /// <summary>
+        /// Помещает текущий контакт в поле currentContact
+        /// </summary>
+        /// <param name="selectedIndex"></param>
         public void SetCurrentContact(int selectedIndex)
         {
             if(selectedIndex >= _listBoxContacts.Count)
@@ -76,11 +101,21 @@ namespace ContactsAppUI
             }
         }
 
+        /// <summary>
+        /// Добавляет имя и фамилию контакт в ListBox
+        /// </summary>
+        /// <param name="contactName">Добавляемая строка 
+        /// с именем и фамилией контакта</param>
         public void AddContactNameInListBox(string contactName)
         {
             ContactsListBox.Items.Add(contactName);
         }
 
+        /// <summary>
+        /// Заполняет ListBox контактами из списка объекта Project
+        /// </summary>
+        /// <param name="project">Содержит 
+        /// список контактов пользователя</param>
         private void CopyContactsNameInListBox(Project project)
         {
             ContactsListBox.Items.Clear();
@@ -101,6 +136,10 @@ namespace ContactsAppUI
             }
         }
 
+        /// <summary>
+        /// Заполняет ListBox текущими контактами
+        /// </summary>
+        /// <param name="contacts">Список текущих контактов</param>
         private void FillListBoxItems(LinkedList<Contact> contacts)
         {
             ContactsListBox.Items.Clear();
@@ -112,6 +151,10 @@ namespace ContactsAppUI
             }
         }
 
+        /// <summary>
+        /// Создает форму для добавления контакта и
+        /// добавляет контакт в список всех контактов
+        /// </summary>
         private void AddContactButton_Click(object sender, EventArgs e)
         {
             FindTextBox.Clear();
@@ -134,6 +177,9 @@ namespace ContactsAppUI
             }
         }
 
+        /// <summary>
+        /// Создает форму для редактирования контакта
+        /// </summary>
         private void EditContactButton_Click(object sender, EventArgs e)
         {
             var selectedIndex = ContactsListBox.SelectedIndex;
@@ -163,6 +209,9 @@ namespace ContactsAppUI
             }
         }
 
+        /// <summary>
+        /// Метод удаляет выбранный контакт
+        /// </summary>
         private void RemoveContactButton_Click(object sender, EventArgs e)
         {
             var selectedIndex = ContactsListBox.SelectedIndex;
@@ -192,6 +241,9 @@ namespace ContactsAppUI
 
         }
 
+        /// <summary>
+        /// Выводит информацию о выбранном контакте
+        /// </summary>
         private void ContactsListBox_SelectedIndexChanged(object sender, 
             EventArgs e)
         { 
@@ -218,6 +270,9 @@ namespace ContactsAppUI
             }
         }
 
+        /// <summary>
+        /// Исменяет список текущих контактов при вводе подстроки
+        /// </summary>
         private void FindTextBox_TextChanged(object sender, EventArgs e)
         {
             ContactsTextBoxClear();
@@ -235,26 +290,41 @@ namespace ContactsAppUI
             }
         }
 
+        /// <summary>
+        /// Закрывает главное окно приложения
+        /// </summary>
 		private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             this.Close();
 		}
 
+        /// <summary>
+        /// Вызывает метод добавления контакта
+        /// </summary>
 		private void AddContactToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             AddContactButton_Click(null, null);
 		}
 
+        /// <summary>
+        /// Вызывает метод редактирования контакта
+        /// </summary>
 		private void EditContactToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             EditContactButton_Click(null, null);
         }
 
+        /// <summary>
+        /// Вызывает метод удаления контакта
+        /// </summary>
 		private void RemoveContactToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             RemoveContactButton_Click(null, null);
 		}
 
+        /// <summary>
+        /// Создает и запускает окно с информацией о приложении
+        /// </summary>
 		private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             AboutForm aboutForm = new AboutForm();
