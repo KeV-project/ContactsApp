@@ -36,12 +36,17 @@ namespace ContactsApp
                 _number = value;
             }
         }
+
+        /// <summary>
+        /// Инициализирует поля объекта при создании 
+        /// значениями по умолчанию
+        /// </summary>
         public PhoneNumber()
         {
             Number = 70000000000;
         }
         /// <summary>
-        /// Инициализирует поля класса при создании объекта
+        /// Инициализирует поля объекта при создании
         /// </summary>
         /// <param name="number">Номер телефона контакта</param>
         public PhoneNumber(long number)
