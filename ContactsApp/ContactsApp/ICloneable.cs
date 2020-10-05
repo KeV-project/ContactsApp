@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContactsApp
 {
+   
     public interface ICloneable
     {
         object Clone();
