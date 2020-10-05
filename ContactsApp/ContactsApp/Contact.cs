@@ -13,7 +13,7 @@ namespace ContactsApp
     public class Contact : ICloneable
     {
         /// <summary>
-        /// Поле "id" содержит идентификатор контакта
+        /// Cодержит идентификатор контакта
         /// </summary>
         private int _id;
         /// <summary>
@@ -40,12 +40,13 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Поле "имя" содержит имя контакта
+        /// Cодержит имя контакта
         /// </summary>
         private string _firstName;
         /// <summary>
         /// Возвращает и создает имя контакта
-        /// Имя контакта должна состоять не более чем из 50 символов
+        /// Имя контакта должна состоять не более чем из 50 символов,
+        /// но не менее чем из 1
         /// </summary>
         public string FirstName
         {
@@ -72,7 +73,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Поле "фамилия" содердит фамилию контакта
+        /// Содердит фамилию контакта
         /// </summary>
         private string _lastName;
         /// <summary>
@@ -110,7 +111,7 @@ namespace ContactsApp
         public PhoneNumber Number { get; set; }
 
         /// <summary>
-        /// Поле "e-mail" содержит адрес электронной почты контакта
+        /// Содержит адрес электронной почты контакта
         /// </summary>
         private string _email;
         /// <summary>
@@ -138,9 +139,14 @@ namespace ContactsApp
                 _email = value;
             }
         }
+        /// <summary>
+        /// Содержит дату рождения контакта
+        /// </summary>
         private DateTime _birthDate;
         /// <summary>
         /// Возвращает и создает дату рождения контакта
+        /// Дата рождения не может быть раньше 1900 года и
+        /// позже текущей даты 
         /// </summary>
         public DateTime BirthDate
         {
@@ -160,6 +166,9 @@ namespace ContactsApp
             }
         }
 
+        /// <summary>
+        /// Инициализирует поля класа значениями по умолчанию
+        /// </summary>
         public Contact()
         {
             Id = 0;
@@ -193,7 +202,7 @@ namespace ContactsApp
         /// <summary>
         /// Позволяет создать объект класса, скопировав значения полей другого объекта
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Возвращает копию объекта</returns>
         public object Clone()
         {
             PhoneNumber number = new PhoneNumber(Number.Number);
