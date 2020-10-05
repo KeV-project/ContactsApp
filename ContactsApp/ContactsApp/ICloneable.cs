@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ContactsApp
 {
-   
+   /// <summary>
+   /// Интерфейс для создания методов копирования объектов
+   /// </summary>
     public interface ICloneable
     {
         object Clone();
