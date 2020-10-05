@@ -10,16 +10,28 @@ using System.Windows.Forms;
 
 namespace ContactsAppUI
 {
+	/// <summary>
+	/// Класс "AboutForm" создает форму с информацией о приложении
+	/// </summary>
 	public partial class AboutForm : Form
 	{
+		/// <summary>
+		/// Инициализирует компоненты формы
+		/// </summary>
 		public AboutForm()
 		{
 			InitializeComponent();
 		}
 
-		private void GitHubLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		/// <summary>
+		/// Запускает интернет страницу с приложение 
+		/// ContactsApp на сайте GitHub
+		/// </summary>
+		private void GitHubLinkLabel_LinkClicked(object sender, 
+			LinkLabelLinkClickedEventArgs e)
 		{
-			System.Diagnostics.Process.Start("https://github.com/KeV-project/ContactsApp");
+			System.Diagnostics.Process.Start(
+				"https://github.com/KeV-project/ContactsApp");
 		}
 	}
 }
