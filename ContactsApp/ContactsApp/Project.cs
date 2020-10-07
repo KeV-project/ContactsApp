@@ -27,6 +27,7 @@ namespace ContactsApp
         /// </summary>
         public int NewId => ++_lastId;
 
+        //TODO: Почему не просто список List?
         /// <summary>
         /// Хранит все контакты пользователя
         /// </summary>
@@ -52,6 +53,8 @@ namespace ContactsApp
             return Contacts.Count;
         }
 
+        //TODO: Тут бы я посмотрел в сторону сортируемой коллекции, т.к. алгоритм получается слишком разухабистый
+        //TODO: Если коротко, то надо реализовать IComparable для Contact и вызов Sort у листа нормально будет отрабатывать https://metanit.com/sharp/tutorial/3.23.php
         /// <summary>
         /// Возвращает узел списка, перед которым
         /// следует добавить новый контакт
@@ -157,6 +160,7 @@ namespace ContactsApp
             }
         }
 
+        //TODO: Лучше сделать индексатор
         /// <summary>
         /// Метод возвращает контакт из списка
         /// по указанному индексу

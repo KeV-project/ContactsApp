@@ -33,6 +33,7 @@ namespace ContactsAppUI
 
             NewContact = newContact;
 
+            //TODO: Куча дублей
             if(NewContact.LastName == "Не определено")
             {
                 MakeContactSurnameTextBox.Text = "";

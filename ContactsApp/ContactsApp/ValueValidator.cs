@@ -12,6 +12,7 @@ namespace ContactsApp
     /// </summary>
     public static class ValueValidator
     {
+        //TODO: Почему публично?
         /// <summary>
         /// Метод предназначен для проверки числа 
         /// на вхождение в определенных диапазон
@@ -28,6 +29,8 @@ namespace ContactsApp
         {
             return minLimit <= number && maxLimit >= number;
         }
+
+        //TODO: Почему публично?
         /// <summary>
         /// Метод предназначен для проверки длины строки 
         /// </summary>
@@ -44,6 +47,8 @@ namespace ContactsApp
             return minLength <= value.Length
                 && maxLength >= value.Length;
         }
+
+        //TODO: Зачем? =)
         /// <summary>
         /// Метод предназначен для проверки первой цифры номера телефона
         /// </summary>
@@ -55,6 +60,7 @@ namespace ContactsApp
         {
             return number[0] == '7';
         }
+
         /// <summary>
         /// Метод предназначен для проверки длины строки
         /// и вхождения всех символов имени в допустимый диапазон значений
@@ -71,7 +77,20 @@ namespace ContactsApp
                 return false;
 			}
 
-            foreach(char symbol in value)
+
+
+            //TODO: Можно создать переменную со строкой и привести её к нижнему регистру value.ToLower(),
+            //TODO: дальше уже выполнять проверку на диапазоны из строчных букв
+
+            //TODO: Вот это можно собрать в LINQ, можете посмотреть, что это такое.
+            //return value.All(symbol => 
+            // symbol >= 'A' && symbol <= 'Z'
+            //     || symbol >= 'a' && symbol <= 'z'
+            //     || symbol >= 'А' && symbol <= 'Я'
+            //     || symbol >= 'а' && symbol <= 'я'
+            //     || symbol >= '0' && symbol <= '9'
+            //     || symbol == ' ');
+            foreach (char symbol in value)
 			{
                 if(!(symbol >= 'A' && symbol <='Z')
                     && !(symbol >= 'a' && symbol <= 'z')
@@ -86,6 +105,8 @@ namespace ContactsApp
 
             return true;
         }
+
+        //TODO: Почему публично?
         /// <summary>
         /// Метод предназначен для проверки даты 
         /// на вхождение в определенный диапазон
@@ -100,6 +121,9 @@ namespace ContactsApp
 		{
             return minDate <= date && date <= maxDate;
 		}
+
+        //TODO: Совершенно странный подход - есть нормально типизированный вариант - зачем конвертить в строки и обратно?
+        //TODO: Я бы разнёс эти ассерты и не делал это единообразно
         /// <summary>
         /// Метод предназначен для генерации исключения 
         /// при несоответствии значения заданным условиям
