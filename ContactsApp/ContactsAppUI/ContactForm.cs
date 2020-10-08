@@ -31,41 +31,28 @@ namespace ContactsAppUI
         { 
             InitializeComponent();
 
+            //TODO: Куча дублей +
             NewContact = newContact;
 
-            //TODO: Куча дублей
-            if(NewContact.LastName == "Неизвестно")
-            {
+            if(NewContact.LastName == "Неизвестно" &&
+               NewContact.FirstName == "Неизвестно" &&
+               NewContact.Number.Number == 70000000000 &&
+               NewContact.BirthDate == DateTime.Today &&
+               NewContact.Email == "Неизвестно")
+			{
                 MakeContactSurnameTextBox.Text = "";
-            }
-            else
-            {
-                MakeContactSurnameTextBox.Text = NewContact.LastName;
-            }
-            if (NewContact.FirstName == "Неизвестно")
-            {
                 MakeContactNameTextBox.Text = "";
-            }
-            else
-            {
-                MakeContactNameTextBox.Text = NewContact.FirstName;
-            }
-            MakeContactBirthDateTimePicker.Value = NewContact.BirthDate;
-            if(NewContact.Number.Number == 70000000000)
-            {
                 MakeContactPhoneMaskedTextBox.Text = "";
-            }
-            else
-            {
-                MakeContactPhoneMaskedTextBox.Text =
-                Convert.ToString(NewContact.Number.Number);
-            }
-            if(NewContact.Email == "Неизвестно")
-            {
+                MakeContactBirthDateTimePicker.Value = DateTime.Today;
                 MakeContactEmailTextBox.Text = "";
             }
-            else
-            {
+			else
+			{
+                MakeContactSurnameTextBox.Text = NewContact.LastName;
+                MakeContactNameTextBox.Text = NewContact.FirstName;
+                MakeContactPhoneMaskedTextBox.Text = Convert.ToString(NewContact.
+                    Number.Number).Remove(0, 1);
+                MakeContactBirthDateTimePicker.Value = NewContact.BirthDate;
                 MakeContactEmailTextBox.Text = NewContact.Email;
             }
         }
