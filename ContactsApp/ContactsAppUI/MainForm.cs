@@ -18,24 +18,24 @@ namespace ContactsAppUI
     /// </summary>
     public partial class MainForm : Form
     {
-         //TODO: RSDN явное проставление модификаторов доступа
+         //TODO: RSDN явное проставление модификаторов доступа +
         /// <summary>
         /// Содержит объект класса Project
         /// </summary>
-        Project _project;
+        private Project _project;
 
-        //TODO: RSDN явное проставление модификаторов доступа
+        //TODO: RSDN явное проставление модификаторов доступа +
         /// <summary>
         /// Содержит выбранный пользователем контакт
         /// </summary>
-        Contact _currentContact;
-        //TODO: RSDN явное проставление модификаторов доступа
-        //TODO: Почему такая структура данных
+        private Contact _currentContact;
+        //TODO: RSDN явное проставление модификаторов доступа +
+        //TODO: Почему такая структура данных +
         /// <summary>
         /// Содержит список контактов,
         /// отображаемых в ListBox
         /// </summary>
-        LinkedList<Contact> _listBoxContacts;
+        private List<Contact> _listBoxContacts;
         /// <summary>
         /// Создает стартовое окно приложения,
         /// выполняет десереализацию объекта Project
@@ -44,7 +44,7 @@ namespace ContactsAppUI
         {
             _project = ProjectManager.ReadProject();
             _currentContact = null;
-            _listBoxContacts = new LinkedList<Contact>();
+            _listBoxContacts = new List<Contact>();
 
             InitializeComponent();
 
@@ -53,7 +53,7 @@ namespace ContactsAppUI
                 CopyContactsNameInListBox(_project);
             }
 
-            LinkedList<Contact> birthCotacts = _project.GetAllBirthContacts();
+            List<Contact> birthCotacts = _project.GetAllBirthContacts();
             if(birthCotacts.Count != 0)
 			{
                 BirthTextBox.Text = " ";
@@ -97,15 +97,15 @@ namespace ContactsAppUI
                 return;
             }
 
-            LinkedListNode<Contact> currentContact = _listBoxContacts.First;
-            for(int i = 0; i <= selectedIndex; i++)
-            {
-                if(i == selectedIndex)
-                {
-                    _currentContact =  currentContact.Value;
-                }
-                currentContact = currentContact.Next;
-            }
+            int currentIndex = 0;
+            foreach(Contact contact in _listBoxContacts)
+			{
+                if(currentIndex == selectedIndex)
+				{
+                    _currentContact = contact;
+				}
+                currentIndex++;
+			}
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace ContactsAppUI
 
                 AddContactNameInListBox(currentContact.LastName
                     + " " + currentContact.FirstName);
-                _listBoxContacts.AddLast(currentContact);
+                _listBoxContacts.Add(currentContact);
             }
         }
 
@@ -147,7 +147,7 @@ namespace ContactsAppUI
         /// Заполняет ListBox текущими контактами
         /// </summary>
         /// <param name="contacts">Список текущих контактов</param>
-        private void FillListBoxItems(LinkedList<Contact> contacts)
+        private void FillListBoxItems(List<Contact> contacts)
         {
             ContactsListBox.Items.Clear();
 

@@ -153,8 +153,8 @@ namespace ContactsApp
         public Contact()
         {
             Id = 0;
-            FirstName = "неизвестно";
-            LastName = "неизвестно";
+            FirstName = "Неизвестно";
+            LastName = "Неизвестно";
             Number = new PhoneNumber();
             Email = "Неизвестно";
             BirthDate = DateTime.Today;

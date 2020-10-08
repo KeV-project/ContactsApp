@@ -84,6 +84,15 @@ namespace ContactsApp
         }
 
         /// <summary>
+        /// Метод удаляет контакт из списка
+        /// </summary>
+        /// <param name="removableContact">Удаляемый контакт</param>
+        public void RemoveContact(Contact removableContact)
+        {
+            _contacts.Remove(removableContact);
+        }
+
+        /// <summary>
         /// Метод отбирает все контакты,
         /// имя и фамилия которых содержит подстроку
         /// </summary>
@@ -104,15 +113,6 @@ namespace ContactsApp
             }
 
             return contactsWithText;
-        }
-
-        /// <summary>
-        /// Метод удаляет контакт из списка
-        /// </summary>
-        /// <param name="removableContact">Удаляемый контакт</param>
-        public void RemoveContact(Contact removableContact)
-        {
-            _contacts.Remove(removableContact);
         }
 
         /// <summary>
