@@ -34,7 +34,7 @@ namespace ContactsAppUI
             NewContact = newContact;
 
             //TODO: Куча дублей
-            if(NewContact.LastName == "Не определено")
+            if(NewContact.LastName == "Неизвестно")
             {
                 MakeContactSurnameTextBox.Text = "";
             }
@@ -42,7 +42,7 @@ namespace ContactsAppUI
             {
                 MakeContactSurnameTextBox.Text = NewContact.LastName;
             }
-            if (NewContact.FirstName == "Не определено")
+            if (NewContact.FirstName == "Неизвестно")
             {
                 MakeContactNameTextBox.Text = "";
             }
@@ -60,7 +60,7 @@ namespace ContactsAppUI
                 MakeContactPhoneMaskedTextBox.Text =
                 Convert.ToString(NewContact.Number.Number);
             }
-            if(NewContact.Email == "Не определен")
+            if(NewContact.Email == "Неизвестно")
             {
                 MakeContactEmailTextBox.Text = "";
             }
@@ -104,5 +104,5 @@ namespace ContactsAppUI
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
-    }
+	}
 }

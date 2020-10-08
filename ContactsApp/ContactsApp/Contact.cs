@@ -30,11 +30,8 @@ namespace ContactsApp
             {
                 const int minLength = 0;
                 const int maxLength = 15;
-                ValueValidator.AssertCorrectValue(Convert.ToString(value),
-                    Convert.ToString(minLength),
-                    Convert.ToString(maxLength),
-                    CheckType.IsLenghtInRange,
-                    "id контакта");
+                ValueValidator.AssertLengthInRange(Convert.ToString(value),
+                    minLength, maxLength, "id контакта");
                 _id = value;
             }
         }
@@ -56,19 +53,12 @@ namespace ContactsApp
             }
             set
             {
-                value = value.TrimStart();
-
                 const int minLength = 1;
                 const int maxLength = 50;
-                ValueValidator.AssertCorrectValue(value,
-                    Convert.ToString(minLength),
-                    Convert.ToString(maxLength),
-                    CheckType.IsCorrectName,
-                    "имя контакта");
+                ValueValidator.AssertCorrectName(value,
+                    minLength, maxLength, "имя контакта");
 
-                ValueCorrector.ToUpperFirstLetter(value);
-
-                _firstName = value;
+                _firstName = ValueCorrector.ToUpperFirstLetter(value);
             }
         }
 
@@ -89,19 +79,12 @@ namespace ContactsApp
             }
             set
             {
-                value = value.TrimStart();
-
                 const int minLength = 0;
                 const int maxLength = 50;
-                ValueValidator.AssertCorrectValue(value,
-                    Convert.ToString(minLength),
-                    Convert.ToString(maxLength),
-                    CheckType.IsCorrectName,
-                    "фамилию контакта");
+                ValueValidator.AssertCorrectName(value,
+                   minLength, maxLength, "фамирия контакта");
 
-                ValueCorrector.ToUpperFirstLetter(value);
-
-                _lastName = value;
+                _lastName = ValueCorrector.ToUpperFirstLetter(value);
             }
         }
 
@@ -127,15 +110,13 @@ namespace ContactsApp
             }
             set
             {
-                value = value.TrimStart();
+                value = value.Replace(" ", "");
 
                 const int minLength = 0;
                 const int maxLength = 50;
-                ValueValidator.AssertCorrectValue(value,
-                    Convert.ToString(minLength),
-                    Convert.ToString(maxLength),
-                    CheckType.IsLenghtInRange,
-                    "e-mail контакта");
+                ValueValidator.AssertLengthInRange(value,
+                    minLength, maxLength, "e-mail контакта");
+
                 _email = value;
             }
         }
@@ -156,12 +137,12 @@ namespace ContactsApp
             }
             set
             {
-                string minDate = Convert.ToString(new DateTime(1900, 12, 31, 23, 59, 59));
-                string maxDate = Convert.ToString(new DateTime(DateTime.Today.Year,
-                    DateTime.Today.Month, DateTime.Today.Day, 23, 59, 59));
-                ValueValidator.AssertCorrectValue(Convert.ToString(value),
-                    minDate, maxDate,
-                    CheckType.IsCorrectDate, "рождения");
+                DateTime minDate = new DateTime(1900, 12, 31, 23, 59, 59);
+                DateTime maxDate = new DateTime(DateTime.Today.Year,
+                    DateTime.Today.Month, DateTime.Today.Day, 23, 59, 59);
+                ValueValidator.AssertCorrectDate(value, minDate, maxDate,
+                     "рождения");
+
                 _birthDate = value;
             }
         }
@@ -172,10 +153,10 @@ namespace ContactsApp
         public Contact()
         {
             Id = 0;
-            FirstName = "Не определено";
-            LastName = "Не определено";
+            FirstName = "неизвестно";
+            LastName = "неизвестно";
             Number = new PhoneNumber();
-            Email = "Не определен";
+            Email = "Неизвестно";
             BirthDate = DateTime.Today;
         }
 

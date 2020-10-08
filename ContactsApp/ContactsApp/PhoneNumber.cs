@@ -30,9 +30,8 @@ namespace ContactsApp
             {
                 const int minNumbersLength = 11;
                 const int maxNumbersLength = 11;
-                ValueValidator.AssertCorrectValue(Convert.ToString(value),
-                   Convert.ToString(minNumbersLength),
-                   Convert.ToString(maxNumbersLength), CheckType.IsPhoneNumber,
+                ValueValidator.AssertRussianPhoneNumber(value,
+                    minNumbersLength, maxNumbersLength,
                    "номер телефона");
                 _number = value;
             }
