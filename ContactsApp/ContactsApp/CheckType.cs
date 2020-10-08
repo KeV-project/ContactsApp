@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//TODO: Namespace по-умолчанию не совпадает с текущими (поправить можно зайдя в настройки проекта)
 namespace ContactsApp
 {
     /// <summary>
