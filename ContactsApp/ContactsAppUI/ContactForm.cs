@@ -12,7 +12,7 @@ using ContactsApp;
 namespace ContactsAppUI
 {
     /// <summary>
-    /// Класс "ContactForm" создает форму для окна 
+    /// Класс <see cref="ContactForm"/> создает форму для окна 
     /// добавления и редактирования контакта
     /// </summary>
     public partial class ContactForm : Form

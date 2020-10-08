@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ContactsApp
 {
     /// <summary>
-    /// Класс "Контакт" предназначен для создания контактов 
+    /// Класс <see cref="Contact"/> предназначен для создания контактов 
     /// </summary>
     public class Contact : ICloneable, IComparable<Contact>
     {

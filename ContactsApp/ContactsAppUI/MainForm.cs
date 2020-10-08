@@ -12,9 +12,10 @@ using ContactsApp;
 namespace ContactsAppUI
 {
     //TODO Есть опасность не переименовать комментарий, если будете переименовывать MainForm,
-    //TODO: Чтобы держать эту связь, лучше использовать xml теги, например <see cref="MainForm"/>
+    //TODO: Чтобы держать эту связь, лучше использовать xml теги, например <see cref="MainForm"/> +
     /// <summary>
-    /// Класс "MainForm" создает форму для стартового окна приложения
+    /// Класс <see cref="MainForm"/> создает форму 
+    /// для стартового окна приложения
     /// </summary>
     public partial class MainForm : Form
     {

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace ContactsApp
 {
 	/// <summary>
-	/// Класс "Управление проектом" предназначен
+	/// Класс <see cref="ProjectManager"/> предназначен
 	/// для организации сериализации и десериализации
 	/// объектов класса "Проект"
 	/// </summary>

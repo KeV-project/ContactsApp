@@ -11,7 +11,7 @@ using System.Linq;
 namespace ContactsApp
 {
     /// <summary>
-    /// Класс "Проект" предназначен для хранение
+    /// Класс <see cref="Project"/> предназначен для хранения
     /// пользовательской информации приложения
     /// </summary>
     [DataContract]

@@ -8,7 +8,7 @@ namespace ContactsApp
 {
     //TODO: Правильнее писать в следующем порядке public static +
     /// <summary>
-    /// Класс "Корректор значений" предназначен
+    /// Класс <see cref="ValueCorrector"/> предназначен
     /// для корректировки введенных пользователем данных
     /// </summary>
     public static class ValueCorrector

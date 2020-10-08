@@ -11,7 +11,8 @@ using System.Windows.Forms;
 namespace ContactsAppUI
 {
 	/// <summary>
-	/// Класс "AboutForm" создает форму с информацией о приложении
+	/// Класс <see cref="AboutForm"/> создает форму 
+	/// с информацией о приложении
 	/// </summary>
 	public partial class AboutForm : Form
 	{

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace ContactsApp
 {
     /// <summary>
-    /// Класс "Валидатор значений" предназначен для проверки значений 
-    /// перед их использованием
+    /// Класс <see cref="ValueValidator"/> предназначен для 
+    /// проверки корректности значений перед их использованием
     /// </summary>
     public static class ValueValidator
     {

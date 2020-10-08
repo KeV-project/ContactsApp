@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace ContactsApp
 {
     /// <summary>
-    /// Класс "Номера телефона", хранящий номер телефона контакта
+    /// Класс <see cref="PhoneNumber"/> хранит информацию 
+    /// о номере телефона контакта
     /// </summary>
     public class PhoneNumber
     {
