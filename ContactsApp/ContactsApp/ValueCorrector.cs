@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ContactsApp
 {
-    //TODO: Правильнее писать в следующем порядке public static
+    //TODO: Правильнее писать в следующем порядке public static +
     /// <summary>
     /// Класс "Корректор значений" предназначен
     /// для корректировки введенных пользователем данных
     /// </summary>
-    static public class ValueCorrector
+    public static class ValueCorrector
     {
         /// <summary>
         /// Метод предназначен для исключения из строки,
@@ -19,7 +19,7 @@ namespace ContactsApp
         /// </summary>
         /// <param name="number">Корректируемый номер телефона</param>
         /// <returns>Возвращает номер телефона в целочисленном формате</returns>
-        static public long ConvertPhoneNumberToInt(string number)
+        public static long ConvertPhoneNumberToInt(string number)
         {
             number = number.Replace(" ", "");
             number = number.Replace("+", "");
@@ -37,7 +37,7 @@ namespace ContactsApp
         /// <returns>Если строка пустая возвращает исходную строку.
         /// Если строка начинается с буквы, 
         /// возвращает ту же строку, первая буква которой - заглавная</returns>
-        static public string ToUpperFirstLetter(string value)
+        public static string ToUpperFirstLetter(string value)
 		{
             if (value.Length > 0)
             {
