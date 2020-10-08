@@ -272,7 +272,7 @@ namespace ContactsAppUI
                 ContactNameTextBox.Text = _currentContact.FirstName;
                 ContactBirthDateTimePicker.Value = _currentContact.BirthDate;
                 ContactPhoneMaskedTextBox.Text =
-                    Convert.ToString(_currentContact.Number.Number);
+                    Convert.ToString(_currentContact.Number.Number).Remove(0, 1);
                 ContactEmailTextBox.Text = _currentContact.Email;
             }
         }
