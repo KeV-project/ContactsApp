@@ -57,7 +57,6 @@ namespace ContactsAppUI
             List<Contact> birthCotacts = _project.GetAllBirthContacts();
             if(birthCotacts.Count != 0)
 			{
-                BirthTextBox.Text = " ";
                 int contactCount = 0;
                 foreach(Contact currentContact in birthCotacts)
 				{
