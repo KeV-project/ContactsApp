@@ -15,12 +15,12 @@ namespace ContactsApp
         /// <summary>
         /// Cодержит идентификатор контакта
         /// </summary>
-        private int _id;
+        private long _id;
         /// <summary>
         /// Возвращает и создает id контакта
         /// Id контакта должно состоять не более чем из 15 символом
         /// </summary>
-        public int Id
+        public long Id
         {
             get
             {
@@ -176,13 +176,12 @@ namespace ContactsApp
             LastName = "Не определено";
             Number = new PhoneNumber();
             Email = "Не определен";
-            BirthDate = DateTime.Now;
+            BirthDate = DateTime.Today;
         }
 
         /// <summary>
         /// Инициализирует поля при создании объекта
         /// </summary>
-        /// <param name="id">Идентификатор контакта</param>
         /// <param name="firstName">Имя контакта</param>
         /// <param name="lastName">Фамилия контакта</param>
         /// <param name="number">Номер телефона контакта</param>

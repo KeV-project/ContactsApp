@@ -8,6 +8,10 @@ using ContactsApp;
 
 namespace ContactsApp.UnitTests
 {
+    /// <summary>
+    /// Класс "Тестирование номера телефона" предназначен
+    /// для тестирования класса "Номер телефона"
+    /// </summary>
     [TestFixture]
     public class PhoneNumberTest
     {
