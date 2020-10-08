@@ -44,6 +44,43 @@ namespace ContactsApp
             Contacts = new LinkedList<Contact>();
         }
 
+        //TODO: Лучше сделать индексатор +
+        public Contact this[int index]
+		{
+			get
+			{
+                if (index < Contacts.Count)
+                {
+                    LinkedListNode<Contact> currentContact = Contacts.First;
+                    for (int i = 0; i <= index; i++)
+                    {
+                        if (i == index)
+                        {
+                            return currentContact.Value;
+                        }
+                        currentContact = currentContact.Next;
+                    }
+                }
+
+                return null;
+            }
+			private set
+			{
+                if(index < Contacts.Count)
+				{
+                    LinkedListNode<Contact> currentContact = Contacts.First;
+                    for (int i = 0; i <= index; i++)
+                    {
+                        if (i == index)
+                        {
+                            Contacts.AddBefore(currentContact, value);
+                        }
+                        currentContact = currentContact.Next;
+                    }
+                }
+			}
+		}
+
         /// <summary>
         /// Возвращает количество контактов в списке
         /// </summary>
@@ -158,33 +195,6 @@ namespace ContactsApp
             {
                 Contacts.AddBefore(afterInserted, newContact);
             }
-        }
-
-        //TODO: Лучше сделать индексатор
-        /// <summary>
-        /// Метод возвращает контакт из списка
-        /// по указанному индексу
-        /// </summary>
-        /// <param name="index">Индекс возвращаемого контакта</param>
-        /// <returns>Объект списка по указанному индексу</returns>
-        public Contact GetContact(int index)
-        {
-            if(index >= Contacts.Count)
-            {
-                return null;
-            }
-
-            LinkedListNode<Contact> currentContact = Contacts.First;
-            for(int i = 0; i <= index; i++)
-            {
-                if(i == index)
-                {
-                    return currentContact.Value;
-                }
-                currentContact = currentContact.Next;
-            }
-
-            return null;
         }
 
         /// <summary>
