@@ -398,8 +398,8 @@
 			this.BirthTableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
 			this.BirthTableLayoutPanel.ColumnCount = 3;
 			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
-			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 568F));
+			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 123F));
+			this.BirthTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 584F));
 			this.BirthTableLayoutPanel.Controls.Add(this.ExclamationMarkTableLayoutPanel, 0, 0);
 			this.BirthTableLayoutPanel.Controls.Add(this.BirthTextBox, 2, 2);
 			this.BirthTableLayoutPanel.Controls.Add(this.BirthLabel, 2, 1);
@@ -419,7 +419,7 @@
 			this.BirthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.BirthLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.BirthLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.BirthLabel.Location = new System.Drawing.Point(162, 21);
+			this.BirthLabel.Location = new System.Drawing.Point(146, 21);
 			this.BirthLabel.Name = "BirthLabel";
 			this.BirthLabel.Size = new System.Drawing.Size(181, 18);
 			this.BirthLabel.TabIndex = 13;
@@ -434,11 +434,11 @@
 			this.BirthTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
 			this.BirthTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.BirthTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.BirthTextBox.Location = new System.Drawing.Point(166, 48);
+			this.BirthTextBox.Location = new System.Drawing.Point(150, 48);
 			this.BirthTextBox.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
 			this.BirthTextBox.Multiline = true;
 			this.BirthTextBox.Name = "BirthTextBox";
-			this.BirthTextBox.Size = new System.Drawing.Size(558, 55);
+			this.BirthTextBox.Size = new System.Drawing.Size(574, 55);
 			this.BirthTextBox.TabIndex = 13;
 			// 
 			// MainForm
