@@ -307,34 +307,13 @@ namespace ContactsAppUI
 		}
 
         //TODO: Не вызывайте этот обработчик, а просто подпишите разные контролы на один обработчик
-        //TODO: и всё, так уберёте дублирование и лишний код
-        /// <summary>
-        /// Вызывает метод добавления контакта
-        /// </summary>
-		private void AddContactToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-            AddContactButton_Click(null, null);
-		}
+        //TODO: и всё, так уберёте дублирование и лишний код +
 
         //TODO: Не вызывайте этот обработчик, а просто подпишите разные контролы на один обработчик
-        //TODO: и всё, так уберёте дублирование и лишний код
-        /// <summary>
-        /// Вызывает метод редактирования контакта
-        /// </summary>
-		private void EditContactToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-            EditContactButton_Click(null, null);
-        }
+        //TODO: и всё, так уберёте дублирование и лишний код +
 
         //TODO: Не вызывайте этот обработчик, а просто подпишите разные контролы на один обработчик
-        //TODO: и всё, так уберёте дублирование и лишний код
-        /// <summary>
-        /// Вызывает метод удаления контакта
-        /// </summary>
-		private void RemoveContactToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-            RemoveContactButton_Click(null, null);
-		}
+        //TODO: и всё, так уберёте дублирование и лишний код +
 
         /// <summary>
         /// Создает и запускает окно с информацией о приложении
