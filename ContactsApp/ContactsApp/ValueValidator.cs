@@ -12,7 +12,7 @@ namespace ContactsApp
     /// </summary>
     public static class ValueValidator
     {
-        //TODO: Почему публично?
+        //TODO: Почему публично? +
         /// <summary>
         /// Метод предназначен для проверки числа 
         /// на вхождение в определенных диапазон
@@ -24,13 +24,13 @@ namespace ContactsApp
         /// значение числа</param>
         /// <returns>Значение показывает, 
         /// входит ли число в допустимый диапазон </returns>
-        public static bool IsValueInRange(double number,
+        private static bool IsValueInRange(double number,
             double minLimit, double maxLimit)
         {
             return minLimit <= number && maxLimit >= number;
         }
 
-        //TODO: Почему публично?
+        //TODO: Почему публично? +
         /// <summary>
         /// Метод предназначен для проверки длины строки 
         /// </summary>
@@ -41,72 +41,32 @@ namespace ContactsApp
         /// длина строки</param>
         /// <returns>Значение показывает, 
         /// является ли длина строки допустимой для использования</returns>
-        public static bool IsLengthInRange(string value, int minLength,
+        private static bool IsLengthInRange(string value, int minLength,
             int maxLength)
         {
             return minLength <= value.Length
                 && maxLength >= value.Length;
         }
 
-        //TODO: Зачем? =)
         /// <summary>
-        /// Метод предназначен для проверки первой цифры номера телефона
-        /// </summary>
-        /// <param name="number">Номер телефона 
-        /// в строковом представлении</param>
-        /// <returns>Значение показывает, 
-        /// начинается ли номер телефона с цифры 7</returns>
-        public static bool IsFirstDigitIs7(string number)
-        {
-            return number[0] == '7';
-        }
-
-        /// <summary>
-        /// Метод предназначен для проверки длины строки
-        /// и вхождения всех символов имени в допустимый диапазон значений
+        /// Метод предназначен для проверки строки
+        /// на содержание только букв
         /// </summary>
         /// <param name="value">Проверяемая строка</param>
-        /// <param name="minLenght">Минимальная длина строки</param>
-        /// <param name="maxLength">Максимальная длина строки</param>
-        /// <returns></returns>
-        public static bool IsCorrectName(string value, int minLenght,
-            int maxLength)
-        {
-            if (!IsLengthInRange(value, minLenght, maxLength))
-			{
-                return false;
-			}
-
-
-
+        /// <returns>Значение показывает 
+        /// состоит ли строка только из букв</returns>
+        private static bool IsOnlyLettersInString(string value)
+		{
             //TODO: Можно создать переменную со строкой и привести её к нижнему регистру value.ToLower(),
-            //TODO: дальше уже выполнять проверку на диапазоны из строчных букв
-
-            //TODO: Вот это можно собрать в LINQ, можете посмотреть, что это такое.
-            //return value.All(symbol => 
-            // symbol >= 'A' && symbol <= 'Z'
-            //     || symbol >= 'a' && symbol <= 'z'
-            //     || symbol >= 'А' && symbol <= 'Я'
-            //     || symbol >= 'а' && symbol <= 'я'
-            //     || symbol >= '0' && symbol <= '9'
-            //     || symbol == ' ');
-            foreach (char symbol in value)
-			{
-                if(!(symbol >= 'A' && symbol <='Z')
-                    && !(symbol >= 'a' && symbol <= 'z')
-                    && !(symbol >= 'А' && symbol <= 'Я')
-                    && !(symbol >= 'а' && symbol <= 'я')
-                    && !(symbol >= '0' && symbol <= '9')
-                    && symbol != ' ')
-				{
-                    return false;
-				}
-			}
-
-            return true;
-        }
-
-        //TODO: Почему публично?
+            //TODO: дальше уже выполнять проверку на диапазоны из строчных букв +
+            value.ToLower();
+            //TODO: Вот это можно собрать в LINQ, можете посмотреть, что это такое. +
+            return value.All(symbol =>
+                    symbol >= 'a' && symbol <= 'z' ||
+                    symbol >= 'а' && symbol <= 'я');
+		}
+        
+        //TODO: Почему публично? +
         /// <summary>
         /// Метод предназначен для проверки даты 
         /// на вхождение в определенный диапазон
@@ -116,103 +76,131 @@ namespace ContactsApp
         /// <param name="maxDate">Максимальная дата</param>
         /// <returns>Значение показыает, 
         /// входит ли дата в допустимый диапазон</returns>
-        public static bool IsCorrectDate(DateTime date,
+        private static bool IsCorrectDate(DateTime date,
             DateTime minDate, DateTime maxDate)
 		{
             return minDate <= date && date <= maxDate;
 		}
 
         //TODO: Совершенно странный подход - есть нормально типизированный вариант - зачем конвертить в строки и обратно?
-        //TODO: Я бы разнёс эти ассерты и не делал это единообразно
-        /// <summary>
-        /// Метод предназначен для генерации исключения 
-        /// при несоответствии значения заданным условиям
-        /// </summary>
-        /// <param name="value">Проверяемое значение</param>
-        /// <param name="minLimit">Минимальная граница</param>
-        /// <param name="maxLimit">Максимальная граница</param>
-        /// <param name="checkType">Тип проверки</param>
-        /// <param name="context">Назначение проверяемого значения
-        /// Задается в родительном падеже в нижнем регистре</param>
-        public static void AssertCorrectValue(string value,
-            string minLimit, string maxLimit,
-            CheckType checkType, string context)
-        {
-            switch (checkType)
-            {
-                case CheckType.IsValueInRange:
-                    {
-                        if (!IsValueInRange(Convert.ToDouble(value),
-                            Convert.ToDouble(minLimit), 
-                            Convert.ToDouble(maxLimit)))
-                        {
-                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: Число "
-                                + value
-                                + "\nне входит в допустимый дипапазон ["
-                                + minLimit + ", " + maxLimit + "]"
-                                + "\nи не может определять " + context);
-                        }
-                        break;
-                    }
+        //TODO: Я бы разнёс эти ассерты и не делал это единообразно +
 
-                case CheckType.IsPhoneNumber:
-                    {
-                        if (!IsFirstDigitIs7(value))
-                        {
-                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: " 
-                                + value + "\n" + context 
-                                + " должен начинаться с цифры 7");
-                        }
-                        if (!IsLengthInRange(value, 
-                            Convert.ToInt32(minLimit),
-                            Convert.ToInt32(maxLimit)))
-                        {
-                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: " 
-                                + value + "\n" + context 
-                                + " должен содержать 11 цифр");
-                        }
-                        break;
-                    }
-                case CheckType.IsLenghtInRange:
-                    {
-                        if (!IsLengthInRange(value, 
-                            Convert.ToInt32(minLimit),
-                           Convert.ToInt32(maxLimit)))
-                        {
-                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: строка " 
-                                + value + "\n превышает допустимую длину [" 
-                                + minLimit + ", " + maxLimit + "]" 
-                                + "\nи не может определять " + context);
-                        }
-                        break;
-                    }
-                case CheckType.IsCorrectName:
-					{
-                        if(!IsCorrectName(value, Convert.ToInt32(minLimit), 
-                            Convert.ToInt32(maxLimit)))
-                        {
-                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: строка "
-                                +"\"" + value 
-                                + "\",\nопределяющая " + context
-                                + ",\nможет соделжать только цифры и буквы"
-                                + "\nи состоять не более чем из " + maxLimit
-                                + " символов");
-                        }
-                        break;
-					}
-                case CheckType.IsCorrectDate:
-					{
-                        if(!IsCorrectDate(Convert.ToDateTime(value),
-                            Convert.ToDateTime(minLimit), 
-                            Convert.ToDateTime(maxLimit)))
-						{
-                            throw new ArgumentException("ИСКЛЮЧЕНИЕ: "
-                                + "выбранная дата " + context +  " \"" 
-                                + value + "\"\nне может быть раньше " 
-                                + minLimit + " и позже " + maxLimit);
-						}
-                        break;
-					}
+        /// <summary>
+        /// Метод предназначен для генерации исключения
+        /// в случае, если число не входит в допустимый диапазон
+        /// </summary>
+        /// <param name="value">Проверяемое число</param>
+        /// <param name="minLimit">Минимальное допустимое 
+        /// значение числа</param>
+        /// <param name="maxLimit">Максимальное допустимое
+        /// значение числа</param>
+        /// <param name="context">Состояние, которое будет инициализировано
+        /// проверяемым значением в именительном падеже)</param>
+        public static void AssertValueInRange(double value,
+            double minLimit, double maxLimit, string context)
+		{
+            if (!IsValueInRange(value, minLimit, maxLimit))
+            {
+                throw new ArgumentException("ИСКЛЮЧЕНИЕ: Число "
+                    + value
+                    + "\nне входит в допустимый дипапазон ["
+                    + minLimit + ", " + maxLimit + "]"
+                    + "\nи не может определять " + context);
+            }
+        }
+
+        /// <summary>
+        /// Метод предназначен для генерации исключения
+        /// в случае, если количество символов в строке не входит
+        /// в допустимый диапазон
+        /// </summary>
+        /// <param name="value">Проверяемая строка</param>
+        /// <param name="minLength">Минимальное количество 
+        /// символов в строке</param>
+        /// <param name="maxLength">Максимальное количество 
+        /// символов в строке</param>
+        /// <param name="context">Состояние, которое будет инициализировано
+        /// проверяемым значением в именительном падеже)</param>
+        public static void AssertLengthInRange(string value,
+            int minLength, int maxLength, string context)
+		{
+            if (!IsLengthInRange(value, minLength, maxLength))
+            {
+                throw new ArgumentException("ИСКЛЮЧЕНИЕ: \""
+                    + value + "\"\n превышает допустимую длину ["
+                    + minLength + ", " + maxLength + "]"
+                    + "\nи не может определять " + context);
+            }
+        }
+
+        /// <summary>
+        /// Метод предназначен для генерации исключения
+        /// в случае, если номер телефона состоит не из 11 цифр
+        /// или начинается не с цифры 7
+        /// </summary>
+        /// <param name="number">Проферяемое число</param>
+        /// <param name="minLength">Минимальное количество 
+        /// цифр в числе</param>
+        /// <param name="maxLength">Максимальное количество 
+        /// цифр в числе</param>
+        /// <param name="context">Состояние, которое будет инициализировано
+        /// проверяемым значением в именительном падеже)</param>
+        public static void AssertRussianPhoneNumber(long number,
+            int minLength, int maxLength, string context)
+		{
+            AssertLengthInRange(Convert.ToString(number), 
+                minLength, maxLength, context);
+
+            if (number / 10000000000 != 7)
+            {
+                throw new ArgumentException("ИСКЛЮЧЕНИЕ: " +
+                    "номер телефона \"" + number + "\"\n" +
+                    "должен начинаться с цифры 7");
+            }
+        }
+
+        /// <summary>
+        /// Метод предназначен для генерации исключения
+        /// в случае, если имя или фамилия содержат более 50 символов
+        /// или содержат символы кроме букв
+        /// </summary>
+        /// <param name="name">Проферяемая строка</param>
+        /// <param name="minLength">Минимальное количество символов</param>
+        /// <param name="maxLength">Максимальное количество символов</param>
+        /// <param name="context">Состояние, которое будет инициализировано
+        /// проверяемым значением в именительном падеже)</param>
+        public static void AssertCorrectName(string name, 
+            int minLength, int maxLength, string context)
+		{
+            AssertLengthInRange(name, minLength, maxLength, context);
+            if(!IsOnlyLettersInString(name))
+			{
+                throw new ArgumentException("ИСКЛЮЧЕНИЕ: строка "
+                                 + "\"" + name
+                                 + "\",\nопределяющая " + context
+                                 + ",\nможет соделжать только буквы");
+            }
+		}
+
+        /// <summary>
+        /// Метод предназначен для генерации исключения
+        /// в случае, если дата не входит в допустимый промежуток
+        /// времени
+        /// </summary>
+        /// <param name="newDate">Проверяемая дата</param>
+        /// <param name="minDate">Минимальная дата</param>
+        /// <param name="maxDate">Максималная дата</param>
+        /// <param name="context">Состояние, которое будет инициализировано
+        /// проверяемым значением в именительном падеже)</param>
+        public static void AssertCorrectDate(DateTime newDate,
+            DateTime minDate, DateTime maxDate, string context)
+		{
+            if (!IsCorrectDate(newDate, minDate, maxDate))
+            {
+                throw new ArgumentException("ИСКЛЮЧЕНИЕ: "
+                    + "выбранная дата " + context + " \""
+                    + newDate + "\"\nне может быть раньше "
+                    + minDate + " и позже " + maxDate);
             }
         }
     }
