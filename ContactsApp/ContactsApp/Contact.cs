@@ -10,7 +10,7 @@ namespace ContactsApp
     /// <summary>
     /// Класс "Контакт" предназначен для создания контактов 
     /// </summary>
-    public class Contact : ICloneable
+    public class Contact : ICloneable, IComparable<Contact>
     {
         /// <summary>
         /// Cодержит идентификатор контакта
@@ -186,9 +186,14 @@ namespace ContactsApp
         public object Clone()
         {
             PhoneNumber number = new PhoneNumber(Number.Number);
-            DateTime birthDate = new DateTime(BirthDate.Year, 
+            DateTime birthDate = new DateTime(BirthDate.Year,
                 BirthDate.Month, BirthDate.Day);
             return new Contact(FirstName, LastName, number, Email, birthDate);
+        }
+
+        public int CompareTo(Contact contact)
+        {
+            return this.LastName.CompareTo(contact.LastName);
         }
     }
 }

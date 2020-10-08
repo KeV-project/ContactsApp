@@ -130,7 +130,7 @@ namespace ContactsAppUI
 
             for (int i = 0; i < _project.GetContactsCount(); i++)
             {
-                Contact currentContact = _project.GetContact(i);
+                Contact currentContact = _project[i];
                 if(currentContact == null)
                 {
                     MessageBox.Show("Ошибка загрузки контактов");
