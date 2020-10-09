@@ -7,6 +7,7 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Data;
 
 namespace ContactsApp
 {
@@ -78,9 +79,17 @@ namespace ContactsApp
         /// <param name="newContact">Новый контакт</param>
         public void AddContact(Contact newContact)
         {
-            newContact.Id = NewId;
-            _contacts.Add(newContact);
-            _contacts.Sort();
+            if(newContact != null)
+			{
+                newContact.Id = NewId;
+                _contacts.Add(newContact);
+                _contacts.Sort();
+            }
+			else
+			{
+                throw new ArgumentException("ИСКЛЮЧЕНИЕ: попытка " +
+                    "добавить в список значение null");
+			}
         }
 
         /// <summary>
@@ -89,7 +98,12 @@ namespace ContactsApp
         /// <param name="removableContact">Удаляемый контакт</param>
         public void RemoveContact(Contact removableContact)
         {
-            _contacts.Remove(removableContact);
+
+            if(!_contacts.Remove(removableContact))
+			{
+                throw new ArgumentException("ИСКЛЮЧЕНИЕ: контакт " +
+                    "не существует");
+			}
         }
 
         /// <summary>
