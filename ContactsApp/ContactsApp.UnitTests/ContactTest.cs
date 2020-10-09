@@ -167,94 +167,79 @@ namespace ContactsApp.UnitTests
         public void TestParameterlessConstructor_CorrectValues()
 		{
             var actual = new Contact();
-            var expected = new Contact("Не определено", "Не определено",
-                new PhoneNumber(), "Не определен", DateTime.Today);
+            var expected = new Contact("Неизвестно", "Неизвестно",
+                new PhoneNumber(), "Неизвестно", DateTime.Today);
             
-            Assert.AreEqual(expected, actual,
-                "Конструктор без параметров инициализирует поля класса " +
-                "некорректными значениями");
+            Assert.AreEqual(expected.FirstName, actual.FirstName,
+                "Конструктор без параметров инициализирует " +
+                "имя контакта неверным значением");
+            Assert.AreEqual(expected.LastName, actual.LastName,
+                "Конструктор без параметров инициализирует " +
+                "фамилию контакта неверным значением");
+            Assert.AreEqual(expected.Number.Number, actual.Number.Number,
+                "Конструктор без параметров инициализирует " +
+                "номер телефона неверным значением");
+            Assert.AreEqual(expected.Email, actual.Email,
+                "Конструктор без параметров инициализирует " +
+                "e-mail контакта неверным значением");
+            Assert.AreEqual(expected.BirthDate, actual.BirthDate,
+                "Конструктор без параметров инициализирует " +
+                "дату рождения контака некорректными значениями");
         }
 
         [Test(Description = "Позитивный тест конструктора с параметрами")]
         public void TestConstructorWithParameters_CorrectValues()
         {
             var expected = Contact;
-            Contact contact = new Contact("Сергей", "Пресняков",
-                new PhoneNumber(79521777644), "sergey@gmail.com", 
+            var actual = new Contact("Сергей", "Пресняков",
+                new PhoneNumber(79521777644), "sergey@gmail.com",
                 new DateTime(1999, 12, 12));
-            contact.Id = 111;
-            var actual = contact;
-            Assert.AreEqual(expected, actual,
-                "Конструктор c параметрами инициализирует поля класса " +
-                "некорректрыми значениями");
+            actual.Id = 111;
+
+            Assert.AreEqual(expected.FirstName, actual.FirstName,
+                "Конструктор с параметрами инициализирует " +
+                "имя контакта неверным значением");
+            Assert.AreEqual(expected.LastName, actual.LastName,
+                "Конструктор с параметрами инициализирует " +
+                "фамилию контакта неверным значением");
+            Assert.AreEqual(expected.Number.Number, actual.Number.Number,
+                "Конструктор с параметрами инициализирует " +
+                "номер телефона неверным значением");
+            Assert.AreEqual(expected.Email, actual.Email,
+                "Конструктор с параметрами инициализирует " +
+                "e-mail контакта неверным значением");
+            Assert.AreEqual(expected.BirthDate, actual.BirthDate,
+                "Конструктор с параметрами инициализирует " +
+                "дату рождения контака некорректными значениями");
         }
 
         [Test(Description = "Позитивный тест Clone")]
         public void TestClone()
 		{
-            Contact contact = new Contact("Алина", "Карамутдинова",
-                new PhoneNumber(79521455695), "alina@gmail.com", 
-                new DateTime(1999, 7, 5));
-            Contact newContact = (Contact)contact.Clone();
-            Assert.Throws<ArgumentException>(
-                () => { 
-                    if(contact.Id != newContact.Id)
-					{
-                        throw new AccessViolationException("Id " +
-                            "копируемого объекта не соответствует " +
-                            "Id объекта копии");
-                    }
-                    if(contact.FirstName != newContact.FirstName)
-					{
-                        throw new AccessViolationException("Имя " +
-                            "копируемого объекта не соответствует " +
-                            "имени объекта копии");
-					}
-                    if(contact.LastName != newContact.LastName)
-					{
-                        throw new AccessViolationException("Фамилия " +
-                            "копируемого объекта не соответствует " +
-                            "фамилии объекта копии");
-                    }
-                    if(!object.ReferenceEquals(contact.Number, 
-                        newContact.Number))
-					{
-                        throw new AccessViolationException("Оба " +
-                            "объекта ссылаются на один и тот же " +
-                            "объект PhoneNumber");
-                    }
-                    if(contact.Number != newContact.Number)
-					{
-                        throw new ArgumentException("Номер телефона " +
-                            "копируемого объекта не соответствует " +
-                            "номеру телефона объекта копии");
-					}
-                    if(contact.Email != newContact.Email)
-					{
-                        throw new ArgumentException("Адрес электронной " +
-                            " почты копируемого объекта не соответствует " +
-                            "адрусу электронной почты объекта копии");
-                    }
-                    if (!object.ReferenceEquals(contact.BirthDate,
-                        newContact.BirthDate))
-                    {
-                        throw new AccessViolationException("Оба " +
-                            "объекта ссылаются на один и тот же " +
-                            "объект BirthDate");
-                    }
-                    if(contact.BirthDate != newContact.BirthDate)
-					{
-                        throw new AccessViolationException("День рождения " +
-                            "копируемого объекта не соответствует " +
-                            "дню рождения объекта копии");
-                    }
-                },
-                "Должно возникнуть исключение, " +
-                "если информация о копируемом объекте отличается " +
-                "от информации об объекте копии или " +
-                "объекты содержат одинаковые ссылки на объекты " +
-                "других классов");
+            var expected = Contact;
+            var actual = (Contact)Contact.Clone();
 
+            Assert.IsFalse(expected == actual, 
+                "Объект копия не ссылаться на " +
+                "копируемый объект");
+            Assert.AreEqual(expected.FirstName, actual.FirstName,
+               "Имя копируемого объекта не совпадает с " +
+               "именем обекта копии");
+            Assert.AreEqual(expected.LastName, actual.LastName,
+                "Фамилия копируемого объекта не совпадает с " +
+                "фамилией объекта копии");
+            Assert.IsFalse(expected.Number == actual.Number,
+                "Объект копия не должен содержать ссылку на " +
+                "PhoneNumber копируемого объекта ");
+            Assert.AreEqual(expected.Number.Number, actual.Number.Number,
+               "Номер телефона копируемого объекта не совпадает с " +
+               "номером телефона объекта копии");
+            Assert.AreEqual(expected.Email, actual.Email,
+                "E-mail копируемого объекта не совпадает с " +
+                "e-mail объекта копии");
+            Assert.AreEqual(expected.BirthDate, actual.BirthDate,
+                "Дата рождения копируемого объекта не совпадает с " +
+                "датой рождения объекта копии");
         }
     }
 }
