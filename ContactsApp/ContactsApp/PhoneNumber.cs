@@ -10,7 +10,7 @@ namespace ContactsApp
     /// Класс <see cref="PhoneNumber"/> хранит информацию 
     /// о номере телефона контакта
     /// </summary>
-    public class PhoneNumber
+    public class PhoneNumber : IComparable <PhoneNumber>
     {
         /// <summary>
         /// Поле "номер" предназначено для хранения номера телефона контакта
@@ -55,5 +55,18 @@ namespace ContactsApp
         {
             Number = number;
         }
+
+        public int CompareTo(PhoneNumber number)
+		{
+            if(this.Number > number.Number)
+			{
+                return 1;
+			}
+            if(this.Number == number.Number)
+			{
+                return 0;
+			}
+            return -1;
+		}
     }
 }

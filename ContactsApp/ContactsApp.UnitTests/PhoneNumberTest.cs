@@ -15,13 +15,19 @@ namespace ContactsApp.UnitTests
     [TestFixture]
     public class PhoneNumberTest
     {
+        public PhoneNumber Number { get; set; }
+
+        [SetUp]
+        public void InitPhoneNumber()
+		{
+            Number = new PhoneNumber(79521777644);
+		}
+
         [Test(Description = "Позитивный тест геттера Number")]
         public void TestNumberGet_CorrectValue()
 		{
             var expected = 79521777644;
-            PhoneNumber phoneNumber = new PhoneNumber();
-            phoneNumber.Number = expected;
-            var actual = phoneNumber.Number;
+            var actual = Number.Number;
 
             Assert.AreEqual(expected, actual, 
                 "Геттер PhoneNumber возвращает неправильный номер телефона");
@@ -35,20 +41,20 @@ namespace ContactsApp.UnitTests
              TestName = "Присвоение числа, первая цифра которого не 7")]
         public void TestNumberSet_ArgumentException(long wrongNumber, string message)
         {
-            PhoneNumber phoneNumber = new PhoneNumber();
-
             Assert.Throws<ArgumentException>(
-                () => { phoneNumber.Number = wrongNumber; },
+                () => { Number.Number = wrongNumber; },
                 message);
         }
 
         [Test(Description = "Позитивный тест конструктора без параметров")]
         public void TestParameterlessConstructor_CorrectValues()
 		{
-            var expected = 70000000000;
-            PhoneNumber phoneNumber = new PhoneNumber();
-            var actual = phoneNumber.Number;
-            Assert.AreEqual(expected, actual,
+            var expected = new PhoneNumber(70000000000);
+            var actual = new PhoneNumber();
+
+            bool result = Convert.ToBoolean(actual.CompareTo(expected));
+
+            Assert.IsFalse(result,
                 "Конструктор без параметров инициализирует поля класса " +
                 "некорректрыми значениями");
         }
@@ -56,10 +62,12 @@ namespace ContactsApp.UnitTests
         [Test(Description = "Позитивный тест конструктора с параметрами")]
         public void TestConstructorWithParameters_CorrectValues()
 		{
-            var expected = 79521777644;
-            PhoneNumber phoneNumber = new PhoneNumber(expected);
-            var actual = phoneNumber.Number;
-            Assert.AreEqual(expected, actual,
+            var expected = Number;
+            var actual = new PhoneNumber(79521777644);
+
+            bool result = Convert.ToBoolean(actual.CompareTo(expected));
+
+            Assert.IsFalse(result,
                 "Конструктор c параметрами инициализирует поля класса " +
                 "некорректрыми значениями");
         }

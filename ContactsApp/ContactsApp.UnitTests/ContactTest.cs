@@ -155,10 +155,9 @@ namespace ContactsApp.UnitTests
         public void TestBirthDateSet_IncorrectValue()
 		{
             var wrongBirthDate = new DateTime(1899, 12, 5);
-            Contact contact = new Contact();
 
             Assert.Throws<ArgumentException>(
-                () => { contact.BirthDate = wrongBirthDate; },
+                () => { Contact.BirthDate = wrongBirthDate; },
                 "Должно возникнуть исключение, " +
                 "если дата рождения контакта раньше 31.12.1900 " +
                 "или позже текужей даты");
