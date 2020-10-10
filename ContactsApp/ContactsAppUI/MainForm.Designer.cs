@@ -57,8 +57,8 @@
 			this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ExclamationMarkTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
 			this.BirthTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-			this.BirthLabel = new System.Windows.Forms.Label();
 			this.BirthTextBox = new System.Windows.Forms.TextBox();
+			this.BirthLabel = new System.Windows.Forms.Label();
 			this.ContactsTableLayoutPanel.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.BirthTableLayoutPanel.SuspendLayout();
@@ -340,21 +340,21 @@
 			// AddContactToolStripMenuItem
 			// 
 			this.AddContactToolStripMenuItem.Name = "AddContactToolStripMenuItem";
-			this.AddContactToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.AddContactToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
 			this.AddContactToolStripMenuItem.Text = "Add contact";
 			this.AddContactToolStripMenuItem.Click += new System.EventHandler(this.AddContactButton_Click);
 			// 
 			// EditContactToolStripMenuItem
 			// 
 			this.EditContactToolStripMenuItem.Name = "EditContactToolStripMenuItem";
-			this.EditContactToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.EditContactToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
 			this.EditContactToolStripMenuItem.Text = "Edit contact";
 			this.EditContactToolStripMenuItem.Click += new System.EventHandler(this.EditContactButton_Click);
 			// 
 			// RemoveContactToolStripMenuItem
 			// 
 			this.RemoveContactToolStripMenuItem.Name = "RemoveContactToolStripMenuItem";
-			this.RemoveContactToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.RemoveContactToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
 			this.RemoveContactToolStripMenuItem.Text = "Remove contact";
 			this.RemoveContactToolStripMenuItem.Click += new System.EventHandler(this.RemoveContactButton_Click);
 			// 
@@ -413,19 +413,6 @@
 			this.BirthTableLayoutPanel.TabIndex = 12;
 			this.BirthTableLayoutPanel.Visible = false;
 			// 
-			// BirthLabel
-			// 
-			this.BirthLabel.AutoSize = true;
-			this.BirthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.BirthLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.BirthLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.BirthLabel.Location = new System.Drawing.Point(146, 21);
-			this.BirthLabel.Name = "BirthLabel";
-			this.BirthLabel.Size = new System.Drawing.Size(181, 18);
-			this.BirthLabel.TabIndex = 13;
-			this.BirthLabel.Text = "Сегодня день рождения:";
-			this.BirthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
 			// BirthTextBox
 			// 
 			this.BirthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -440,6 +427,19 @@
 			this.BirthTextBox.Name = "BirthTextBox";
 			this.BirthTextBox.Size = new System.Drawing.Size(574, 55);
 			this.BirthTextBox.TabIndex = 13;
+			// 
+			// BirthLabel
+			// 
+			this.BirthLabel.AutoSize = true;
+			this.BirthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.BirthLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.BirthLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.BirthLabel.Location = new System.Drawing.Point(146, 21);
+			this.BirthLabel.Name = "BirthLabel";
+			this.BirthLabel.Size = new System.Drawing.Size(181, 18);
+			this.BirthLabel.TabIndex = 13;
+			this.BirthLabel.Text = "Сегодня день рождения:";
+			this.BirthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// MainForm
 			// 

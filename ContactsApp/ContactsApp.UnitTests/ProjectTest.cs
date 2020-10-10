@@ -39,13 +39,11 @@ namespace ContactsApp.UnitTests
 			ContactsCount = 4;
 
 			Project = new Project();
-			for (int i = 0; i < ContactsCount - 1; i++)
+			for (int i = 0; i < ContactsCount; i++)
 			{
 				Project.AddContact(Contacts[i]);
 				Contacts[i].Id = i + 1;
 			}
-
-			Contacts[3].Id = 5;
 		}
 
 		[Test(Description = "Позитивный тест геттера NewId")]
@@ -119,13 +117,21 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивный тест метода RemoveContact")]
 		public void TestRemoveContact_CorrectValue()
 		{
+			Project.RemoveContact(Contacts[0]);
 
+			Assert.Throws<ArgumentOutOfRangeException>(() => 
+				{ Contact removedContact = Project[3]; }, 
+				"Должно генерироваться исключение при обращении к " +
+				"несуществующему элементу списка");
 		}
 
 		[Test(Description = "Негативный тест метода RemoveContact")]
 		public void TestRemoveContact_IncorrectValue()
 		{
-
+			Assert.Throws<ArgumentException>(() =>
+			{ Project.RemoveContact(Contacts[0]); },
+				"Должно генерироваться исключение при попытке удалить " +
+				"несуществующий элемент списка");
 		}
 	}
 }

@@ -24,10 +24,6 @@ namespace ContactsApp
         /// </summary>
         [DataMember]
         private int _lastId;
-        /// <summary>
-        /// Возвращает идентификатор для нового контакта
-        /// </summary>
-        public int NewId => ++_lastId;
 
         //TODO: Почему не просто список List? +
         /// <summary>
@@ -60,6 +56,15 @@ namespace ContactsApp
         }
 
         /// <summary>
+        /// Создает идентификатор для нового контакта
+        /// </summary>
+        /// <returns>Возвращает новый Id</returns>
+        public int GetNewId()
+		{
+            return ++_lastId;
+		}
+
+        /// <summary>
         /// Возвращает количество контактов в списке
         /// </summary>
         /// <returns>Значение показывает, скоько контактов в списке</returns>
@@ -81,7 +86,7 @@ namespace ContactsApp
         {
             if(newContact != null)
 			{
-                newContact.Id = NewId;
+                newContact.Id = GetNewId();
                 _contacts.Add(newContact);
                 _contacts.Sort();
             }
@@ -98,7 +103,6 @@ namespace ContactsApp
         /// <param name="removableContact">Удаляемый контакт</param>
         public void RemoveContact(Contact removableContact)
         {
-
             if(!_contacts.Remove(removableContact))
 			{
                 throw new ArgumentException("ИСКЛЮЧЕНИЕ: контакт " +
