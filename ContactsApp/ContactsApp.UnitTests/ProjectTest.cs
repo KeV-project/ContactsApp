@@ -19,21 +19,21 @@ namespace ContactsApp.UnitTests
 		{
 			Contacts = new Contact[]
 			{
-				new Contact("Стрельникова", "Мария",
-				new PhoneNumber(75564856412), "maria@gmail.com",
-				new DateTime(1999, 12, 5)),
+				new Contact("Denis", "Malehin",
+				new PhoneNumber(79521145688), "malehin@gmail.com",
+				DateTime.Today),
 
-				new Contact("Афанасьев", "Генадий",
-				new PhoneNumber(79994567842), "gena@gmail.com",
-				new DateTime(1990, 7, 13)),
-
-				new Contact("Абитаева", "Светлана",
+				new Contact("Светлана", "Абитаева",
 				new PhoneNumber(75564856412), "abitaeva@gmail.com",
 				new DateTime(1995, 4, 3)),
 
-				new Contact("Malehin", "Denis",
-				new PhoneNumber(79521145688), "malehin@gmail.com",
-				new DateTime(1998, 10, 25))
+				new Contact("Генадий", "Афанасьев",
+				new PhoneNumber(79994567842), "gena@gmail.com",
+				new DateTime(1990, 10, 25)),
+
+				new Contact( "Мария", "Стрельникова",
+				new PhoneNumber(75564856412), "maria@gmail.com",
+				DateTime.Today)
 			};
 
 			ContactsCount = 4;
@@ -46,25 +46,25 @@ namespace ContactsApp.UnitTests
 			}
 		}
 
-		[Test(Description = "Позитивный тест геттера NewId")]
-		public void TestNewIdGet_CorrectValue()
-		{
-			var expected = 4;
-			var actual = Project.NewId;
-
-			Assert.AreEqual(expected, actual, "Геттер NewId " +
-				"возвращает неверное значение");
-		}
-
 		[Test(Description = "Позитивный тест геттера " +
 			"индексатора")]
 		public void TestIndexerGet_CorrectValue()
 		{
-			var expected = Contacts[1];
+			var expected = Contacts[0];
 			var actual = Project[0];
 
 			Assert.AreEqual(expected, actual,
 				"Геттер возвращает неверный объект списка");
+		}
+
+		[Test(Description = "Позитивный тест геттера LastId")]
+		public void TestLastIdGet_CorrectValue()
+		{
+			var expected = 4;
+			var actual = Project.LastId;
+
+			Assert.AreEqual(expected, actual, "Геттер LastId " +
+				"возвращает неверное значение");
 		}
 
 		[Test(Description = "Позитивный тест конструктора Project")]
@@ -72,10 +72,10 @@ namespace ContactsApp.UnitTests
 		{
 			Project project = new Project();
 
-			var expectedNewId = 1;
-			var actualNewId = project.NewId;
-			Assert.AreEqual(expectedNewId, actualNewId,
-				"Неверная инициализация NewId");
+			var expectedLastId = 0;
+			var actualLastId = project.LastId;
+			Assert.AreEqual(expectedLastId, actualLastId,
+				"Неверная инициализация LastId");
 
 			var expectedContactsCount = 0;
 			var actualContactsCount = project.GetContactsCount();
@@ -83,10 +83,20 @@ namespace ContactsApp.UnitTests
 				"Неверная инициализация списка контактов");
 		}
 
+		[Test(Description = "Позитивный тест метода GetNewId")]
+		public void TestNewIdGet_CorrectValue()
+		{
+			var expected = 5;
+			var actual = Project.GetNewId();
+
+			Assert.AreEqual(expected, actual, "Метод GetNewId " +
+				"возвращает неверное значение");
+		}
+
 		[Test(Description = "Позитивный тест метода GetContactsCount")]
 		public void TestGetContactsCount_CorrectValue()
 		{
-			var expected = 3;
+			var expected = 4;
 			var actual = Project.GetContactsCount();
 
 			Assert.AreEqual(expected, actual, "Функция GetContactsCount " +
@@ -96,9 +106,12 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивный тест метода AddContact")]
 		public void TestAddContact_CorrectValue()
 		{
-			Project.AddContact(Contacts[3]);
+			var expected = new Contact("Ivan", "Astahov", 
+				new PhoneNumber(79991453321), "ivan@gmail.com", 
+				new DateTime(1995, 6, 28));
 
-			var expected = Contacts[3];
+			Project.AddContact(expected);
+
 			var actual = Project[0];
 
 			Assert.AreEqual(expected, actual, "Контакт не был добавлен " +
@@ -110,17 +123,17 @@ namespace ContactsApp.UnitTests
 		{
 			Assert.Throws<ArgumentException>(() =>
 			{ Project.AddContact(null); }, "Должно генерироваться " +
-			"исключение, если совершается попытка добавления в " +
+			"исключение, если совершается попытка добавить в " +
 			"список значения null");
 		}
 
 		[Test(Description = "Позитивный тест метода RemoveContact")]
 		public void TestRemoveContact_CorrectValue()
 		{
-			Project.RemoveContact(Contacts[0]);
+			Project.RemoveContact(Contacts[3]);
 
-			Assert.Throws<ArgumentOutOfRangeException>(() => 
-				{ Contact removedContact = Project[3]; }, 
+			Assert.Throws<ArgumentOutOfRangeException>(() =>
+				{ Contact removedContact = Project[3]; },
 				"Должно генерироваться исключение при обращении к " +
 				"несуществующему элементу списка");
 		}
@@ -129,9 +142,35 @@ namespace ContactsApp.UnitTests
 		public void TestRemoveContact_IncorrectValue()
 		{
 			Assert.Throws<ArgumentException>(() =>
-			{ Project.RemoveContact(Contacts[0]); },
+			{ Project.RemoveContact(null); },
 				"Должно генерироваться исключение при попытке удалить " +
 				"несуществующий элемент списка");
+		}
+
+		[Test(Description = "Позитивный тест метода GetContactsWithText")]
+		public void TestGetContactsWithText_CorrectValue()
+		{
+			string text = "ев";
+
+			var expected = new List<Contact>() { Contacts[1], Contacts[2] };
+			var actual = Project.GetContactsWithText(text);
+
+			Assert.AreEqual(expected[0], actual[0], "Метод вернул " +
+				"некорректный список объектов");
+			Assert.AreEqual(expected[1], actual[1], "Метод вернул " +
+				"некорректный список объектов");
+		}
+
+		[Test(Description = "Позитивный тест метода GetAllBirthContacts")]
+		public void TestGetAllBirthContacts_CorrectValue()
+		{
+			var expected = new List<Contact>() { Contacts[0], Contacts[3] };
+			var actual = Project.GetAllBirthContacts();
+
+			Assert.AreEqual(expected[0], actual[0], "Метод вернул " +
+				"некорректный список объектов");
+			Assert.AreEqual(expected[1], actual[1], "Метод вернул " +
+				"некорректный список объектов");
 		}
 	}
 }

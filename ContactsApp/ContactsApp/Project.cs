@@ -18,13 +18,6 @@ namespace ContactsApp
     [DataContract]
     public class Project
     {
-        /// <summary>
-        /// Поле "Последний id" хранит последний 
-        /// выданный контакту идентификатор
-        /// </summary>
-        [DataMember]
-        private int _lastId;
-
         //TODO: Почему не просто список List? +
         /// <summary>
         /// Хранит все контакты пользователя
@@ -46,12 +39,17 @@ namespace ContactsApp
 		}
 
         /// <summary>
-        /// Создает проект, 
-        /// инициализируя поля начальными значениями
+        /// Возвращает и задает последний выданный контакту идентификатор
+        /// </summary>
+        [DataMember]
+        public int LastId { get; private set; }
+
+        /// <summary>
+        /// Создает проект, инициализируя поля начальными значениями
         /// </summary>
         public Project()
         {
-            _lastId = 0;
+            LastId = 0;
             _contacts = new List<Contact>();
         }
 
@@ -61,7 +59,7 @@ namespace ContactsApp
         /// <returns>Возвращает новый Id</returns>
         public int GetNewId()
 		{
-            return ++_lastId;
+            return ++LastId;
 		}
 
         /// <summary>
