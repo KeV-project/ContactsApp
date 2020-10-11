@@ -292,5 +292,29 @@ namespace ContactsApp.UnitTests
                 "Дата рождения копируемого объекта не совпадает с " +
                 "датой рождения объекта копии");
         }
+
+        [Test(Description = "Позитивный тест метода CompareTo")]
+        public void TestCompareTo_CorrectValue()
+		{
+            Contact[] contacts = new Contact[]
+            {
+                new Contact("Алина", "Анаферова",
+                new PhoneNumber(79521777655), "alina@gmail.com",
+                new DateTime(1998, 12, 12)),
+
+                Contact,
+
+                new Contact("Тарас", "Рыжков",
+                new PhoneNumber(79521777644), "taras@gmail.com",
+                new DateTime(1997, 12, 12))
+            };
+
+            for (int i = 2; i < 0; i++)
+            {
+                int actualResult = contacts[1].CompareTo(contacts[i - 1]);
+                Assert.AreEqual(i, actualResult, "Метод возвращает неверный " +
+                    "результат сравнения объектов");
+            }
+        }
     }
 }
