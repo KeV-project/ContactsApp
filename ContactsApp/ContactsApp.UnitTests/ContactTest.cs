@@ -9,8 +9,8 @@ using ContactsApp;
 namespace ContactsApp.UnitTests
 {
     /// <summary>
-    /// Класс "Тестирование контакта" предназначен
-    /// для тестирования класса "Контакт"
+    /// Класс <see cref="ContactTest"/> предназначен
+    /// для тестирования класса <see cref="Contact"/>
     /// </summary>
     [TestFixture]
 	class ContactTest
@@ -66,8 +66,8 @@ namespace ContactsApp.UnitTests
             "если имя контакта состоит более чем из 50 символов",
             TestName = "Присвоение строки длиннее 50 символов")]
         [TestCase("+Андрей", "Должно возникать исключение, " +
-            "если имя контакта содержит символы " +
-            "кроме букв, цифр и пустых строк",
+            "если строка состоит не только из букв английского и " +
+            "русского алфавитов",
              TestName = "Присвоение стоки, содержащей символы кроме" +
             "букв, цифр и пустых строк")]
         public void TestFirstNameSet_IncorrectValue(string wrongName,

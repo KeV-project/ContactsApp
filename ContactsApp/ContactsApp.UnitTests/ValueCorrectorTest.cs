@@ -8,6 +8,10 @@ using ContactsApp;
 
 namespace ContactsApp.UnitTests
 {
+	/// <summary>
+	/// Класс <see cref="ValueCorrectorTest"/> предназначен 
+	/// для тестирования класса <see cref="ValueCorrector"/>
+	/// </summary>
 	class ValueCorrectorTest
 	{
 		[Test(Description = "Позитивный тест функции " +

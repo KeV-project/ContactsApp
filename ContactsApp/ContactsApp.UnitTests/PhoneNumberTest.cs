@@ -9,8 +9,8 @@ using ContactsApp;
 namespace ContactsApp.UnitTests
 {
     /// <summary>
-    /// Класс "Тестирование номера телефона" предназначен
-    /// для тестирования класса "Номер телефона"
+    /// Класс <see cref="PhoneNumberTest"/> предназначен
+    /// для тестирования класса <see cref="PhoneNumber"/>
     /// </summary>
     [TestFixture]
     public class PhoneNumberTest

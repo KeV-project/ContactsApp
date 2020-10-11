@@ -138,7 +138,7 @@ namespace ContactsApp
         /// <summary>
         /// Метод предназначен для генерации исключения
         /// в случае, если номер телефона не соответствует 
-        /// российским стандартам сотовых телефонных номеров
+        /// российским стандартам телефонных номеров
         /// </summary>
         /// <param name="number">Проферяемое число</param>
         /// <param name="minLength">Минимальное количество 
@@ -149,10 +149,12 @@ namespace ContactsApp
         /// инициализировано проверяемым значением 
         /// в именительном падеже</param>
         public static void AssertRussianPhoneNumber(long number,
-            int minLength, int maxLength, string context)
+           string context)
 		{
-            AssertLengthInRange(Convert.ToString(number), 
-                minLength, maxLength, context);
+            const int minNumbers = 11;
+            const int maxNumbers = 11;
+            AssertLengthInRange(Convert.ToString(number),
+                minNumbers, maxNumbers, context);
 
             if (number / 10000000000 != 7)
             {

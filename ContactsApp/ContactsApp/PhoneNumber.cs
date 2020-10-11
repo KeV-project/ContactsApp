@@ -29,11 +29,8 @@ namespace ContactsApp
             }
             set
             {
-                const int minNumbersLength = 11;
-                const int maxNumbersLength = 11;
-                ValueValidator.AssertRussianPhoneNumber(value,
-                    minNumbersLength, maxNumbersLength,
-                   "номер телефона");
+                ValueValidator.AssertRussianPhoneNumber(value, 
+                    "номер телефона");
                 _number = value;
             }
         }

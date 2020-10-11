@@ -8,6 +8,10 @@ using ContactsApp;
 
 namespace ContactsApp.UnitTests
 {
+	/// <summary>
+	/// Класс <see cref="ProjectManagerTest"/> предназначен
+	/// дла тестирования класса <see cref="ProjectManager"/>
+	/// </summary>
 	class ProjectManagerTest
 	{
 		private int ContactsCount { get; set; }
