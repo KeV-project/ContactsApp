@@ -54,7 +54,7 @@ namespace ContactsApp.UnitTests
 
             bool result = Convert.ToBoolean(actual.CompareTo(expected));
 
-            Assert.IsFalse(result,
+            Assert.IsTrue(result,
                 "Конструктор без параметров инициализирует поля класса " +
                 "некорректрыми значениями");
         }
@@ -67,7 +67,7 @@ namespace ContactsApp.UnitTests
 
             bool result = Convert.ToBoolean(actual.CompareTo(expected));
 
-            Assert.IsFalse(result,
+            Assert.IsTrue(result,
                 "Конструктор c параметрами инициализирует поля класса " +
                 "некорректрыми значениями");
         }

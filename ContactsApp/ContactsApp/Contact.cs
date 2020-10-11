@@ -191,6 +191,18 @@ namespace ContactsApp
             return new Contact(FirstName, LastName, number, Email, birthDate);
         }
 
+        /// <summary>
+        /// Метод сравнивает два объекта класса по
+        /// фамилии 
+        /// </summary>
+        /// <param name="contact">Объект, который будет сравниваться с
+        /// текущем объектов</param>
+        /// <returns>Возвращает значение меньше 0, если фамиия 
+        /// текущего контакта предшествует фамилиии сравниваемого
+        /// Возвращает 0, если позиции объектов в порядке сортировки 
+        /// по фамилии совпадают
+        /// Возвразает значение больше 0, если фамилия сравниваемого
+        /// контакта предшествует фамилии текущего</returns>
         public int CompareTo(Contact contact)
         {
             return this.LastName.CompareTo(contact.LastName);
