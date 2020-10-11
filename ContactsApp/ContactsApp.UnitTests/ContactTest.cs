@@ -141,7 +141,7 @@ namespace ContactsApp.UnitTests
                 "почты контакта превышает 50 символов");
         }
         
-        [Test(Description = "Положительный тест геттера BirthDate")]
+        [Test(Description = "Позитивный тест геттера BirthDate")]
         public void TestBirthDateGet_CorrectValue()
 		{
             var expected = Contact.BirthDate;
@@ -211,6 +211,57 @@ namespace ContactsApp.UnitTests
             Assert.AreEqual(expected.BirthDate, actual.BirthDate,
                 "Конструктор с параметрами инициализирует " +
                 "дату рождения контака некорректными значениями");
+        }
+
+        [Test(Description = "Незативный тест конструктора с параметрами")]
+        public void TestConstructorWithParameters_InorrectValues()
+		{
+            string firstName = Contact.FirstName;
+            string lastName = Contact.LastName;
+            PhoneNumber number = Contact.Number;
+            string email = Contact.Email;
+            DateTime birthDate = Contact.BirthDate;
+
+            string incorrectFirstName = "";
+            string incorrectLastName = "ВладимирВладимирВладимирВладимир" +
+                "ВладимирВладимирВладимирВладимирВладимирВладимирВладимир";
+            long incorrectNumber = 89521777455;
+            string inclorrectEmail = "vladimir51656546546987986565468879" +
+                "56546545465465654655555555555555555555555555555555555555";
+            DateTime incorrectBirthDate = new DateTime(1899, 12, 31);
+
+            Assert.Throws<ArgumentException>(() => 
+            {
+                Contact contact = new Contact(incorrectFirstName, lastName,
+                  number, email, birthDate);
+            }, "Должно шенерироваться исключении при попытке " +
+            "создать контакт с некорректным значением имени");
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Contact contact = new Contact(firstName, incorrectLastName,
+                  number, email, birthDate);
+            }, "Должно шенерироваться исключении при попытке " +
+            "создать контакт с некорректным значением фамилии");
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Contact contact = new Contact(firstName, lastName,
+                  new PhoneNumber(incorrectNumber), email, birthDate);
+            }, "Должно шенерироваться исключении при попытке " +
+            "создать контакт с некорректным значением номера телефона");
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Contact contact = new Contact(firstName, lastName,
+                  number, inclorrectEmail, birthDate);
+            }, "Должно шенерироваться исключении при попытке " +
+            "создать контакт с некорректным значением адреса " +
+            "элетронной почты");
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Contact contact = new Contact(firstName, lastName,
+                  number, email, incorrectBirthDate);
+            }, "Должно шенерироваться исключении при попытке " +
+            "создать контакт с некорректным значением даты рождения");
+
         }
 
         [Test(Description = "Позитивный тест Clone")]
