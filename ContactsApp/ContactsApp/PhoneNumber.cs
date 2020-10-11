@@ -44,7 +44,7 @@ namespace ContactsApp
         /// </summary>
         public PhoneNumber()
         {
-            Number = 0;
+            Number = 70000000000;
         }
 
         /// <summary>
