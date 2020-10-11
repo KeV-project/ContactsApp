@@ -44,7 +44,7 @@ namespace ContactsApp
         /// </summary>
         public PhoneNumber()
         {
-            Number = 70000000000;
+            Number = 0;
         }
 
         /// <summary>
@@ -56,17 +56,22 @@ namespace ContactsApp
             Number = number;
         }
 
+        /// <summary>
+        /// Сравнивает два объекта класса
+        /// Если объекты равны, возвращает 1.
+        /// Если объекты не равны, позвращает 0
+        /// </summary>
+        /// <param name="number">Объект класса, который будет сравниваться
+        /// с текущим объектом</param>
+        /// <returns>Возвращаемое значение показывает
+        /// рывны или нерфвны сравниваемые объекты класса</returns>
         public int CompareTo(PhoneNumber number)
 		{
-            if(this.Number > number.Number)
+            if(this.Number == number.Number)
 			{
                 return 1;
 			}
-            if(this.Number == number.Number)
-			{
-                return 0;
-			}
-            return -1;
+            return 0;
 		}
     }
 }

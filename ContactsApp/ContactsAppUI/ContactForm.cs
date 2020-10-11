@@ -36,7 +36,7 @@ namespace ContactsAppUI
 
             if(NewContact.LastName == "Неизвестно" &&
                NewContact.FirstName == "Неизвестно" &&
-               NewContact.Number.Number == 70000000000 &&
+               NewContact.Number.Number == 0 &&
                NewContact.BirthDate == DateTime.Today &&
                NewContact.Email == "Неизвестно")
 			{
