@@ -94,8 +94,9 @@ namespace ContactsApp
         /// значение числа</param>
         /// <param name="maxLimit">Максимальное допустимое
         /// значение числа</param>
-        /// <param name="context">Состояние, которое будет инициализировано
-        /// проверяемым значением в именительном падеже)</param>
+        /// <param name="context">Поле объекта, которое будет 
+        /// инициализировано проверяемым значением 
+        /// в именительном падеже</param>
         public static void AssertValueInRange(double value,
             double minLimit, double maxLimit, string context)
 		{
@@ -119,8 +120,9 @@ namespace ContactsApp
         /// символов в строке</param>
         /// <param name="maxLength">Максимальное количество 
         /// символов в строке</param>
-        /// <param name="context">Состояние, которое будет инициализировано
-        /// проверяемым значением в именительном падеже)</param>
+        /// <param name="context">Поле объекта, которое будет 
+        /// инициализировано проверяемым значением 
+        /// в именительном падеже</param>
         public static void AssertLengthInRange(string value,
             int minLength, int maxLength, string context)
 		{
@@ -143,8 +145,9 @@ namespace ContactsApp
         /// цифр в числе</param>
         /// <param name="maxLength">Максимальное количество 
         /// цифр в числе</param>
-        /// <param name="context">Состояние, которое будет инициализировано
-        /// проверяемым значением в именительном падеже)</param>
+        /// <param name="context">Поле объекта, которое будет 
+        /// инициализировано проверяемым значением 
+        /// в именительном падеже</param>
         public static void AssertRussianPhoneNumber(long number,
             int minLength, int maxLength, string context)
 		{
@@ -167,12 +170,14 @@ namespace ContactsApp
         /// <param name="name">Проферяемая строка</param>
         /// <param name="minLength">Минимальное количество символов</param>
         /// <param name="maxLength">Максимальное количество символов</param>
-        /// <param name="context">Состояние, которое будет инициализировано
-        /// проверяемым значением в именительном падеже)</param>
+        /// <param name="context">Поле объекта, которое будет 
+        /// инициализировано проверяемым значением 
+        /// в именительном падеже</param>
         public static void AssertCorrectName(string name, 
             int minLength, int maxLength, string context)
 		{
             AssertLengthInRange(name, minLength, maxLength, context);
+
             if(!IsOnlyLettersInString(name))
 			{
                 throw new ArgumentException("ИСКЛЮЧЕНИЕ: строка "
@@ -190,8 +195,9 @@ namespace ContactsApp
         /// <param name="newDate">Проверяемая дата</param>
         /// <param name="minDate">Минимальная дата</param>
         /// <param name="maxDate">Максималная дата</param>
-        /// <param name="context">Состояние, которое будет инициализировано
-        /// проверяемым значением в именительном падеже)</param>
+        /// <param name="context">Поле объекта, которое 
+        /// будет инициализировано проверяемым значением 
+        /// в именительном падеже</param>
         public static void AssertCorrectDate(DateTime newDate,
             DateTime minDate, DateTime maxDate, string context)
 		{
