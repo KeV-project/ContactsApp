@@ -176,5 +176,20 @@ namespace ContactsApp.UnitTests
 			Assert.AreEqual(expected[1], actual[1], "Метод вернул " +
 				"некорректный список объектов");
 		}
+
+		[Test(Description = "Позитивный тест метода CompareTo")]
+		public void TestCompareTo_CorrectValue()
+		{
+			int positiveExpectedResult = 1;
+			int positiveActualResult = Project.CompareTo(Project);
+			Assert.AreEqual(positiveExpectedResult, positiveActualResult,
+				"Метод неверно сравнивает одинаковые объекты");
+
+			Project project = new Project();
+			int negativeExpectedResult = 0;
+			int newgativeActualResult = Project.CompareTo(project);
+			Assert.AreEqual(negativeExpectedResult, newgativeActualResult, 
+				"Метод неверно сравнивает разные объекты");
+		}
 	}
 }

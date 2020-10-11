@@ -52,8 +52,7 @@ namespace ContactsApp.UnitTests
 
 		[Test(Description = "Положительный тест метода SaveProject")]
 		public void TestSaveProject_CorrectValue()
-		{
-			//var expected = Project;
+		{ 
 			var expected = new Project();
 
 			ProjectManager.SaveProject(expected);
@@ -61,7 +60,7 @@ namespace ContactsApp.UnitTests
 			var actual = ProjectManager.ReadProject();
 
 			var result = Convert.ToBoolean(expected.CompareTo(actual));
-			Assert.IsFalse(result, "Потеря данных при сериализации объекта");
+			Assert.IsTrue(result, "Потеря данных при сериализации объекта");
 		}
 	}
 }
