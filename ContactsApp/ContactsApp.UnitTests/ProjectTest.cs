@@ -96,7 +96,7 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивный тест метода GetContactsCount")]
 		public void TestGetContactsCount_CorrectValue()
 		{
-			var expected = 4;
+			var expected = ContactsCount;
 			var actual = Project.GetContactsCount();
 
 			Assert.AreEqual(expected, actual, "Функция GetContactsCount " +
