@@ -18,7 +18,8 @@ namespace ContactsApp
         /// содержащей номер телефона, всех поосторонних символов
         /// </summary>
         /// <param name="number">Корректируемый номер телефона</param>
-        /// <returns>Возвращает номер телефона в целочисленном формате</returns>
+        /// <returns>Возвращает номер телефона 
+        /// в целочисленном формате</returns>
         public static long ConvertPhoneNumberToInt(string number)
         {
             number = number.Replace(" ", "");
@@ -36,7 +37,8 @@ namespace ContactsApp
         /// <param name="value">Корректируемая строка</param>
         /// <returns>Если строка пустая возвращает исходную строку.
         /// Если строка начинается с буквы, 
-        /// возвращает ту же строку, первая буква которой - заглавная</returns>
+        /// возвращает ту же строку, 
+        /// первая буква которой - заглавная</returns>
         public static string ToUpperFirstLetter(string value)
 		{
             if (value.Length > 0)

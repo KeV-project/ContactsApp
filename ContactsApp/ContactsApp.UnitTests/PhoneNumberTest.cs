@@ -78,7 +78,7 @@ namespace ContactsApp.UnitTests
         [TestCase(89521777644, "Должно возникать исключение, " +
             "если номер телефона не начинается с цифры 7",
              TestName = "Присвоение числа, первая цифра которого не 7")]
-        public void TestConstructorWithParameters_ArgumentException(
+        public void TestConstructorWithParameters_IncorrectValues(
             long wrongNumber, string message)
 		{
             Assert.Throws<ArgumentException>(
@@ -86,5 +86,21 @@ namespace ContactsApp.UnitTests
                     new PhoneNumber(wrongNumber); 
                 }, message);
         }
+
+        [TestCase(79994455661, 79994455661, 1, "Метод неверно стравнивает " +
+            "равные объекты", TestName = "Сравнение одинаковых объектов")]
+        [TestCase(79994455661, 79604466771, 0, "Метод неверно сравнивает " +
+            "разные объекты", TestName = "Сравнение разных объектов")]
+        public void TestCompareTo_CorrectValue(long firstNimber, 
+            long secondNumber, int expectedResult, string message)
+		{
+            PhoneNumber firstPhoneNumber = new PhoneNumber(firstNimber);
+            PhoneNumber secondPhoneNumber = new PhoneNumber(secondNumber);
+
+            int actualResult = firstPhoneNumber.CompareTo(secondPhoneNumber);
+
+            Assert.AreEqual(expectedResult, actualResult, message);
+		}
+
     }
 }
