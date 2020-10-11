@@ -153,6 +153,12 @@ namespace ContactsApp
             return birthCotacts;
         }
 
+        /// <summary>
+        /// Метод предназначен для сравнивания объектов
+        /// </summary>
+        /// <param name="project">Сравниваемый объект</param>
+        /// <returns>Возвращает 1, если объекты равны.
+        /// Возвращает 0, если объекты не равны<returns>
         public int CompareTo(Project project)
         {
             if(this.GetContactsCount() == project.GetContactsCount())
@@ -165,12 +171,12 @@ namespace ContactsApp
                         this[i].Email != project[i].Email ||
                         this[i].BirthDate != project[i].BirthDate)
 					{
-                        return -1;
+                        return 0;
 					}
 				}
-                return 0;
+                return 1;
 			}
-            return -1;
+            return 0;
         }
     }
 }
