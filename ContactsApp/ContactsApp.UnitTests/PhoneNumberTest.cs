@@ -15,8 +15,14 @@ namespace ContactsApp.UnitTests
     [TestFixture]
     public class PhoneNumberTest
     {
+        /// <summary>
+        /// Тестируемый объект
+        /// </summary>
         public PhoneNumber Number { get; set; }
 
+        /// <summary>
+        /// Инициализация тестируемого объекта
+        /// </summary>
         [SetUp]
         public void InitPhoneNumber()
 		{

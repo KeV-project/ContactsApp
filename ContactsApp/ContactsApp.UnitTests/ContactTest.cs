@@ -15,8 +15,14 @@ namespace ContactsApp.UnitTests
     [TestFixture]
 	class ContactTest
 	{
+        /// <summary>
+        /// Тестируемый объект
+        /// </summary>
         public Contact Contact { get; set; }
 
+        /// <summary>
+        /// Инициализация тестируемого объекта
+        /// </summary>
         [SetUp]
         public void InitContact()
         {

@@ -14,10 +14,22 @@ namespace ContactsApp.UnitTests
 	/// </summary>
 	class ProjectTest
 	{
+		/// <summary>
+		/// Количестов объектов в массиве
+		/// </summary>
 		private int ContactsCount { get; set; }
+		/// <summary>
+		/// Массив объектов списка тестируемого объекта
+		/// </summary>
 		public Contact[] Contacts { get; set; }
+		/// <summary>
+		/// Тестируемый объект
+		/// </summary>
 		public Project Project { get; set; }
 
+		/// <summary>
+		/// Инициализация тесируемого объекта
+		/// </summary>
 		[SetUp]
 		public void InitProject()
 		{
