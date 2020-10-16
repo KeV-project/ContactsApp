@@ -24,6 +24,13 @@ namespace ContactsApp
         [DataMember]
         private List<Contact> _contacts;
 
+        /// <summary>
+        /// Позволяет получить или добавить контакт в список 
+        /// по указанному индуксу
+        /// </summary>
+        /// <param name="index">Индекс возвращаемого контакта
+        /// или позиция для добавления контакта в список</param>
+        /// <returns>Возвращает контакт по указанному индексу</returns>
         public Contact this[int index]
         {
             get
@@ -32,8 +39,8 @@ namespace ContactsApp
             }
             private set
             {
-                //TODO: Почему так сделано, а не просто присваивание по индексу?
-                _contacts.Insert(index, value);
+                //TODO: Почему так сделано, а не просто присваивание по индексу? +
+                _contacts[index] = value;
             }
         }
 
@@ -44,7 +51,7 @@ namespace ContactsApp
         public int LastId { get; private set; }
 
         /// <summary>
-        /// Создает проект, инициализируя поля начальными значениями
+        /// Инициализирует объект класса <see cref="Project">
         /// </summary>
         public Project()
         {
@@ -74,7 +81,7 @@ namespace ContactsApp
         /// Метод добавляет новый контакт в список проекта
         /// и сортирует список по фамилиям контактов
         /// </summary>
-        /// <param name="newContact">Новый контакт</param>
+        /// <param name="newContact">Добавляемый контакт</param>
         public void AddContact(Contact newContact)
         {
             if (newContact != null)
@@ -128,7 +135,7 @@ namespace ContactsApp
 
         /// <summary>
         /// Метод отбирает все контакты, 
-        /// у который сегодня день рождения
+        /// у которых сегодня день рождения
         /// </summary>
         /// <returns>Список контактов, 
         /// у которых сегодня день рождения</returns>

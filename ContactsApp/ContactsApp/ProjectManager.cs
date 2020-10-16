@@ -14,12 +14,13 @@ namespace ContactsApp
 	public static class ProjectManager
 	{
 		/// <summary>
-		/// Поле "Имя файла" хранит имя файла,
+		/// Поле хранит имя файла,
 		/// в который будет выполняться сохранение объектов
 		/// </summary>
 		private const string FILE_NAME = "ContactsApp.notes";
+
 		/// <summary>
-		/// Поле "Папка" хранит путь к каталогу,
+		/// Поле хранит путь к каталогу,
 		/// выполняющего функции общего репозитория
 		/// для данных приложения текущего перемещающегося пользователя,
 		/// в котором будет создан каталог ContactsApp
@@ -27,8 +28,9 @@ namespace ContactsApp
 		private static readonly string _folder = Environment.GetFolderPath(
 				Environment.SpecialFolder.ApplicationData) +
 			"\\ContactsApp\\";
+
 		/// <summary>
-		/// Поле "Путь" хранит абсолютный путь к файлу,
+		/// Поле хранит абсолютный путь к файлу,
 		/// в который будет выполняться сохранение объектов
 		/// </summary>
 		private static readonly string _path = _folder + FILE_NAME;

@@ -13,7 +13,7 @@ namespace ContactsApp
     public class PhoneNumber : IComparable <PhoneNumber>
     {
         /// <summary>
-        /// Поле "номер" предназначено для хранения номера телефона контакта
+        /// Поле предназначено для хранения номера телефона контакта
         /// </summary>
         private long _number;
 
@@ -36,8 +36,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Инициализирует поля объекта при создании 
-        /// значениями по умолчанию
+        /// Инициализирует объект класса <see cref="PhoneNumber">
         /// </summary>
         public PhoneNumber()
         {
@@ -45,7 +44,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Инициализирует поля объекта при создании
+        /// Инициализирует объект класса <see cref="PhoneNumber">
         /// </summary>
         /// <param name="number">Номер телефона контакта</param>
         public PhoneNumber(long number)
@@ -55,13 +54,13 @@ namespace ContactsApp
 
         /// <summary>
         /// Сравнивает два объекта класса
-        /// Если объекты равны, возвращает 1.
-        /// Если объекты не равны, позвращает 0
         /// </summary>
         /// <param name="number">Объект класса, который будет сравниваться
         /// с текущим объектом</param>
         /// <returns>Возвращаемое значение показывает
-        /// рывны или нерфвны сравниваемые объекты класса</returns>
+        /// рывны ли сравниваемые объекты класса.
+        /// Если объекты равны, возвращает 1.
+        /// Если объекты не равны, позвращает 0</returns>
         public int CompareTo(PhoneNumber number)
 		{
             if(this.Number == number.Number)
