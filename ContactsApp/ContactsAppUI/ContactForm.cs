@@ -31,7 +31,6 @@ namespace ContactsAppUI
         { 
             InitializeComponent();
 
-            //TODO: Куча дублей +
             NewContact = newContact;
 
             if(NewContact.LastName == "Неизвестно" &&

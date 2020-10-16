@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ContactsApp
 {
-    //TODO: Правильнее писать в следующем порядке public static +
     /// <summary>
     /// Класс <see cref="ValueCorrector"/> предназначен
     /// для корректировки введенных пользователем данных

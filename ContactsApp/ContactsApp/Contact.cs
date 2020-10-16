@@ -16,6 +16,7 @@ namespace ContactsApp
         /// Cодержит идентификатор контакта
         /// </summary>
         private long _id;
+
         /// <summary>
         /// Возвращает и создает id контакта
         /// Id контакта должно состоять не более чем из 15 символом
@@ -82,7 +83,7 @@ namespace ContactsApp
                 const int minLength = 0;
                 const int maxLength = 50;
                 ValueValidator.AssertCorrectName(value,
-                   minLength, maxLength, "фамирия контакта");
+                   minLength, maxLength, "фамилия контакта");
 
                 _lastName = ValueCorrector.ToUpperFirstLetter(value);
             }
@@ -97,6 +98,7 @@ namespace ContactsApp
         /// Содержит адрес электронной почты контакта
         /// </summary>
         private string _email;
+
         /// <summary>
         /// Возвращает и создает e-mail контакта
         /// Адрес электронной почты должен состоять не более чем из 50 символов
