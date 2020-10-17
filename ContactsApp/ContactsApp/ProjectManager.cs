@@ -14,55 +14,92 @@ namespace ContactsApp
 	public static class ProjectManager
 	{
 		/// <summary>
-		/// Поле хранит имя файла,
-		/// в который будет выполняться сохранение объектов
+		/// Хранит имя файла по умолчанию
 		/// </summary>
-		private const string FILE_NAME = "ContactsApp.notes";
+		private const string DEFAULT_FILE_NAME = "ContactsApp.notes";
 
 		/// <summary>
-		/// Поле хранит путь к каталогу,
-		/// выполняющего функции общего репозитория
-		/// для данных приложения текущего перемещающегося пользователя,
-		/// в котором будет создан каталог ContactsApp
+		/// Хранит путь к папке по умолчанию
 		/// </summary>
-		private static readonly string _folder = Environment.GetFolderPath(
+		private static readonly string _defaultFolder = Environment.GetFolderPath(
 				Environment.SpecialFolder.ApplicationData) +
 			"\\ContactsApp\\";
 
 		/// <summary>
-		/// Поле хранит абсолютный путь к файлу,
-		/// в который будет выполняться сохранение объектов
+		/// Хранит текущий путь к папке для сериализации данных приложения
 		/// </summary>
-		private static readonly string _path = _folder + FILE_NAME;
+		private static string _folder = _defaultFolder;
 
 		/// <summary>
-		/// Создает объект класса ProjectManager
-		/// и файл для сериализации
+		/// Возвращает и создает путь к папке для сериализации
+		/// данных приложения
 		/// </summary>
-		static ProjectManager()
+		private static string Folder
 		{
-			if (!Directory.Exists(_folder))
+			get
 			{
-				Directory.CreateDirectory(_folder);
+				return _folder;
 			}
-			if (!File.Exists(_path))
+			set
 			{
-				File.Create(_path).Close();
+				if (!Directory.Exists(value))
+				{
+					Directory.CreateDirectory(value);
+				}
+				_folder = value;
 			}
 		}
 
 		/// <summary>
-		/// Метод выполняет сериализацию объекта
+		/// Хранит текущее имя файла для сериализации данных приложения
 		/// </summary>
-		/// <param name="project">Сериализуемый объект</param>
-		public static void SaveProject(Project project)
+		private static string _fileName = DEFAULT_FILE_NAME;
+
+		/// <summary>
+		/// Возвращает и создает файл для сериализации данных приложения
+		/// </summary>
+		private static string FileName
 		{
-            using (StreamWriter file = new StreamWriter(
-                _path, false, Encoding.UTF8))
-			{ 
-                file.Write(JsonConvert.SerializeObject(project));
-            }
-        }
+			get
+			{
+				return _fileName;
+			}
+			set 
+			{
+				if (!File.Exists(_folder + value))
+				{
+					File.Create(_folder + value).Close();
+				}
+				_fileName = value;
+			}
+		}
+
+		/// <summary>
+		/// Возвращает и задает путь к файлу 
+		/// для сериализации данных приложения
+		/// </summary>
+		private static string Path { get; set; } = _defaultFolder + DEFAULT_FILE_NAME;
+
+		/// <summary>
+		/// Устанавливает путь к файлу 
+		/// </summary>
+		/// <param name="folder">Путь к каталогу с файлом</param>
+		/// <param name="fileName">Имя файла</param>
+		public static void SetPath(string folder, string fileName)
+		{
+			try
+			{
+				Folder = folder;
+				FileName = fileName;
+				Path = folder + fileName;
+			}
+			catch
+			{
+				Folder = _defaultFolder;
+				FileName = DEFAULT_FILE_NAME;
+				Path = _defaultFolder + DEFAULT_FILE_NAME;
+			}
+		}
 
 		/// <summary>
 		/// Метод выполныет десериализацию объекта
@@ -70,15 +107,19 @@ namespace ContactsApp
 		/// <returns>Десериализованный объект</returns>
 		public static Project ReadProject()
 		{
-			Project project = new Project();
-
-			if (!File.Exists(_path))
+			if (!Directory.Exists(Folder))
 			{
-				return project;
+				Directory.CreateDirectory(Folder);
+			}
+			if (!File.Exists(Path))
+			{
+				File.Create(Path).Close();
 			}
 
+			Project project = new Project();
+
 			using (StreamReader file = new StreamReader(
-					_path, Encoding.Default))
+					Path, Encoding.Default))
 			{
 				string projectContent = file.ReadLine();
 				if (string.IsNullOrEmpty(projectContent))
@@ -91,5 +132,27 @@ namespace ContactsApp
 
 			return project;
 		}
+
+		/// <summary>
+		/// Метод выполняет сериализацию объекта
+		/// </summary>
+		/// <param name="project">Сериализуемый объект</param>
+		public static void SaveProject(Project project)
+		{
+			if (!Directory.Exists(Folder))
+			{
+				Directory.CreateDirectory(Folder);
+			}
+			if (!File.Exists(Path))
+			{
+				File.Create(Path).Close();
+			}
+
+			using (StreamWriter file = new StreamWriter(
+                Path, false, Encoding.UTF8))
+			{ 
+                file.Write(JsonConvert.SerializeObject(project));
+            }
+        }
 	}
 }

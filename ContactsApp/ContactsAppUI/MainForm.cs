@@ -42,6 +42,7 @@ namespace ContactsAppUI
         /// </summary>
         public MainForm()
         {
+            ProjectManager.SetPath("C:\\", "file");
             _project = ProjectManager.ReadProject();
             _currentContact = null;
             _listBoxContacts = new List<Contact>();
