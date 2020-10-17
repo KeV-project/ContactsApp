@@ -202,6 +202,15 @@ namespace ContactsApp.UnitTests
 			int newgativeActualResult = Project.CompareTo(project);
 			Assert.AreEqual(negativeExpectedResult, newgativeActualResult, 
 				"Метод неверно сравнивает разные объекты");
+
+			for(int i = 0; i < ContactsCount; i++)
+			{
+				project.AddContact(Contacts[0]);
+			}
+			int negativeExpectedResult2 = 0;
+			int newgativeActualResult2 = Project.CompareTo(project);
+			Assert.AreEqual(negativeExpectedResult2, newgativeActualResult2,
+				"Метод неверно сравнивает разные объекты");
 		}
 	}
 }

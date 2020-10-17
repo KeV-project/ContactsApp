@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using ContactsApp;
+using System.IO;
 
 namespace ContactsApp.UnitTests
 {
@@ -62,10 +63,56 @@ namespace ContactsApp.UnitTests
 			}
 		}
 
-		[Test(Description = "Положительный тест метода SaveProject")]
+		[Test(Description = "Позитивный тест SetFile")]
+		public void TestSetFile_CorrectValue()
+		{
+			string folder = Environment.GetLogicalDrives()[0];
+			string fileName = "ContactsApp.notes";
+			string path = folder + fileName;
+			ProjectManager.SetFile(folder, fileName);
+			if(!File.Exists(path))
+			{
+				throw new Exception("Файл не был создан");
+			}
+			File.Delete(path);
+		}
+
+		[Test(Description = "Негативный тест SetFile")]
+		public void TestSetFile_IncorrectValue()
+		{
+			string wrongFolder = "";
+			string wrongFileName = "";
+			string path = wrongFolder + wrongFileName;
+			ProjectManager.SetFile(wrongFolder, wrongFileName);
+			string defaultPath = Environment.GetFolderPath(
+				Environment.SpecialFolder.ApplicationData) +
+			"\\ContactsApp\\" + "ContactsApp.notes";
+			if (!File.Exists(defaultPath))
+			{
+				throw new Exception("Файл не былл создан");
+			}
+			File.Delete(defaultPath);
+		}
+
+		[Test(Description = "Позитивный тест метода SaveProject")]
 		public void TestSaveProject_CorrectValue()
-		{ 
-			var expected = new Project();
+		{
+			string fileName = "ContactsApp.notes";
+			string folder = Environment.GetLogicalDrives()[0];
+			string path = folder + fileName;
+			ProjectManager.SetFile(folder, fileName);
+
+			if (!Directory.Exists(folder))
+			{
+				throw new Exception("Указанный каталог не существует");
+			}
+
+			if (!File.Exists(path))
+			{
+				throw new Exception("Файл не был создан");
+			}
+
+			var expected = Project;
 
 			ProjectManager.SaveProject(expected);
 
@@ -73,6 +120,40 @@ namespace ContactsApp.UnitTests
 
 			var result = Convert.ToBoolean(expected.CompareTo(actual));
 			Assert.IsTrue(result, "Потеря данных при сериализации объекта");
+			File.Delete(path);
+		}
+
+		[Test(Description = "Позитивный тест ReadProject")]
+		public void TestReadProject_CorrectValue()
+		{
+			string fileName = "ContactsApp.notes";
+			string folder = Environment.GetLogicalDrives()[0];
+			string path = folder + fileName;
+			ProjectManager.SetFile(folder, fileName);
+
+			if (!Directory.Exists(folder))
+			{
+				throw new Exception("Указанный каталог не существует");
+			}
+
+			if (!File.Exists(path))
+			{
+				throw new Exception("Файл не был создан");
+			}
+
+			Project expected = new Project();
+			ProjectManager.SaveProject(expected);
+			Project actual = ProjectManager.ReadProject();
+			var result = Convert.ToBoolean(expected.CompareTo(actual));
+			Assert.IsTrue(result, "Десериализация выполнена некорректно");
+
+			expected = Project;
+			ProjectManager.SaveProject(expected);
+			actual = ProjectManager.ReadProject();
+			var result2 = Convert.ToBoolean(expected.CompareTo(actual));
+			Assert.IsTrue(result, "Потеря данных при десериализации объекта");
+
+			File.Delete(path);
 		}
 	}
 }

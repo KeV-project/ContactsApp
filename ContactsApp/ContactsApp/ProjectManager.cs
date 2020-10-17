@@ -85,7 +85,7 @@ namespace ContactsApp
 		/// </summary>
 		/// <param name="folder">Путь к каталогу с файлом</param>
 		/// <param name="fileName">Имя файла</param>
-		public static void SetPath(string folder, string fileName)
+		public static void SetFile(string folder, string fileName)
 		{
 			try
 			{
