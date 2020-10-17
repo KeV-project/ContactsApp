@@ -25,6 +25,9 @@ namespace ContactsAppUI
         /// </summary>
         private Project _project;
 
+        private string _folder;
+        private string _fileName;
+
         /// <summary>
         /// Содержит выбранный пользователем контакт
         /// </summary>
@@ -42,7 +45,11 @@ namespace ContactsAppUI
         /// </summary>
         public MainForm()
         {
-            _project = ProjectManager.ReadProject();
+            _folder = Environment.GetFolderPath(
+                Environment.SpecialFolder.ApplicationData) +
+                "\\ContactsApp\\";
+            _fileName = "ContactsApp.notes";
+            _project = ProjectManager.ReadProject(_folder, _fileName);
             _currentContact = null;
             _listBoxContacts = new List<Contact>();
 
@@ -179,7 +186,7 @@ namespace ContactsAppUI
                 FindTextBox.Text = "";
                 ContactsTextBoxClear();
 
-                ProjectManager.SaveProject(_project);
+                ProjectManager.SaveProject(_project, _folder, _fileName);
             }
         }
 
@@ -211,7 +218,7 @@ namespace ContactsAppUI
                 FindTextBox.Text = "";
                 ContactsTextBoxClear();
 
-                ProjectManager.SaveProject(_project);
+                ProjectManager.SaveProject(_project, _folder, _fileName);
             }
         }
 
@@ -242,7 +249,7 @@ namespace ContactsAppUI
                 FindTextBox.Text = "";
                 ContactsTextBoxClear();
 
-                ProjectManager.SaveProject(_project);
+                ProjectManager.SaveProject(_project, _folder, _fileName);
             }
 
         }

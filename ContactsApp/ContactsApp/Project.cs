@@ -37,11 +37,7 @@ namespace ContactsApp
             {
                 return _contacts[index];
             }
-            private set
-            {
-                //TODO: Почему так сделано, а не просто присваивание по индексу? +
-                _contacts[index] = value;
-            }
+            //TODO: Почему так сделано, а не просто присваивание по индексу? +
         }
 
         /// <summary>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using ContactsApp;
 using System.IO;
+using Microsoft.SqlServer.Server;
 
 namespace ContactsApp.UnitTests
 {
@@ -27,6 +28,10 @@ namespace ContactsApp.UnitTests
 		/// Объект для тестирования класса <see cref="ProjectManagerTest"/>
 		/// </summary>
 		public Project Project { get; set; }
+
+		public const int TESTS_COUNT = 3;
+		public string[] Folders { get; set; }
+		public string[] FileNames { get; set; }
 
 		/// <summary>
 		/// Инициализация объекта для тестирования
@@ -56,104 +61,127 @@ namespace ContactsApp.UnitTests
 			ContactsCount = 4;
 
 			Project = new Project();
+
 			for (int i = 0; i < ContactsCount; i++)
 			{
 				Project.AddContact(Contacts[i]);
 				Contacts[i].Id = i + 1;
 			}
-		}
 
-		[Test(Description = "Позитивный тест SetFile")]
-		public void TestSetFile_CorrectValue()
-		{
-			string folder = Environment.GetLogicalDrives()[0];
-			string fileName = "ContactsApp.notes";
-			string path = folder + fileName;
-			ProjectManager.SetFile(folder, fileName);
-			if(!File.Exists(path))
+			Folders = new string[TESTS_COUNT]
 			{
-				throw new Exception("Файл не был создан");
-			}
-			File.Delete(path);
-		}
+				"C:\\",
+				"C:\\",
+				@"C:\ContactsAppTest\"
+			};
 
-		[Test(Description = "Негативный тест SetFile")]
-		public void TestSetFile_IncorrectValue()
-		{
-			string wrongFolder = "";
-			string wrongFileName = "";
-			string path = wrongFolder + wrongFileName;
-			ProjectManager.SetFile(wrongFolder, wrongFileName);
-			string defaultPath = Environment.GetFolderPath(
-				Environment.SpecialFolder.ApplicationData) +
-			"\\ContactsApp\\" + "ContactsApp.notes";
-			if (!File.Exists(defaultPath))
+			FileNames = new string[TESTS_COUNT]
 			{
-				throw new Exception("Файл не былл создан");
-			}
-			File.Delete(defaultPath);
+				"file1.notes",
+				"file2.notes",
+				"file3.notes"
+			};
+
+			File.Create(Folders[0] + FileNames[0]).Close();
+			Directory.CreateDirectory(Folders[2]);
 		}
 
-		[Test(Description = "Позитивный тест метода SaveProject")]
+		[Test(Description = "Позитиынй тест SaveProject")]
 		public void TestSaveProject_CorrectValue()
 		{
-			string fileName = "ContactsApp.notes";
-			string folder = Environment.GetLogicalDrives()[0];
-			string path = folder + fileName;
-			ProjectManager.SetFile(folder, fileName);
-
-			if (!Directory.Exists(folder))
+			for(int i = 0; i < TESTS_COUNT; i++)
 			{
-				throw new Exception("Указанный каталог не существует");
+				var expected = Project;
+
+				ProjectManager.SaveProject(expected, Folders[i], FileNames[i]);
+
+				var actual = ProjectManager.ReadProject(Folders[i], FileNames[i]);
+
+				var result = Convert.ToBoolean(expected.CompareTo(actual));
+				Assert.IsTrue(result, "Потеря данных при сериализации объекта");
+
+				File.Delete(Folders[i] + FileNames[i]);
 			}
 
-			if (!File.Exists(path))
-			{
-				throw new Exception("Файл не был создан");
-			}
+			Directory.Delete(Folders[2]);
+			
+		}
 
-			var expected = Project;
+		[Test(Description = "Негативный тест метода SaveProject")]
+		public void TestSaveProject_InCorrectValue()
+		{
+			string fileName = "TestSaveProject.notes";
+			string folder = Environment.GetFolderPath(
+				Environment.SpecialFolder.ApplicationData) +
+				"\\ContactsApp\\";
 
-			ProjectManager.SaveProject(expected);
+			string wrongFileName = "                         ";
+			string wrongFolder = "                           ";
 
-			var actual = ProjectManager.ReadProject();
+			Assert.Throws<Exception>(() => {
+				ProjectManager.SaveProject(Project, wrongFolder, fileName);
+				}, "Должно возникать исключение, если " +
+				"не удается создать каталог по указанному пути");
 
-			var result = Convert.ToBoolean(expected.CompareTo(actual));
-			Assert.IsTrue(result, "Потеря данных при сериализации объекта");
-			File.Delete(path);
+			Assert.Throws<Exception>(() => {
+				ProjectManager.SaveProject(Project, folder, wrongFileName);
+			}, "Должно возникать исключение, если " +
+				"не удается создать файл с указанным именем");
 		}
 
 		[Test(Description = "Позитивный тест ReadProject")]
 		public void TestReadProject_CorrectValue()
 		{
-			string fileName = "ContactsApp.notes";
-			string folder = Environment.GetLogicalDrives()[0];
-			string path = folder + fileName;
-			ProjectManager.SetFile(folder, fileName);
-
-			if (!Directory.Exists(folder))
+			for (int i = 0; i < TESTS_COUNT; i++)
 			{
-				throw new Exception("Указанный каталог не существует");
+				var expectedEmptyProject = new Project();
+				ProjectManager.SaveProject(expectedEmptyProject, 
+					Folders[i], FileNames[i]);
+				var actualEmptyProject = ProjectManager.
+					ReadProject(Folders[i], FileNames[i]);
+				var resultEmptyProject = Convert.
+					ToBoolean(expectedEmptyProject.
+					CompareTo(actualEmptyProject));
+				Assert.IsTrue(resultEmptyProject, 
+					"Потеря данных при сериализации объекта");
+
+				var expectedProject = Project;
+				ProjectManager.SaveProject(expectedProject, 
+					Folders[i], FileNames[i]);
+				var actualProject = ProjectManager.
+					ReadProject(Folders[i], FileNames[i]);
+				var resultProject = Convert.ToBoolean(
+					expectedProject.CompareTo(actualProject));
+				Assert.IsTrue(resultProject, 
+					"Потеря данных при сериализации объекта");
+
+				File.Delete(Folders[i] + FileNames[i]);
 			}
 
-			if (!File.Exists(path))
-			{
-				throw new Exception("Файл не был создан");
-			}
-
-			Project expected = new Project();
-			ProjectManager.SaveProject(expected);
-			Project actual = ProjectManager.ReadProject();
-			var result = Convert.ToBoolean(expected.CompareTo(actual));
-			Assert.IsTrue(result, "Десериализация выполнена некорректно");
-
-			expected = Project;
-			ProjectManager.SaveProject(expected);
-			actual = ProjectManager.ReadProject();
-			var result2 = Convert.ToBoolean(expected.CompareTo(actual));
-			Assert.IsTrue(result, "Потеря данных при десериализации объекта");
-
-			File.Delete(path);
+			Directory.Delete(Folders[2]);
 		}
+
+		[Test(Description = "Негативный тест ReadProject")]
+		public void TestReadProject_IncorrectValue()
+		{
+			string fileName = "TestSaveProject.notes";
+			string folder = Environment.GetFolderPath(
+				Environment.SpecialFolder.ApplicationData) +
+				"\\ContactsApp\\";
+
+			string wrongFileName = "                         ";
+			string wrongFolder = "                           ";
+
+			Assert.Throws<Exception>(() => {
+				ProjectManager.ReadProject(wrongFolder, fileName);
+			}, "Должно возникать исключение, если " +
+				"не удается создать каталог по указанному пути");
+
+			Assert.Throws<Exception>(() => {
+				ProjectManager.ReadProject(folder, wrongFileName);
+			}, "Должно возникать исключение, если " +
+				"не удается создать файл с указанным именем");
+		}
+
 	}
 }
