@@ -14,6 +14,17 @@ namespace ContactsApp.UnitTests
 	/// </summary>
 	class ValueValidatorTest
 	{
+		[Test(Description = "Позитивный тест метода AssertValueInRange")]
+		public void TestAssertValueInRange_СorrectValue()
+		{
+			var value = 5.5;
+			var minLimit = 0;
+			var maxLimit = 10;
+			var context = "экспериментальное значение";
+			ValueValidator.AssertValueInRange(value, minLimit,
+			  maxLimit, context);
+		}
+
 		[Test(Description = "Негативный тест метода AssertValueInRange")]
 		public void TestAssertValueInRange_IncorrectValue()
 		{
