@@ -16,6 +16,9 @@ namespace ContactsApp.UnitTests
 	/// </summary>
 	class ProjectManagerTest
 	{
+		public const int TESTS_COUNT = 3;
+		public string[] Folders { get; set; }
+		public string[] FileNames { get; set; }
 		/// <summary>
 		/// Количество элементов в массиве контактов
 		/// </summary>
@@ -28,10 +31,6 @@ namespace ContactsApp.UnitTests
 		/// Объект для тестирования класса <see cref="ProjectManagerTest"/>
 		/// </summary>
 		public Project Project { get; set; }
-
-		public const int TESTS_COUNT = 3;
-		public string[] Folders { get; set; }
-		public string[] FileNames { get; set; }
 
 		/// <summary>
 		/// Инициализация объекта для тестирования
@@ -105,7 +104,7 @@ namespace ContactsApp.UnitTests
 				var actual = ProjectManager.ReadProject(Folders[i], FileNames[i]);
 
 				var result = Convert.ToBoolean(expected.CompareTo(actual));
-				Assert.IsTrue(result, "Потеря данных при сериализации объекта");
+				Assert.IsTrue(result, "Искажение данных при сериализации объекта");
 
 				File.Delete(Folders[i] + FileNames[i]);
 				Directory.Delete(Folders[i]);
@@ -115,25 +114,28 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Негативный тест метода SaveProject")]
 		public void TestSaveProject_InCorrectValue()
 		{
-			string fileName = "TestSaveProject.notes";
-			string folder = Environment.GetFolderPath(
-				Environment.SpecialFolder.ApplicationData) +
-				"\\Contacts\\";
+			string fileName = FileNames[2];
+			string folder = Folders[2];
 
 			string wrongFileName = "                         ";
 			string wrongFolder = "                           ";
 
-			Assert.Throws<Exception>(() => {
+			Assert.Throws<Exception>(() =>
+			{
 				ProjectManager.SaveProject(Project, wrongFolder, fileName);
-				}, "Должно возникать исключение, если " +
+			}, "Должно возникать исключение, если " +
 				"не удается создать каталог по указанному пути");
 
-			Assert.Throws<Exception>(() => {
+			Assert.Throws<Exception>(() =>
+			{
 				ProjectManager.SaveProject(Project, folder, wrongFileName);
 			}, "Должно возникать исключение, если " +
 				"не удается создать файл с указанным именем");
 
-			Directory.Delete(folder);
+			File.Delete(Folders[0] + FileNames[0]);
+			Directory.Delete(Folders[0]);
+			Directory.Delete(Folders[1]);
+			Directory.Delete(Folders[2]);
 		}
 
 		[Test(Description = "Позитивный тест ReadProject")]
@@ -142,15 +144,13 @@ namespace ContactsApp.UnitTests
 			for (int i = 0; i < TESTS_COUNT; i++)
 			{
 				var expectedEmptyProject = new Project();
-				ProjectManager.SaveProject(expectedEmptyProject, 
-					Folders[i], FileNames[i]);
 				var actualEmptyProject = ProjectManager.
 					ReadProject(Folders[i], FileNames[i]);
 				var resultEmptyProject = Convert.
 					ToBoolean(expectedEmptyProject.
 					CompareTo(actualEmptyProject));
 				Assert.IsTrue(resultEmptyProject, 
-					"Потеря данных при сериализации объекта");
+					"Искажение данных при десериализации объекта");
 
 				var expectedProject = Project;
 				ProjectManager.SaveProject(expectedProject, 
@@ -160,7 +160,7 @@ namespace ContactsApp.UnitTests
 				var resultProject = Convert.ToBoolean(
 					expectedProject.CompareTo(actualProject));
 				Assert.IsTrue(resultProject, 
-					"Потеря данных при сериализации объекта");
+					"Искажение данных при десериализации объекта");
 
 				File.Delete(Folders[i] + FileNames[i]);
 				Directory.Delete(Folders[i]);
@@ -170,26 +170,28 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Негативный тест ReadProject")]
 		public void TestReadProject_IncorrectValue()
 		{
-			string fileName = "TestSaveProject.notes";
-			string folder = Environment.GetFolderPath(
-				Environment.SpecialFolder.ApplicationData) +
-				"\\Contacts\\";
+			string fileName = FileNames[2];
+			string folder = Folders[2];
 
 			string wrongFileName = "                         ";
 			string wrongFolder = "                           ";
 
-			Assert.Throws<Exception>(() => {
+			Assert.Throws<Exception>(() =>
+			{
 				ProjectManager.ReadProject(wrongFolder, fileName);
 			}, "Должно возникать исключение, если " +
 				"не удается создать каталог по указанному пути");
 
-			Assert.Throws<Exception>(() => {
+			Assert.Throws<Exception>(() =>
+			{
 				ProjectManager.ReadProject(folder, wrongFileName);
 			}, "Должно возникать исключение, если " +
 				"не удается создать файл с указанным именем");
 
-			Directory.Delete(folder);
+			File.Delete(Folders[0] + FileNames[0]);
+			Directory.Delete(Folders[0]);
+			Directory.Delete(Folders[1]);
+			Directory.Delete(Folders[2]);
 		}
-
 	}
 }
