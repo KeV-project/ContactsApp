@@ -70,9 +70,15 @@ namespace ContactsApp.UnitTests
 
 			Folders = new string[TESTS_COUNT]
 			{
-				"C:\\",
-				"C:\\",
-				@"C:\ContactsAppTest\"
+				Environment.GetFolderPath(
+				Environment.SpecialFolder.ApplicationData) +
+				"\\Contacts1\\",
+				Environment.GetFolderPath(
+				Environment.SpecialFolder.ApplicationData) +
+				"\\Contacts2\\",
+				Environment.GetFolderPath(
+				Environment.SpecialFolder.ApplicationData) +
+				"\\Contacts3\\"
 			};
 
 			FileNames = new string[TESTS_COUNT]
@@ -82,11 +88,12 @@ namespace ContactsApp.UnitTests
 				"file3.notes"
 			};
 
+			Directory.CreateDirectory(Folders[0]);
 			File.Create(Folders[0] + FileNames[0]).Close();
-			Directory.CreateDirectory(Folders[2]);
+			Directory.CreateDirectory(Folders[1]);
 		}
 
-		[Test(Description = "Позитиынй тест SaveProject")]
+		[Test(Description = "Позитивнынй тест SaveProject")]
 		public void TestSaveProject_CorrectValue()
 		{
 			for(int i = 0; i < TESTS_COUNT; i++)
@@ -101,10 +108,8 @@ namespace ContactsApp.UnitTests
 				Assert.IsTrue(result, "Потеря данных при сериализации объекта");
 
 				File.Delete(Folders[i] + FileNames[i]);
+				Directory.Delete(Folders[i]);
 			}
-
-			Directory.Delete(Folders[2]);
-			
 		}
 
 		[Test(Description = "Негативный тест метода SaveProject")]
@@ -113,7 +118,7 @@ namespace ContactsApp.UnitTests
 			string fileName = "TestSaveProject.notes";
 			string folder = Environment.GetFolderPath(
 				Environment.SpecialFolder.ApplicationData) +
-				"\\ContactsApp\\";
+				"\\Contacts\\";
 
 			string wrongFileName = "                         ";
 			string wrongFolder = "                           ";
@@ -127,6 +132,8 @@ namespace ContactsApp.UnitTests
 				ProjectManager.SaveProject(Project, folder, wrongFileName);
 			}, "Должно возникать исключение, если " +
 				"не удается создать файл с указанным именем");
+
+			Directory.Delete(folder);
 		}
 
 		[Test(Description = "Позитивный тест ReadProject")]
@@ -156,9 +163,8 @@ namespace ContactsApp.UnitTests
 					"Потеря данных при сериализации объекта");
 
 				File.Delete(Folders[i] + FileNames[i]);
+				Directory.Delete(Folders[i]);
 			}
-
-			Directory.Delete(Folders[2]);
 		}
 
 		[Test(Description = "Негативный тест ReadProject")]
@@ -167,7 +173,7 @@ namespace ContactsApp.UnitTests
 			string fileName = "TestSaveProject.notes";
 			string folder = Environment.GetFolderPath(
 				Environment.SpecialFolder.ApplicationData) +
-				"\\ContactsApp\\";
+				"\\Contacts\\";
 
 			string wrongFileName = "                         ";
 			string wrongFolder = "                           ";
@@ -181,6 +187,8 @@ namespace ContactsApp.UnitTests
 				ProjectManager.ReadProject(folder, wrongFileName);
 			}, "Должно возникать исключение, если " +
 				"не удается создать файл с указанным именем");
+
+			Directory.Delete(folder);
 		}
 
 	}
