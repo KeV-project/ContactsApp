@@ -16,11 +16,23 @@ namespace ContactsApp.UnitTests
 	/// </summary>
 	class ProjectManagerTest
 	{
-		public const int TESTS_COUNT = 3;
+		/// <summary>
+		/// Количество позитивных тестов методов 
+		/// класса <see cref="ProjectManager"/> 
+		/// </summary>
+		public const int POSITIVE_TESTS_COUNT = 3;
+		/// <summary>
+		/// Массив путей к папкам с файлами для
+		/// проверки методов сериализации и десериализации
+		/// </summary>
 		public string[] Folders { get; set; }
+		/// <summary>
+		/// Массив имен файлов для проверки методов
+		/// сериализации и десериализации
+		/// </summary>
 		public string[] FileNames { get; set; }
 		/// <summary>
-		/// Количество элементов в массиве контактов
+		/// Количество элементов в тестовом массиве контактов
 		/// </summary>
 		private int ContactsCount { get; set; }
 		/// <summary>
@@ -67,7 +79,7 @@ namespace ContactsApp.UnitTests
 				Contacts[i].Id = i + 1;
 			}
 
-			Folders = new string[TESTS_COUNT]
+			Folders = new string[POSITIVE_TESTS_COUNT]
 			{
 				Environment.GetFolderPath(
 				Environment.SpecialFolder.ApplicationData) +
@@ -80,7 +92,7 @@ namespace ContactsApp.UnitTests
 				"\\Contacts3\\"
 			};
 
-			FileNames = new string[TESTS_COUNT]
+			FileNames = new string[POSITIVE_TESTS_COUNT]
 			{
 				"file1.notes",
 				"file2.notes",
@@ -95,7 +107,7 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивнынй тест SaveProject")]
 		public void TestSaveProject_CorrectValue()
 		{
-			for(int i = 0; i < TESTS_COUNT; i++)
+			for(int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
 				var expected = Project;
 
@@ -141,7 +153,7 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивный тест ReadProject")]
 		public void TestReadProject_CorrectValue()
 		{
-			for (int i = 0; i < TESTS_COUNT; i++)
+			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
 				var expectedEmptyProject = new Project();
 				var actualEmptyProject = ProjectManager.
