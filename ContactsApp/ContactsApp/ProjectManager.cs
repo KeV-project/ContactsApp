@@ -9,10 +9,18 @@ namespace ContactsApp
 	/// <summary>
 	/// Класс <see cref="ProjectManager"/> предназначен
 	/// для организации сериализации и десериализации
-	/// объектов класса "Проект"
+	/// объектов класса <see cref="Project">
 	/// </summary>
 	public static class ProjectManager
 	{
+		/// <summary>
+		/// Метод предназначен для создания файла в указанном каталоге
+		/// для сериализации и десериализации данных приложения
+		/// </summary>
+		/// <param name="folder">Каталог с файлом для сериализации и
+		/// десериализации данных приложения</param>
+		/// <param name="fileName">Файл для сериализации и
+		/// десериализации данных приложения</param>
 		private static void CreateFile(string folder, string fileName)
 		{
 			if (!Directory.Exists(folder))
