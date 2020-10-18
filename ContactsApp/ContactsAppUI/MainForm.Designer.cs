@@ -436,9 +436,9 @@
 			this.BirthLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.BirthLabel.Location = new System.Drawing.Point(146, 21);
 			this.BirthLabel.Name = "BirthLabel";
-			this.BirthLabel.Size = new System.Drawing.Size(181, 18);
+			this.BirthLabel.Size = new System.Drawing.Size(113, 18);
 			this.BirthLabel.TabIndex = 13;
-			this.BirthLabel.Text = "Сегодня день рождения:";
+			this.BirthLabel.Text = "Birthdays today:";
 			this.BirthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// MainForm
