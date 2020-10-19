@@ -31,14 +31,7 @@ namespace ContactsApp
         /// <param name="index">Индекс возвращаемого контакта
         /// или позиция для добавления контакта в список</param>
         /// <returns>Возвращает контакт по указанному индексу</returns>
-        public Contact this[int index]
-        {
-            get
-            {
-                return _contacts[index];
-            }
-            //TODO: Почему так сделано, а не просто присваивание по индексу? +
-        }
+        public Contact this[int index] => _contacts[index];
 
         /// <summary>
         /// Возвращает и задает последний выданный контакту идентификатор

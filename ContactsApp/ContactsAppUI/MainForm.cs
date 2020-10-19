@@ -17,14 +17,13 @@ namespace ContactsAppUI
     /// </summary>
     public partial class MainForm : Form
     {
-        //TODO: Комментарий бесполезен, надо стараться давать пояснения из предметной области,
-        //TODO: например, поле, содержащее представление проекта, с которым работает в данный момент приложнение +
         /// <summary>
         /// Поле, содержащее представление проекта, 
         /// с которым работает в данный момент приложнение
         /// </summary>
         private Project _project;
 
+        //TODO: Вместо хранения строк лучше использовать .NETовские DirectoryInfo и FolderInfo
         private string _folder;
         private string _fileName;
 
