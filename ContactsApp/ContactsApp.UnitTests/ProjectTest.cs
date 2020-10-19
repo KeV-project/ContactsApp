@@ -27,6 +27,9 @@ namespace ContactsApp.UnitTests
 		/// </summary>
 		public Project Project { get; set; }
 
+		//TODO: SetUp не очень прозрачная конструкция, т.к. всегда надо помнить, что она выполняется перед основным тестом
+		//TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
+		//TODO: в приватные поля
 		/// <summary>
 		/// Инициализация тесируемого объекта
 		/// </summary>
@@ -35,6 +38,8 @@ namespace ContactsApp.UnitTests
 		{
 			Contacts = new Contact[]
 			{
+				//TODO: Duplication
+				//TODO: Отступами в коде показать кто куда передаётся
 				new Contact("Denis", "Malehin",
 				new PhoneNumber(79521145688), "malehin@gmail.com",
 				DateTime.Today),

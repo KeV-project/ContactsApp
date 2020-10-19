@@ -44,6 +44,9 @@ namespace ContactsApp.UnitTests
 		/// </summary>
 		public Project Project { get; set; }
 
+        //TODO: SetUp не очень прозрачная конструкция, т.к. всегда надо помнить, что она выполняется перед основным тестом
+        //TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
+        //TODO: в приватные поля
 		/// <summary>
 		/// Инициализация объекта для тестирования
 		/// </summary>
@@ -52,6 +55,7 @@ namespace ContactsApp.UnitTests
 		{
 			Contacts = new Contact[]
 			{
+				//TODO: Duplication
 				new Contact("Denis", "Malehin",
 				new PhoneNumber(79521145688), "malehin@gmail.com",
 				DateTime.Today),
@@ -107,6 +111,7 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивнынй тест SaveProject")]
 		public void TestSaveProject_CorrectValue()
 		{
+			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for(int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
 				var expected = Project;
@@ -144,6 +149,7 @@ namespace ContactsApp.UnitTests
 			}, "Должно возникать исключение, если " +
 				"не удается создать файл с указанным именем");
 
+			//TODO: Duplication
 			File.Delete(Folders[0] + FileNames[0]);
 			Directory.Delete(Folders[0]);
 			Directory.Delete(Folders[1]);
@@ -153,6 +159,7 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивный тест ReadProject")]
 		public void TestReadProject_CorrectValue()
 		{
+            //TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
 				var expectedEmptyProject = new Project();
@@ -200,6 +207,7 @@ namespace ContactsApp.UnitTests
 			}, "Должно возникать исключение, если " +
 				"не удается создать файл с указанным именем");
 
+			//TODO: Duplication
 			File.Delete(Folders[0] + FileNames[0]);
 			Directory.Delete(Folders[0]);
 			Directory.Delete(Folders[1]);
