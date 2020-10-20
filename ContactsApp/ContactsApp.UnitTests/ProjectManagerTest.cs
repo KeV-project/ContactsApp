@@ -12,107 +12,144 @@ namespace ContactsApp.UnitTests
 {
 	/// <summary>
 	/// Класс <see cref="ProjectManagerTest"/> предназначен
-	/// дла тестирования класса <see cref="ProjectManager"/>
+	/// для тестирования класса <see cref="ProjectManager"/>
 	/// </summary>
 	class ProjectManagerTest
 	{
+		//TODO: SetUp не очень прозрачная конструкция, т.к. всегда надо помнить, что она выполняется перед основным тестом
+		//TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
+		//TODO: в приватные поля +
+
+		// При передаче корректного пути к файлу предназначенного
+		// для сериализации и десериализации объекта класса Project
+		// в методы SaveProject и ReadProject возможны 3 варианта
+		// развития событий:
+		// 1. Указанный файл был создан заранее
+		// 2. Каталог по указанному пути существует,
+		//    а файл требуется создать
+		// 3. Требуется создать каталог по указанному пути
+		//    и файл для сериализации в данном каталоге
+
 		/// <summary>
-		/// Количество позитивных тестов методов 
-		/// класса <see cref="ProjectManager"/> 
+		/// Количество корректных путей выполнения методов 
+		/// ReadProject и SaveProject в зависимости от наличия 
+		/// каталога и файла для сериализации объекта
+		/// класса <see cref="ProjectManager"/>
 		/// </summary>
-		public const int POSITIVE_TESTS_COUNT = 3;
+		private const int POSITIVE_TESTS_COUNT = 3;
+
 		/// <summary>
-		/// Массив путей к папкам с файлами для
-		/// проверки методов сериализации и десериализации
+		/// Возвращает массив путей к каталогам,
+		/// в которых предполагается наличие файла
+		/// для сериализации и десериализации объекта
+		/// класса <see cref=Project"">
 		/// </summary>
-		public string[] Folders { get; set; }
+		private string[] Folders
+		{
+			get
+			{
+				string[] folders = new string[POSITIVE_TESTS_COUNT]
+				{
+					Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\Contacts1\\",
+					Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\Contacts2\\",
+					Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\Contacts3\\"
+				};
+				Directory.CreateDirectory(folders[0]);
+				Directory.CreateDirectory(folders[1]);
+				return folders;
+			}
+		}
+
 		/// <summary>
-		/// Массив имен файлов для проверки методов
-		/// сериализации и десериализации
+		/// Возвращает массив имен файлов для
+		/// сериализации и десериализации объектов
+		/// класса <see cref="Project">
 		/// </summary>
-		public string[] FileNames { get; set; }
+		private string[] FileNames
+		{
+			get
+			{
+				string[] fileNames = new string[POSITIVE_TESTS_COUNT]
+				{
+					"file1.notes",
+					"file2.notes",
+					"file3.notes"
+				};
+				File.Create(Folders[0] + fileNames[0]).Close();
+				return fileNames;
+			}
+		}
+
 		/// <summary>
-		/// Количество элементов в тестовом массиве контактов
+		/// Массив контактов для заполнения списка контактов
+		/// объекта класса <see cref="Project">
 		/// </summary>
-		private int ContactsCount { get; set; }
+		private Contact[] Contacts
+		{
+			get
+			{
+				return new Contact[]
+					{
+						//TODO: Duplication
+						new Contact("Denis", "Malehin",
+						new PhoneNumber(79521145688), "malehin@gmail.com",
+						DateTime.Today),
+
+						new Contact("Светлана", "Абитаева",
+						new PhoneNumber(75564856412), "abitaeva@gmail.com",
+						new DateTime(1995, 4, 3)),
+
+						new Contact("Генадий", "Афанасьев",
+						new PhoneNumber(79994567842), "gena@gmail.com",
+						new DateTime(1990, 10, 25)),
+
+						new Contact( "Мария", "Стрельникова",
+						new PhoneNumber(75564856412), "maria@gmail.com",
+						DateTime.Today)
+					};
+			}
+		}
+
 		/// <summary>
-		/// Массив контактов объекта тестирования 
+		/// Количество элементов в массиве контактов
 		/// </summary>
-		public Contact[] Contacts { get; set; }
+		private int ContactsCount
+		{
+			get
+			{
+				return 4;
+			}
+		}
+
 		/// <summary>
 		/// Объект для тестирования класса <see cref="ProjectManagerTest"/>
 		/// </summary>
-		public Project Project { get; set; }
-
-        //TODO: SetUp не очень прозрачная конструкция, т.к. всегда надо помнить, что она выполняется перед основным тестом
-        //TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
-        //TODO: в приватные поля
-		/// <summary>
-		/// Инициализация объекта для тестирования
-		/// </summary>
-		[SetUp]
-		public void InitProject()
+		private Project Project
 		{
-			Contacts = new Contact[]
+			get
 			{
-				//TODO: Duplication
-				new Contact("Denis", "Malehin",
-				new PhoneNumber(79521145688), "malehin@gmail.com",
-				DateTime.Today),
-
-				new Contact("Светлана", "Абитаева",
-				new PhoneNumber(75564856412), "abitaeva@gmail.com",
-				new DateTime(1995, 4, 3)),
-
-				new Contact("Генадий", "Афанасьев",
-				new PhoneNumber(79994567842), "gena@gmail.com",
-				new DateTime(1990, 10, 25)),
-
-				new Contact( "Мария", "Стрельникова",
-				new PhoneNumber(75564856412), "maria@gmail.com",
-				DateTime.Today)
-			};
-
-			ContactsCount = 4;
-
-			Project = new Project();
-
-			for (int i = 0; i < ContactsCount; i++)
-			{
-				Project.AddContact(Contacts[i]);
-				Contacts[i].Id = i + 1;
+				Project project = new Project();
+				for (int i = 0; i < ContactsCount; i++)
+				{
+					Project.AddContact(Contacts[i]);
+					Contacts[i].Id = i + 1;
+				}
+				return project;
 			}
-
-			Folders = new string[POSITIVE_TESTS_COUNT]
-			{
-				Environment.GetFolderPath(
-				Environment.SpecialFolder.ApplicationData) +
-				"\\Contacts1\\",
-				Environment.GetFolderPath(
-				Environment.SpecialFolder.ApplicationData) +
-				"\\Contacts2\\",
-				Environment.GetFolderPath(
-				Environment.SpecialFolder.ApplicationData) +
-				"\\Contacts3\\"
-			};
-
-			FileNames = new string[POSITIVE_TESTS_COUNT]
-			{
-				"file1.notes",
-				"file2.notes",
-				"file3.notes"
-			};
-
-			Directory.CreateDirectory(Folders[0]);
-			File.Create(Folders[0] + FileNames[0]).Close();
-			Directory.CreateDirectory(Folders[1]);
 		}
+
 
 		[Test(Description = "Позитивнынй тест SaveProject")]
 		public void TestSaveProject_CorrectValue()
 		{
 			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
-			for(int i = 0; i < POSITIVE_TESTS_COUNT; i++)
+			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
 				var expected = Project;
 
@@ -149,17 +186,18 @@ namespace ContactsApp.UnitTests
 			}, "Должно возникать исключение, если " +
 				"не удается создать файл с указанным именем");
 
-			//TODO: Duplication
+			//TODO: Duplication +
 			File.Delete(Folders[0] + FileNames[0]);
-			Directory.Delete(Folders[0]);
-			Directory.Delete(Folders[1]);
-			Directory.Delete(Folders[2]);
+			for(int i = 0; i < POSITIVE_TESTS_COUNT; i++)
+			{
+				Directory.Delete(Folders[i]);
+			}
 		}
 
 		[Test(Description = "Позитивный тест ReadProject")]
 		public void TestReadProject_CorrectValue()
 		{
-            //TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
+			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
 				var expectedEmptyProject = new Project();
@@ -168,17 +206,17 @@ namespace ContactsApp.UnitTests
 				var resultEmptyProject = Convert.
 					ToBoolean(expectedEmptyProject.
 					CompareTo(actualEmptyProject));
-				Assert.IsTrue(resultEmptyProject, 
+				Assert.IsTrue(resultEmptyProject,
 					"Искажение данных при десериализации объекта");
 
 				var expectedProject = Project;
-				ProjectManager.SaveProject(expectedProject, 
+				ProjectManager.SaveProject(expectedProject,
 					Folders[i], FileNames[i]);
 				var actualProject = ProjectManager.
 					ReadProject(Folders[i], FileNames[i]);
 				var resultProject = Convert.ToBoolean(
 					expectedProject.CompareTo(actualProject));
-				Assert.IsTrue(resultProject, 
+				Assert.IsTrue(resultProject,
 					"Искажение данных при десериализации объекта");
 
 				File.Delete(Folders[i] + FileNames[i]);
@@ -207,11 +245,12 @@ namespace ContactsApp.UnitTests
 			}, "Должно возникать исключение, если " +
 				"не удается создать файл с указанным именем");
 
-			//TODO: Duplication
+			//TODO: Duplication +
 			File.Delete(Folders[0] + FileNames[0]);
-			Directory.Delete(Folders[0]);
-			Directory.Delete(Folders[1]);
-			Directory.Delete(Folders[2]);
+			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
+			{
+				Directory.Delete(Folders[i]);
+			}
 		}
 	}
 }
