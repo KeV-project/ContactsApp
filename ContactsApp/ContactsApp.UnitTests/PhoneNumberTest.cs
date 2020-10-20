@@ -19,8 +19,14 @@ namespace ContactsApp.UnitTests
         //TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
         //TODO: в приватные поля +
 
+        // TODO: Тесты лучше переоформить по типу ААА тестов, 
+        // подробнее информация есть тут https://habr.com/ru/post/169381/ 
+        // или можно загуглить.
+        // TODO: Есть одной из части ААА теста нет, 
+        // её можно просто опустить. Переделать для ВСЕХ тестов. +
+
         /// <summary>
-        /// Тестируемый объект
+        /// Возвращает объект для тестирования
         /// </summary>
         private PhoneNumber Number 
         { 
@@ -33,8 +39,10 @@ namespace ContactsApp.UnitTests
         [Test(Description = "Позитивный тест геттера Number")]
         public void TestNumberGet_CorrectValue()
 		{
-            // act
+            // arrange
             var expected = 79521777644;
+
+            // act
             var actual = Number.Number;
 
             // assert
