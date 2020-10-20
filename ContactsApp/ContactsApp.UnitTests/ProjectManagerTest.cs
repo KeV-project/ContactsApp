@@ -151,12 +151,14 @@ namespace ContactsApp.UnitTests
 			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
+				// arrange
 				var expected = Project;
 
+				// act
 				ProjectManager.SaveProject(expected, Folders[i], FileNames[i]);
-
 				var actual = ProjectManager.ReadProject(Folders[i], FileNames[i]);
 
+				// assert
 				var result = Convert.ToBoolean(expected.CompareTo(actual));
 				Assert.IsTrue(result, "Искажение данных при сериализации объекта");
 
@@ -168,12 +170,14 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Негативный тест метода SaveProject")]
 		public void TestSaveProject_InCorrectValue()
 		{
+			// arrange
 			string fileName = FileNames[2];
 			string folder = Folders[2];
 
 			string wrongFileName = "                         ";
 			string wrongFolder = "                           ";
 
+			// assert
 			Assert.Throws<Exception>(() =>
 			{
 				ProjectManager.SaveProject(Project, wrongFolder, fileName);
@@ -200,20 +204,30 @@ namespace ContactsApp.UnitTests
 			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
+				// arrange
 				var expectedEmptyProject = new Project();
+
+				// act
 				var actualEmptyProject = ProjectManager.
 					ReadProject(Folders[i], FileNames[i]);
+
+				// assert
 				var resultEmptyProject = Convert.
 					ToBoolean(expectedEmptyProject.
 					CompareTo(actualEmptyProject));
 				Assert.IsTrue(resultEmptyProject,
 					"Искажение данных при десериализации объекта");
 
+				// arrange
 				var expectedProject = Project;
 				ProjectManager.SaveProject(expectedProject,
 					Folders[i], FileNames[i]);
+
+				// act
 				var actualProject = ProjectManager.
 					ReadProject(Folders[i], FileNames[i]);
+
+				// assert
 				var resultProject = Convert.ToBoolean(
 					expectedProject.CompareTo(actualProject));
 				Assert.IsTrue(resultProject,
@@ -227,12 +241,14 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Негативный тест ReadProject")]
 		public void TestReadProject_IncorrectValue()
 		{
+			// arrange
 			string fileName = FileNames[2];
 			string folder = Folders[2];
 
 			string wrongFileName = "                         ";
 			string wrongFolder = "                           ";
 
+			// assert
 			Assert.Throws<Exception>(() =>
 			{
 				ProjectManager.ReadProject(wrongFolder, fileName);
