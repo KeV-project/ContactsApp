@@ -17,10 +17,13 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивный тест метода AssertValueInRange")]
 		public void TestAssertValueInRange_СorrectValue()
 		{
+			// arrange
 			var value = 5.5;
 			var minLimit = 0;
 			var maxLimit = 10;
 			var context = "экспериментальное значение";
+
+			// act
 			ValueValidator.AssertValueInRange(value, minLimit,
 			  maxLimit, context);
 		}
@@ -28,10 +31,13 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Негативный тест метода AssertValueInRange")]
 		public void TestAssertValueInRange_IncorrectValue()
 		{
+			// arrange
 			var wrongValue = 10.5;
 			var minLimit = 0;
 			var maxLimit = 10;
 			var context = "экспериментальное значение";
+
+			// assert
 			Assert.Throws<ArgumentException>(() =>
 				{ ValueValidator.AssertValueInRange(wrongValue, minLimit,
 				maxLimit, context); }, "Должно возникать искючение, " +
@@ -41,10 +47,13 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Негативный тест метода AssertLengthInRange")]
 		public void TestAssertLengthInRange_IncorrectValue()
 		{
+			// arrange
 			var wrongValue = "Николай";
 			var minLimit = 0;
 			var maxLimit = 5;
 			var context = "экспериментальное значение";
+
+			// arrest
 			Assert.Throws<ArgumentException>(
 				() => { ValueValidator.AssertLengthInRange(wrongValue, 
 							minLimit, maxLimit, context); }, 
@@ -62,7 +71,10 @@ namespace ContactsApp.UnitTests
 		public void TestAssertRussianPhoneNumber_IncorrectValue(
 			long wrongNumber, string message)
 		{
+			// arrange
 			var context = "номер телефона";
+
+			// assert
 			Assert.Throws<ArgumentException>(()=> 
 			{ValueValidator.AssertRussianPhoneNumber(wrongNumber, 
 				context);}, message);
@@ -82,7 +94,10 @@ namespace ContactsApp.UnitTests
 		public void TestAssertCorrectName_IncorrectValue(string wrongString,
 			int minLength, int maxLength, string message)
 		{
+			// arrange
 			var context = "имя или фамилию";
+
+			// assert
 			Assert.Throws<ArgumentException>(
 				 () => { ValueValidator.AssertCorrectName(wrongString, 
 					 minLength, maxLength, context); }, message);
@@ -91,10 +106,13 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Негативный тест метода AssertCorrectDate")]
 		public void TestAssertCorrectDate_IncorrectValue()
 		{
+			// arrange
 			var wrongDate = new DateTime(1800, 12, 12);
 			var minDate = new DateTime(1900, 12, 31);
 			var maxDate = DateTime.Today;
 			var context = "дату";
+
+			// assert
 			Assert.Throws<ArgumentException>(
 				() => {
 					ValueValidator.AssertCorrectDate(wrongDate,
