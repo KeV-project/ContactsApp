@@ -25,37 +25,33 @@ namespace ContactsApp.UnitTests
 		{ 
 			get
 			{
-				return new Contact[]
-					{
-						//TODO: Duplication
-						//TODO: Отступами в коде показать кто куда передаётся
-						new Contact("Denis", "Malehin",
-						new PhoneNumber(79521145688), "malehin@gmail.com",
-						DateTime.Today),
+				Contact[] contacts = new Contact[]
+				{
+					//TODO: Duplication
+					//TODO: Отступами в коде показать кто куда передаётся
+					new Contact("Denis", "Malehin",
+					new PhoneNumber(79521145688), "malehin@gmail.com",
+					DateTime.Today),
 
-						new Contact("Светлана", "Абитаева",
-						new PhoneNumber(75564856412), "abitaeva@gmail.com",
-						new DateTime(1995, 4, 3)),
+					new Contact("Светлана", "Абитаева",
+					new PhoneNumber(75564856412), "abitaeva@gmail.com",
+					new DateTime(1995, 4, 3)),
 
-						new Contact("Генадий", "Афанасьев",
-						new PhoneNumber(79994567842), "gena@gmail.com",
-						new DateTime(1990, 10, 25)),
+					new Contact("Генадий", "Афанасьев",
+					new PhoneNumber(79994567842), "gena@gmail.com",
+					new DateTime(1990, 10, 25)),
 
-						new Contact( "Мария", "Стрельникова",
-						new PhoneNumber(75564856412), "maria@gmail.com",
-						DateTime.Today)
-					};
-			}
-		}
+					new Contact( "Мария", "Стрельникова",
+					new PhoneNumber(75564856412), "maria@gmail.com",
+					DateTime.Today)
+				};
 
-		/// <summary>
-		/// Возвращает количество контактов в массиве
-		/// </summary>
-		private int ContactsCount
-		{
-			get
-			{
-				return 4;
+				for (int i = 0; i < contacts.Length; i++)
+				{
+					contacts[i].Id = i + 1;
+				}
+
+				return contacts;
 			}
 		}
 
@@ -67,16 +63,13 @@ namespace ContactsApp.UnitTests
 			get
 			{
 				Project project = new Project();
-				for (int i = 0; i < ContactsCount; i++)
+				for (int i = 0; i < Contacts.Length; i++)
 				{
 					project.AddContact(Contacts[i]);
-					Contacts[i].Id = i + 1;
 				}
 				return project;
 			}
 		}
-
-		
 
 		[Test(Description = "Позитивный тест геттера " +
 			"индексатора")]
@@ -89,8 +82,17 @@ namespace ContactsApp.UnitTests
 			var actual = Project[0];
 
 			// assert
-			Assert.AreEqual(expected, actual,
-				"Геттер возвращает неверный объект списка");
+			Assert.AreEqual(expected.FirstName, actual.FirstName,
+				"Геттер возвращает объект с неверным именем");
+			Assert.AreEqual(expected.LastName, actual.LastName,
+				"Геттер возвращает объект с неверной фамилией");
+			Assert.AreEqual(expected.Number.Number, actual.Number.Number,
+				"Геттер возвращает объект с неверным номером телефона");
+			Assert.AreEqual(expected.Email, actual.Email,
+				"Геттер возвращает объект с неверным адресом " +
+				"электронной почнты");
+			Assert.AreEqual(expected.BirthDate, actual.BirthDate,
+				"Геттер возвращает объект с неверной датой рождения");
 		}
 
 		[Test(Description = "Позитивный тест геттера LastId")]
@@ -145,7 +147,7 @@ namespace ContactsApp.UnitTests
 		public void TestGetContactsCount_CorrectValue()
 		{
 			// arrange
-			var expected = ContactsCount;
+			var expected = Contacts.Length;
 
 			// act
 			var actual = Project.GetContactsCount();
@@ -159,16 +161,18 @@ namespace ContactsApp.UnitTests
 		public void TestAddContact_CorrectValue()
 		{
 			// arrange
+			Project project = Project;
 			var expected = new Contact("Ivan", "Astahov", 
 				new PhoneNumber(79991453321), "ivan@gmail.com", 
 				new DateTime(1995, 6, 28));
-
+			
 			// act
-			Project.AddContact(expected);
-			var actual = Project[0];
+			project.AddContact(expected);
+			var actual = project[0];
 
 			// assert
-			Assert.AreEqual(expected, actual, "Контакт не был добавлен " +
+			Assert.AreEqual(expected, actual,
+				"Контакт не был добавлен " +
 				"или добавлен на неверную позицию");
 		}
 
@@ -185,12 +189,15 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивный тест метода RemoveContact")]
 		public void TestRemoveContact_CorrectValue()
 		{
+			// arrange
+			Project project = Project;
+
 			// act
-			Project.RemoveContact(Contacts[3]);
+			project.RemoveContact(project[3]);
 
 			// assert
 			Assert.Throws<ArgumentOutOfRangeException>(() =>
-				{ Contact removedContact = Project[3]; },
+				{ Contact removedContact = project[3]; },
 				"Должно генерироваться исключение при обращении к " +
 				"несуществующему элементу списка");
 		}
@@ -209,11 +216,12 @@ namespace ContactsApp.UnitTests
 		public void TestGetContactsWithText_CorrectValue()
 		{
 			// arrange
+			Project project = Project;
+			var expected = new List<Contact>() { project[1], project[2] };
 			string text = "ев";
-			var expected = new List<Contact>() { Contacts[1], Contacts[2] };
 
 			// act
-			var actual = Project.GetContactsWithText(text);
+			var actual = project.GetContactsWithText(text);
 
 			// assert
 			Assert.IsTrue(actual.Count == expected.Count, "Метод вернул " +
@@ -228,10 +236,11 @@ namespace ContactsApp.UnitTests
 		public void TestGetAllBirthContacts_CorrectValue()
 		{
 			// arrange
-			var expected = new List<Contact>() { Contacts[0], Contacts[3] };
+			Project project = Project;
+			var expected = new List<Contact>() { project[0], project[3] };
 
 			// act
-			var actual = Project.GetAllBirthContacts();
+			var actual = project.GetAllBirthContacts();
 
 			// assert
 			Assert.IsTrue(actual.Count == expected.Count, "Метод вернул " +
@@ -263,7 +272,7 @@ namespace ContactsApp.UnitTests
 				"Метод неверно сравнивает разные объекты");
 
 			// arrange
-			for (int i = 0; i < ContactsCount; i++)
+			for (int i = 0; i < Contacts.Length; i++)
 			{
 				project.AddContact(Contacts[0]);
 			}

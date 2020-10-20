@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,9 +24,8 @@ namespace ContactsAppUI
         /// </summary>
         private Project _project;
 
-        //TODO: Вместо хранения строк лучше использовать .NETовские DirectoryInfo и FolderInfo
-        private string _folder;
-        private string _fileName;
+        //TODO: Вместо хранения строк лучше использовать .NETовские DirectoryInfo и FolderInfo +
+        private FileInfo _path;
 
         /// <summary>
         /// Содержит выбранный пользователем контакт
@@ -44,11 +44,10 @@ namespace ContactsAppUI
         /// </summary>
         public MainForm()
         {
-            _folder = Environment.GetFolderPath(
+            _path = new FileInfo(Environment.GetFolderPath(
                 Environment.SpecialFolder.ApplicationData) +
-                "\\ContactsApp\\";
-            _fileName = "ContactsApp.notes";
-            _project = ProjectManager.ReadProject(_folder, _fileName);
+                "\\ContactsApp\\" + "ContactsApp.notes");
+            _project = ProjectManager.ReadProject(_path);
             _currentContact = null;
             _listBoxContacts = new List<Contact>();
 
@@ -185,7 +184,7 @@ namespace ContactsAppUI
                 FindTextBox.Text = "";
                 ContactsTextBoxClear();
 
-                ProjectManager.SaveProject(_project, _folder, _fileName);
+                ProjectManager.SaveProject(_project, _path);
             }
         }
 
@@ -217,7 +216,7 @@ namespace ContactsAppUI
                 FindTextBox.Text = "";
                 ContactsTextBoxClear();
 
-                ProjectManager.SaveProject(_project, _folder, _fileName);
+                ProjectManager.SaveProject(_project, _path);
             }
         }
 
@@ -248,7 +247,7 @@ namespace ContactsAppUI
                 FindTextBox.Text = "";
                 ContactsTextBoxClear();
 
-                ProjectManager.SaveProject(_project, _folder, _fileName);
+                ProjectManager.SaveProject(_project, _path);
             }
 
         }

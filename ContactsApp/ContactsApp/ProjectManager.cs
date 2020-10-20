@@ -21,26 +21,26 @@ namespace ContactsApp
 		/// десериализации данных приложения</param>
 		/// <param name="fileName">Файл для сериализации и
 		/// десериализации данных приложения</param>
-		private static void CreateFile(string folder, string fileName)
+		private static void CreateFile(FileInfo path)
 		{
-			if (!Directory.Exists(folder))
+			if (!path.Directory.Exists)
 			{
-				Directory.CreateDirectory(folder);
+				path.Directory.Create();
 			}
-			if (!File.Exists(folder + fileName))
+			if (!path.Exists)
 			{
-				File.Create(folder + fileName).Close();
+				path.Create().Close();
 			}
 		}
 		/// <summary>
 		/// Метод выполныет десериализацию объекта
 		/// </summary>
 		/// <returns>Десериализованный объект</returns>
-		public static Project ReadProject(string folder, string fileName)
+		public static Project ReadProject(FileInfo path)
 		{
 			try
 			{
-				CreateFile(folder, fileName);
+				CreateFile(path);
 			}
 			catch
 			{
@@ -50,7 +50,7 @@ namespace ContactsApp
 			Project project = new Project();
 
 			using (StreamReader file = new StreamReader(
-					folder + fileName, Encoding.Default))
+					Convert.ToString(path), Encoding.Default))
 			{
 				string projectContent = file.ReadLine();
 				if (string.IsNullOrEmpty(projectContent))
@@ -68,12 +68,12 @@ namespace ContactsApp
 		/// Метод выполняет сериализацию объекта
 		/// </summary>
 		/// <param name="project">Сериализуемый объект</param>
-		public static void SaveProject(Project project, 
-			string folder, string fileName)
+		public static void SaveProject(Project project,
+			FileInfo path)
 		{
 			try
 			{
-				CreateFile(folder, fileName);
+				CreateFile(path);
 			}
 			catch
 			{
@@ -81,7 +81,7 @@ namespace ContactsApp
 			}
 
 			using (StreamWriter file = new StreamWriter(
-                folder + fileName, false, Encoding.UTF8))
+                Convert.ToString(path), false, Encoding.UTF8))
 			{ 
                 file.Write(JsonConvert.SerializeObject(project));
             }

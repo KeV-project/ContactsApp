@@ -38,51 +38,44 @@ namespace ContactsApp.UnitTests
 		/// </summary>
 		private const int POSITIVE_TESTS_COUNT = 3;
 
-		/// <summary>
-		/// Возвращает массив путей к каталогам,
-		/// в которых предполагается наличие файла
-		/// для сериализации и десериализации объекта
-		/// класса <see cref=Project"">
-		/// </summary>
-		private string[] Folders
-		{
-			get
-			{
-				string[] folders = new string[POSITIVE_TESTS_COUNT]
-				{
-					Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\Contacts1\\",
-					Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\Contacts2\\",
-					Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\Contacts3\\"
-				};
-				Directory.CreateDirectory(folders[0]);
-				Directory.CreateDirectory(folders[1]);
-				return folders;
-			}
-		}
 
 		/// <summary>
 		/// Возвращает массив имен файлов для
 		/// сериализации и десериализации объектов
 		/// класса <see cref="Project">
 		/// </summary>
-		private string[] FileNames
+		private FileInfo[] Path
 		{
 			get
 			{
-				string[] fileNames = new string[POSITIVE_TESTS_COUNT]
+			FileInfo[] path = new FileInfo[POSITIVE_TESTS_COUNT]
 				{
-					"file1.notes",
-					"file2.notes",
-					"file3.notes"
+					new FileInfo(Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\Contacts1\\" + "file1.notes"),
+					new FileInfo(Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\Contacts2\\" + "file2.notes"),
+					new FileInfo(Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\Contacts2\\" + "file2.notes")
 				};
-				File.Create(Folders[0] + fileNames[0]).Close();
-				return fileNames;
+
+				if(!path[0].Directory.Exists)
+				{
+					path[0].Directory.Create();
+				}
+
+				if (!path[1].Directory.Exists)
+				{
+					path[1].Directory.Create();
+					if(!path[1].Exists)
+					{
+						path[1].Create().Close();
+					}
+				}
+
+				return path;
 			}
 		}
 
@@ -94,56 +87,50 @@ namespace ContactsApp.UnitTests
 		{
 			get
 			{
-				return new Contact[]
-					{
-						//TODO: Duplication
-						new Contact("Denis", "Malehin",
-						new PhoneNumber(79521145688), "malehin@gmail.com",
-						DateTime.Today),
+				Contact[] contacts = new Contact[]
+				{
+					//TODO: Duplication
+					new Contact("Denis", "Malehin",
+					new PhoneNumber(79521145688), "malehin@gmail.com",
+					DateTime.Today),
 
-						new Contact("Светлана", "Абитаева",
-						new PhoneNumber(75564856412), "abitaeva@gmail.com",
-						new DateTime(1995, 4, 3)),
+					new Contact("Светлана", "Абитаева",
+					new PhoneNumber(75564856412), "abitaeva@gmail.com",
+					new DateTime(1995, 4, 3)),
 
-						new Contact("Генадий", "Афанасьев",
-						new PhoneNumber(79994567842), "gena@gmail.com",
-						new DateTime(1990, 10, 25)),
+					new Contact("Генадий", "Афанасьев",
+					new PhoneNumber(79994567842), "gena@gmail.com",
+					new DateTime(1990, 10, 25)),
 
-						new Contact( "Мария", "Стрельникова",
-						new PhoneNumber(75564856412), "maria@gmail.com",
-						DateTime.Today)
-					};
+					new Contact( "Мария", "Стрельникова",
+					new PhoneNumber(75564856412), "maria@gmail.com",
+					DateTime.Today)
+				};
+
+				for(int i = 0; i < contacts.Length; i++)
+				{
+					contacts[i].Id = i + 1;
+				}
+
+				return contacts;
 			}
 		}
 
 		/// <summary>
-		/// Количество элементов в массиве контактов
-		/// </summary>
-		private int ContactsCount
-		{
-			get
-			{
-				return 4;
-			}
-		}
-
-		/// <summary>
-		/// Объект для тестирования класса <see cref="ProjectManagerTest"/>
+		/// Возвращает объект для тестирования
 		/// </summary>
 		private Project Project
 		{
 			get
 			{
 				Project project = new Project();
-				for (int i = 0; i < ContactsCount; i++)
+				for (int i = 0; i < Contacts.Length; i++)
 				{
-					Project.AddContact(Contacts[i]);
-					Contacts[i].Id = i + 1;
+					project.AddContact(Contacts[i]);
 				}
 				return project;
 			}
 		}
-
 
 		[Test(Description = "Позитивнынй тест SaveProject")]
 		public void TestSaveProject_CorrectValue()
@@ -155,15 +142,15 @@ namespace ContactsApp.UnitTests
 				var expected = Project;
 
 				// act
-				ProjectManager.SaveProject(expected, Folders[i], FileNames[i]);
-				var actual = ProjectManager.ReadProject(Folders[i], FileNames[i]);
+				ProjectManager.SaveProject(expected, Path[i]);
+				var actual = ProjectManager.ReadProject(Path[i]);
 
 				// assert
 				var result = Convert.ToBoolean(expected.CompareTo(actual));
 				Assert.IsTrue(result, "Искажение данных при сериализации объекта");
 
-				File.Delete(Folders[i] + FileNames[i]);
-				Directory.Delete(Folders[i]);
+				Path[i].Delete();
+				Path[i].Directory.Delete();
 			}
 		}
 
@@ -171,30 +158,32 @@ namespace ContactsApp.UnitTests
 		public void TestSaveProject_InCorrectValue()
 		{
 			// arrange
-			string fileName = FileNames[2];
-			string folder = Folders[2];
+			FileInfo wrongFileName = new FileInfo(Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\Contacts1\\" + "                                    ");
 
-			string wrongFileName = "                         ";
-			string wrongFolder = "                           ";
+			FileInfo wrongPath = new FileInfo(Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\                          \\" + "file.notes");
 
 			// assert
 			Assert.Throws<Exception>(() =>
 			{
-				ProjectManager.SaveProject(Project, wrongFolder, fileName);
-			}, "Должно возникать исключение, если " +
-				"не удается создать каталог по указанному пути");
-
-			Assert.Throws<Exception>(() =>
-			{
-				ProjectManager.SaveProject(Project, folder, wrongFileName);
+				ProjectManager.SaveProject(Project, wrongFileName);
 			}, "Должно возникать исключение, если " +
 				"не удается создать файл с указанным именем");
 
-			//TODO: Duplication +
-			File.Delete(Folders[0] + FileNames[0]);
-			for(int i = 0; i < POSITIVE_TESTS_COUNT; i++)
+			Assert.Throws<Exception>(() =>
 			{
-				Directory.Delete(Folders[i]);
+				ProjectManager.SaveProject(Project, wrongPath);
+			}, "Должно возникать исключение, если " +
+				"не удается создать каталог по указанному пути");
+
+			//TODO: Duplication +
+			Path[0].Delete();
+			for (int i = 0; i < POSITIVE_TESTS_COUNT - 1; i++)
+			{
+				Path[i].Directory.Delete();
 			}
 		}
 
@@ -209,7 +198,7 @@ namespace ContactsApp.UnitTests
 
 				// act
 				var actualEmptyProject = ProjectManager.
-					ReadProject(Folders[i], FileNames[i]);
+					ReadProject(Path[i]);
 
 				// assert
 				var resultEmptyProject = Convert.
@@ -221,11 +210,11 @@ namespace ContactsApp.UnitTests
 				// arrange
 				var expectedProject = Project;
 				ProjectManager.SaveProject(expectedProject,
-					Folders[i], FileNames[i]);
+					Path[i]);
 
 				// act
 				var actualProject = ProjectManager.
-					ReadProject(Folders[i], FileNames[i]);
+					ReadProject(Path[i]);
 
 				// assert
 				var resultProject = Convert.ToBoolean(
@@ -233,8 +222,8 @@ namespace ContactsApp.UnitTests
 				Assert.IsTrue(resultProject,
 					"Искажение данных при десериализации объекта");
 
-				File.Delete(Folders[i] + FileNames[i]);
-				Directory.Delete(Folders[i]);
+				Path[i].Delete();
+				Path[i].Directory.Delete();
 			}
 		}
 
@@ -242,30 +231,32 @@ namespace ContactsApp.UnitTests
 		public void TestReadProject_IncorrectValue()
 		{
 			// arrange
-			string fileName = FileNames[2];
-			string folder = Folders[2];
+			FileInfo wrongFileName = new FileInfo(Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\Contacts1\\" + "                                    ");
 
-			string wrongFileName = "                         ";
-			string wrongFolder = "                           ";
+			FileInfo wrongPath = new FileInfo(Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\                          \\" + "file.notes");
 
 			// assert
 			Assert.Throws<Exception>(() =>
 			{
-				ProjectManager.ReadProject(wrongFolder, fileName);
+				ProjectManager.ReadProject(wrongPath);
 			}, "Должно возникать исключение, если " +
 				"не удается создать каталог по указанному пути");
 
 			Assert.Throws<Exception>(() =>
 			{
-				ProjectManager.ReadProject(folder, wrongFileName);
+				ProjectManager.ReadProject(wrongFileName);
 			}, "Должно возникать исключение, если " +
 				"не удается создать файл с указанным именем");
 
 			//TODO: Duplication +
-			File.Delete(Folders[0] + FileNames[0]);
-			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
+			Path[0].Delete();
+			for (int i = 0; i < POSITIVE_TESTS_COUNT - 1; i++)
 			{
-				Directory.Delete(Folders[i]);
+				Path[i].Directory.Delete();
 			}
 		}
 	}
