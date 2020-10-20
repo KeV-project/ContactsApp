@@ -18,11 +18,14 @@ namespace ContactsApp.UnitTests
 			"ConvertPhoneNumberToInt")]
 		public void TestConvertPhoneNumberToInt_CorrectValue()
 		{
+			// arrange
 			var expected = 79521777644;
 
+			// act
 			string number = "+7 (952) 177-76-44";
 			var actual = ValueCorrector.ConvertPhoneNumberToInt(number);
 
+			// assert
 			Assert.AreEqual(expected, actual, "Функция возвращает " +
 				"неверный формат номера телефона");
 		}
@@ -35,7 +38,10 @@ namespace ContactsApp.UnitTests
 		public void TestToUpperFirstLetter_CorrectValue(string name, 
 			 string expected, string message)
 		{
+			// act
 			var actual = ValueCorrector.ToUpperFirstLetter(name);
+
+			// assert
 			Assert.AreEqual(expected, actual, message);
 		}
 	}
