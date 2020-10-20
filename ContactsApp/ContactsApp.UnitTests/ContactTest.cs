@@ -15,32 +15,23 @@ namespace ContactsApp.UnitTests
     [TestFixture]
 	class ContactTest
 	{
+        //TODO: SetUp не очень прозрачная конструкция, т.к. всегда надо помнить, что она выполняется перед основным тестом
+        //TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
+        //TODO: в приватные поля +
+
         /// <summary>
         /// Тестируемый объект
         /// </summary>
-        public Contact Contact { get; set; }
-
-        //TODO: SetUp не очень прозрачная конструкция, т.к. всегда надо помнить, что она выполняется перед основным тестом
-        //TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
-        //TODO: в приватные поля
-        /// <summary>
-        /// Инициализация тестируемого объекта
-        /// </summary>
-        [SetUp]
-        public void InitContact()
-        {
-            Contact = new Contact("Сергей", "Пресняков",
+        private Contact Contact { get; } = new Contact("Сергей", "Пресняков",
                 new PhoneNumber(79521777644), "sergey@gmail.com",
                 new DateTime(1999, 12, 12));
-            Contact.Id = 111;
-        }
 
         //TODO: Тесты лучше переоформить по типу ААА тестов, подробнее информация есть тут https://habr.com/ru/post/169381/ или можно загуглить.
         //TODO: Есть одной из части ААА теста нет, её можно просто опустить. Переделать для ВСЕХ тестов.
         [Test(Description = "Позитивный тест геттера Id")]
         public void TestIdGet_CorrectValue()
         {
-            var expected = 111;
+            var expected = 0;
             var actual = Contact.Id;
 
             Assert.AreEqual(expected, actual,
@@ -205,7 +196,6 @@ namespace ContactsApp.UnitTests
             var actual = new Contact("Сергей", "Пресняков",
                 new PhoneNumber(79521777644), "sergey@gmail.com",
                 new DateTime(1999, 12, 12));
-            actual.Id = 111;
 
             Assert.AreEqual(expected.FirstName, actual.FirstName,
                 "Конструктор с параметрами инициализирует " +

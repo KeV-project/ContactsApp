@@ -15,22 +15,14 @@ namespace ContactsApp.UnitTests
     [TestFixture]
     public class PhoneNumberTest
     {
+        //TODO: SetUp не очень прозрачная конструкция, т.к. всегда надо помнить, что она выполняется перед основным тестом
+        //TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
+        //TODO: в приватные поля +
+
         /// <summary>
         /// Тестируемый объект
         /// </summary>
-        public PhoneNumber Number { get; set; }
-
-        //TODO: SetUp не очень прозрачная конструкция, т.к. всегда надо помнить, что она выполняется перед основным тестом
-        //TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
-        //TODO: в приватные поля
-        /// <summary>
-        /// Инициализация тестируемого объекта
-        /// </summary>
-        [SetUp]
-        public void InitPhoneNumber()
-		{
-            Number = new PhoneNumber(79521777644);
-		}
+        private PhoneNumber Number { get; } = new PhoneNumber(79521777644);
 
         [Test(Description = "Позитивный тест геттера Number")]
         public void TestNumberGet_CorrectValue()
