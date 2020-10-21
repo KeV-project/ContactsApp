@@ -14,37 +14,18 @@ namespace ContactsApp
 	public static class ProjectManager
 	{
 		/// <summary>
-		/// Метод предназначен для создания файла в указанном каталоге
-		/// для сериализации и десериализации данных приложения
-		/// </summary>
-		/// <param name="folder">Каталог с файлом для сериализации и
-		/// десериализации данных приложения</param>
-		/// <param name="fileName">Файл для сериализации и
-		/// десериализации данных приложения</param>
-		private static void CreateFile(FileInfo path)
-		{
-			if (!path.Directory.Exists)
-			{
-				path.Directory.Create();
-			}
-			if (!path.Exists)
-			{
-				path.Create().Close();
-			}
-		}
-		/// <summary>
 		/// Метод выполныет десериализацию объекта
 		/// </summary>
 		/// <returns>Десериализованный объект</returns>
 		public static Project ReadProject(FileInfo path)
 		{
-			try
+			if (!path.Directory.Exists)
 			{
-				CreateFile(path);
+				path.Directory.Create();
 			}
-			catch
+			if (!File.Exists(path.FullName))
 			{
-				throw new Exception("Ошибка создания файла");
+				path.Create().Close();
 			}
 
 			Project project = new Project();
@@ -71,13 +52,13 @@ namespace ContactsApp
 		public static void SaveProject(Project project,
 			FileInfo path)
 		{
-			try
+			if (!path.Directory.Exists)
 			{
-				CreateFile(path);
+				path.Directory.Create();
 			}
-			catch
+			if (!File.Exists(path.FullName))
 			{
-				throw new Exception("Ошибка создания файла");
+				path.Create().Close();
 			}
 
 			using (StreamWriter file = new StreamWriter(

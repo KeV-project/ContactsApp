@@ -19,7 +19,8 @@ namespace ContactsApp.UnitTests
 		//TODO: в приватные поля +
 
 		/// <summary>
-		/// Возвращает массив контактов
+		/// Возвращает массив контактов для заполнения списка контактов
+		/// объекта класса <see cref="Project">
 		/// </summary>
 		private Contact[] Contacts 
 		{ 

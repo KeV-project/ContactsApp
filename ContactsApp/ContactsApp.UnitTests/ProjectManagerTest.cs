@@ -38,7 +38,6 @@ namespace ContactsApp.UnitTests
 		/// </summary>
 		private const int POSITIVE_TESTS_COUNT = 3;
 
-
 		/// <summary>
 		/// Возвращает массив имен файлов для
 		/// сериализации и десериализации объектов
@@ -48,39 +47,29 @@ namespace ContactsApp.UnitTests
 		{
 			get
 			{
-			FileInfo[] path = new FileInfo[POSITIVE_TESTS_COUNT]
-				{
-					new FileInfo(Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\Contacts1\\" + "file1.notes"),
-					new FileInfo(Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\Contacts2\\" + "file2.notes"),
-					new FileInfo(Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\Contacts2\\" + "file2.notes")
-				};
-
-				if(!path[0].Directory.Exists)
-				{
-					path[0].Directory.Create();
-				}
-
-				if (!path[1].Directory.Exists)
-				{
-					path[1].Directory.Create();
-					if(!path[1].Exists)
+				FileInfo[] path = new FileInfo[POSITIVE_TESTS_COUNT]
 					{
-						path[1].Create().Close();
-					}
-				}
+					new FileInfo(Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\ContactsApp1\\" + "file1.notes"),
+					new FileInfo(Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\ContactsApp2\\" + "file2.notes"),
+					new FileInfo(Environment.GetFolderPath(
+					Environment.SpecialFolder.ApplicationData) +
+					"\\ContactsApp3\\" + "file3.notes")
+					};
 
+				path[0].Directory.Create();
+				path[0].Create().Close();
+				path[1].Directory.Create();
+				
 				return path;
 			}
 		}
 
 		/// <summary>
-		/// Массив контактов для заполнения списка контактов
+		/// Возвращает массив контактов для заполнения списка контактов
 		/// объекта класса <see cref="Project">
 		/// </summary>
 		private Contact[] Contacts
@@ -92,7 +81,7 @@ namespace ContactsApp.UnitTests
 					//TODO: Duplication
 					new Contact("Denis", "Malehin",
 					new PhoneNumber(79521145688), "malehin@gmail.com",
-					DateTime.Today),
+					new DateTime(2001, 10, 5)),
 
 					new Contact("Светлана", "Абитаева",
 					new PhoneNumber(75564856412), "abitaeva@gmail.com",
@@ -102,15 +91,10 @@ namespace ContactsApp.UnitTests
 					new PhoneNumber(79994567842), "gena@gmail.com",
 					new DateTime(1990, 10, 25)),
 
-					new Contact( "Мария", "Стрельникова",
+					new Contact("Мария", "Стрельникова",
 					new PhoneNumber(75564856412), "maria@gmail.com",
-					DateTime.Today)
+					new DateTime(1999, 4, 15))
 				};
-
-				for(int i = 0; i < contacts.Length; i++)
-				{
-					contacts[i].Id = i + 1;
-				}
 
 				return contacts;
 			}
@@ -135,70 +119,41 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивнынй тест SaveProject")]
 		public void TestSaveProject_CorrectValue()
 		{
+			// arrange
+			FileInfo[] path = Path;
+			var expected = Project;
+
 			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
-				// arrange
-				var expected = Project;
-
 				// act
-				ProjectManager.SaveProject(expected, Path[i]);
-				var actual = ProjectManager.ReadProject(Path[i]);
+				ProjectManager.SaveProject(expected, path[i]);
+				var actual = ProjectManager.ReadProject(path[i]);
 
 				// assert
 				var result = Convert.ToBoolean(expected.CompareTo(actual));
 				Assert.IsTrue(result, "Искажение данных при сериализации объекта");
 
-				Path[i].Delete();
-				Path[i].Directory.Delete();
-			}
-		}
-
-		[Test(Description = "Негативный тест метода SaveProject")]
-		public void TestSaveProject_InCorrectValue()
-		{
-			// arrange
-			FileInfo wrongFileName = new FileInfo(Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\Contacts1\\" + "                                    ");
-
-			FileInfo wrongPath = new FileInfo(Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\                          \\" + "file.notes");
-
-			// assert
-			Assert.Throws<Exception>(() =>
-			{
-				ProjectManager.SaveProject(Project, wrongFileName);
-			}, "Должно возникать исключение, если " +
-				"не удается создать файл с указанным именем");
-
-			Assert.Throws<Exception>(() =>
-			{
-				ProjectManager.SaveProject(Project, wrongPath);
-			}, "Должно возникать исключение, если " +
-				"не удается создать каталог по указанному пути");
-
-			//TODO: Duplication +
-			Path[0].Delete();
-			for (int i = 0; i < POSITIVE_TESTS_COUNT - 1; i++)
-			{
-				Path[i].Directory.Delete();
+				path[i].Delete();
+				path[i].Directory.Delete();
 			}
 		}
 
 		[Test(Description = "Позитивный тест ReadProject")]
 		public void TestReadProject_CorrectValue()
 		{
+			// arrange
+			FileInfo[] path = Path;
+			var expectedEmptyProject = new Project();
+			var expectedProject = Project;
+
 			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
-				// arrange
-				var expectedEmptyProject = new Project();
-
+				
 				// act
 				var actualEmptyProject = ProjectManager.
-					ReadProject(Path[i]);
+					ReadProject(path[i]);
 
 				// assert
 				var resultEmptyProject = Convert.
@@ -208,13 +163,12 @@ namespace ContactsApp.UnitTests
 					"Искажение данных при десериализации объекта");
 
 				// arrange
-				var expectedProject = Project;
 				ProjectManager.SaveProject(expectedProject,
-					Path[i]);
+					path[i]);
 
 				// act
 				var actualProject = ProjectManager.
-					ReadProject(Path[i]);
+					ReadProject(path[i]);
 
 				// assert
 				var resultProject = Convert.ToBoolean(
@@ -222,41 +176,8 @@ namespace ContactsApp.UnitTests
 				Assert.IsTrue(resultProject,
 					"Искажение данных при десериализации объекта");
 
-				Path[i].Delete();
-				Path[i].Directory.Delete();
-			}
-		}
-
-		[Test(Description = "Негативный тест ReadProject")]
-		public void TestReadProject_IncorrectValue()
-		{
-			// arrange
-			FileInfo wrongFileName = new FileInfo(Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\Contacts1\\" + "                                    ");
-
-			FileInfo wrongPath = new FileInfo(Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\                          \\" + "file.notes");
-
-			// assert
-			Assert.Throws<Exception>(() =>
-			{
-				ProjectManager.ReadProject(wrongPath);
-			}, "Должно возникать исключение, если " +
-				"не удается создать каталог по указанному пути");
-
-			Assert.Throws<Exception>(() =>
-			{
-				ProjectManager.ReadProject(wrongFileName);
-			}, "Должно возникать исключение, если " +
-				"не удается создать файл с указанным именем");
-
-			//TODO: Duplication +
-			Path[0].Delete();
-			for (int i = 0; i < POSITIVE_TESTS_COUNT - 1; i++)
-			{
-				Path[i].Directory.Delete();
+				path[i].Delete();
+				path[i].Directory.Delete();
 			}
 		}
 	}

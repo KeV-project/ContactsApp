@@ -44,10 +44,10 @@ namespace ContactsAppUI
         /// </summary>
         public MainForm()
         {
-            _path = new FileInfo(Environment.GetFolderPath(
-                Environment.SpecialFolder.ApplicationData) +
-                "\\ContactsApp\\" + "ContactsApp.notes");
-            _project = ProjectManager.ReadProject(_path);
+			_path = new FileInfo(Environment.GetFolderPath(
+				Environment.SpecialFolder.ApplicationData) +
+				"\\ContactsApp\\" + "ContactsApp.notes");
+			_project = ProjectManager.ReadProject(_path);
             _currentContact = null;
             _listBoxContacts = new List<Contact>();
 
