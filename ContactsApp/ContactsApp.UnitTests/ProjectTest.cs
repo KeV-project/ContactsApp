@@ -18,69 +18,15 @@ namespace ContactsApp.UnitTests
 		//TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
 		//TODO: в приватные поля +
 
-		/// <summary>
-		/// Возвращает массив контактов для заполнения списка контактов
-		/// объекта класса <see cref="Project">
-		/// </summary>
-		private Contact[] Contacts 
-		{ 
-			get
-			{
-				Contact[] contacts = new Contact[]
-				{
-					//TODO: Duplication
-					//TODO: Отступами в коде показать кто куда передаётся
-					new Contact("Denis", "Malehin",
-					new PhoneNumber(79521145688), "malehin@gmail.com",
-					DateTime.Today),
-
-					new Contact("Светлана", "Абитаева",
-					new PhoneNumber(75564856412), "abitaeva@gmail.com",
-					new DateTime(1995, 4, 3)),
-
-					new Contact("Генадий", "Афанасьев",
-					new PhoneNumber(79994567842), "gena@gmail.com",
-					new DateTime(1990, 10, 25)),
-
-					new Contact( "Мария", "Стрельникова",
-					new PhoneNumber(75564856412), "maria@gmail.com",
-					DateTime.Today)
-				};
-
-				for (int i = 0; i < contacts.Length; i++)
-				{
-					contacts[i].Id = i + 1;
-				}
-
-				return contacts;
-			}
-		}
-
-		/// <summary>
-		/// Возвращает объект для тестирования
-		/// </summary>
-		private Project Project
-		{
-			get
-			{
-				Project project = new Project();
-				for (int i = 0; i < Contacts.Length; i++)
-				{
-					project.AddContact(Contacts[i]);
-				}
-				return project;
-			}
-		}
-
 		[Test(Description = "Позитивный тест геттера " +
 			"индексатора")]
 		public void TestIndexerGet_CorrectValue()
 		{
 			// arrange
-			var expected = Contacts[0];
+			var expected = InitProject.Contacts[0];
 
 			// act
-			var actual = Project[0];
+			var actual = InitProject.Project[0];
 
 			// assert
 			Assert.AreEqual(expected.FirstName, actual.FirstName,
@@ -103,7 +49,7 @@ namespace ContactsApp.UnitTests
 			var expected = 4;
 
 			// act
-			var actual = Project.LastId;
+			var actual = InitProject.Project.LastId;
 
 			// assert
 			Assert.AreEqual(expected, actual, "Геттер LastId " +
@@ -137,7 +83,7 @@ namespace ContactsApp.UnitTests
 			var expected = 5;
 
 			// act
-			var actual = Project.GetNewId();
+			var actual = InitProject.Project.GetNewId();
 
 			// assert
 			Assert.AreEqual(expected, actual, "Метод GetNewId " +
@@ -148,10 +94,10 @@ namespace ContactsApp.UnitTests
 		public void TestGetContactsCount_CorrectValue()
 		{
 			// arrange
-			var expected = Contacts.Length;
+			var expected = InitProject.Contacts.Length;
 
 			// act
-			var actual = Project.GetContactsCount();
+			var actual = InitProject.Project.GetContactsCount();
 
 			// assert
 			Assert.AreEqual(expected, actual, "Функция GetContactsCount " +
@@ -162,7 +108,7 @@ namespace ContactsApp.UnitTests
 		public void TestAddContact_CorrectValue()
 		{
 			// arrange
-			Project project = Project;
+			Project project = InitProject.Project;
 			var expected = new Contact("Ivan", "Astahov", 
 				new PhoneNumber(79991453321), "ivan@gmail.com", 
 				new DateTime(1995, 6, 28));
@@ -182,7 +128,7 @@ namespace ContactsApp.UnitTests
 		{
 			// assert
 			Assert.Throws<ArgumentException>(() =>
-			{ Project.AddContact(null); }, "Должно генерироваться " +
+			{ InitProject.Project.AddContact(null); }, "Должно генерироваться " +
 			"исключение, если совершается попытка добавить в " +
 			"список значения null");
 		}
@@ -191,7 +137,7 @@ namespace ContactsApp.UnitTests
 		public void TestRemoveContact_CorrectValue()
 		{
 			// arrange
-			Project project = Project;
+			Project project = InitProject.Project;
 
 			// act
 			project.RemoveContact(project[3]);
@@ -208,7 +154,7 @@ namespace ContactsApp.UnitTests
 		{
 			// assert
 			Assert.Throws<ArgumentException>(() =>
-			{ Project.RemoveContact(null); },
+			{ InitProject.Project.RemoveContact(null); },
 				"Должно генерироваться исключение при попытке удалить " +
 				"несуществующий элемент списка");
 		}
@@ -217,7 +163,7 @@ namespace ContactsApp.UnitTests
 		public void TestGetContactsWithText_CorrectValue()
 		{
 			// arrange
-			Project project = Project;
+			Project project = InitProject.Project;
 			var expected = new List<Contact>() { project[1], project[2] };
 			string text = "ев";
 
@@ -237,7 +183,7 @@ namespace ContactsApp.UnitTests
 		public void TestGetAllBirthContacts_CorrectValue()
 		{
 			// arrange
-			Project project = Project;
+			Project project = InitProject.Project;
 			var expected = new List<Contact>() { project[0], project[3] };
 
 			// act
@@ -258,7 +204,7 @@ namespace ContactsApp.UnitTests
 			// arrange
 			int positiveExpectedResult = 1;
 			// act
-			int positiveActualResult = Project.CompareTo(Project);
+			int positiveActualResult = InitProject.Project.CompareTo(InitProject.Project);
 			// assert
 			Assert.AreEqual(positiveExpectedResult, positiveActualResult,
 				"Метод неверно сравнивает одинаковые объекты");
@@ -267,19 +213,19 @@ namespace ContactsApp.UnitTests
 			Project project = new Project();
 			int negativeExpectedResult = 0;
 			// act
-			int newgativeActualResult = Project.CompareTo(project);
+			int newgativeActualResult = InitProject.Project.CompareTo(project);
 			// assert
 			Assert.AreEqual(negativeExpectedResult, newgativeActualResult, 
 				"Метод неверно сравнивает разные объекты");
 
 			// arrange
-			for (int i = 0; i < Contacts.Length; i++)
+			for (int i = 0; i < InitProject.Contacts.Length; i++)
 			{
-				project.AddContact(Contacts[0]);
+				project.AddContact(InitProject.Contacts[0]);
 			}
 			int negativeExpectedResult2 = 0;
 			// act
-			int newgativeActualResult2 = Project.CompareTo(project);
+			int newgativeActualResult2 = InitProject.Project.CompareTo(project);
 			// assert
 			Assert.AreEqual(negativeExpectedResult2, newgativeActualResult2,
 				"Метод неверно сравнивает разные объекты");

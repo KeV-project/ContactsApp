@@ -68,60 +68,12 @@ namespace ContactsApp.UnitTests
 			}
 		}
 
-		/// <summary>
-		/// Возвращает массив контактов для заполнения списка контактов
-		/// объекта класса <see cref="Project">
-		/// </summary>
-		private Contact[] Contacts
-		{
-			get
-			{
-				Contact[] contacts = new Contact[]
-				{
-					//TODO: Duplication
-					new Contact("Denis", "Malehin",
-					new PhoneNumber(79521145688), "malehin@gmail.com",
-					new DateTime(2001, 10, 5)),
-
-					new Contact("Светлана", "Абитаева",
-					new PhoneNumber(75564856412), "abitaeva@gmail.com",
-					new DateTime(1995, 4, 3)),
-
-					new Contact("Генадий", "Афанасьев",
-					new PhoneNumber(79994567842), "gena@gmail.com",
-					new DateTime(1990, 10, 25)),
-
-					new Contact("Мария", "Стрельникова",
-					new PhoneNumber(75564856412), "maria@gmail.com",
-					new DateTime(1999, 4, 15))
-				};
-
-				return contacts;
-			}
-		}
-
-		/// <summary>
-		/// Возвращает объект для тестирования
-		/// </summary>
-		private Project Project
-		{
-			get
-			{
-				Project project = new Project();
-				for (int i = 0; i < Contacts.Length; i++)
-				{
-					project.AddContact(Contacts[i]);
-				}
-				return project;
-			}
-		}
-
 		[Test(Description = "Позитивнынй тест SaveProject")]
 		public void TestSaveProject_CorrectValue()
 		{
 			// arrange
 			FileInfo[] path = Path;
-			var expected = Project;
+			var expected = InitProject.Project;
 
 			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
@@ -145,7 +97,7 @@ namespace ContactsApp.UnitTests
 			// arrange
 			FileInfo[] path = Path;
 			var expectedEmptyProject = new Project();
-			var expectedProject = Project;
+			var expectedProject = InitProject.Project;
 
 			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
