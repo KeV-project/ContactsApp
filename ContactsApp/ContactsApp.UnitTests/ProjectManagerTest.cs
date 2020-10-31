@@ -16,10 +16,6 @@ namespace ContactsApp.UnitTests
 	/// </summary>
 	class ProjectManagerTest
 	{
-		//TODO: SetUp не очень прозрачная конструкция, т.к. всегда надо помнить, что она выполняется перед основным тестом
-		//TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
-		//TODO: в приватные поля +
-
 		// При передаче корректного пути к файлу предназначенного
 		// для сериализации и десериализации объекта класса Project
 		// в методы SaveProject и ReadProject возможны 3 варианта
@@ -47,6 +43,7 @@ namespace ContactsApp.UnitTests
 		{
 			get
 			{
+                //TODO: Отступы
 				FileInfo[] path = new FileInfo[POSITIVE_TESTS_COUNT]
 					{
 					new FileInfo(Environment.GetFolderPath(
@@ -75,7 +72,6 @@ namespace ContactsApp.UnitTests
 			FileInfo[] path = Path;
 			var expected = InitProject.Project;
 
-			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
 				// act
@@ -99,11 +95,10 @@ namespace ContactsApp.UnitTests
 			var expectedEmptyProject = new Project();
 			var expectedProject = InitProject.Project;
 
-			//TODO: А какой смысл в этих тестах, если они однообразные и по факту тестируют одно и тоже?
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
-				
-				// act
+				//TODO: Почему два тестовых случая собраны в одном тесте?
+                // act
 				var actualEmptyProject = ProjectManager.
 					ReadProject(path[i]);
 

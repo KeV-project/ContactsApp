@@ -14,10 +14,6 @@ namespace ContactsApp.UnitTests
 	/// </summary>
 	class ProjectTest
 	{
-		//TODO: SetUp не очень прозрачная конструкция, т.к. всегда надо помнить, что она выполняется перед основным тестом
-		//TODO: Корректнее будет сделать ПРИВАТНЫЕ свойства только на гет. Там где данные не должны меняться - их можно прописать
-		//TODO: в приватные поля +
-
 		[Test(Description = "Позитивный тест геттера " +
 			"индексатора")]
 		public void TestIndexerGet_CorrectValue()
@@ -142,6 +138,7 @@ namespace ContactsApp.UnitTests
 			// act
 			project.RemoveContact(project[3]);
 
+            //TODO: Скобочки на разных строках
 			// assert
 			Assert.Throws<ArgumentOutOfRangeException>(() =>
 				{ Contact removedContact = project[3]; },
@@ -152,6 +149,7 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Негативный тест метода RemoveContact")]
 		public void TestRemoveContact_IncorrectValue()
 		{
+            //TODO: Скобочки на разных строках
 			// assert
 			Assert.Throws<ArgumentException>(() =>
 			{ InitProject.Project.RemoveContact(null); },
@@ -164,6 +162,7 @@ namespace ContactsApp.UnitTests
 		{
 			// arrange
 			Project project = InitProject.Project;
+            //TODO: Скобочки на разных строках
 			var expected = new List<Contact>() { project[1], project[2] };
 			string text = "ев";
 
@@ -184,6 +183,7 @@ namespace ContactsApp.UnitTests
 		{
 			// arrange
 			Project project = InitProject.Project;
+            //TODO: Скобочки на разных строках
 			var expected = new List<Contact>() { project[0], project[3] };
 
 			// act
@@ -201,6 +201,7 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Позитивный тест метода CompareTo")]
 		public void TestCompareTo_CorrectValue()
 		{
+            //TODO: Почему три разных тестовых случая собраны в одном тесте?
 			// arrange
 			int positiveExpectedResult = 1;
 			// act

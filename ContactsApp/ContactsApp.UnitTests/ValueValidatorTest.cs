@@ -38,6 +38,7 @@ namespace ContactsApp.UnitTests
 			var context = "экспериментальное значение";
 
 			// assert
+            //TODO: Скобочки на разных строках
 			Assert.Throws<ArgumentException>(() =>
 				{ ValueValidator.AssertValueInRange(wrongValue, minLimit,
 				maxLimit, context); }, "Должно возникать искючение, " +
@@ -54,6 +55,7 @@ namespace ContactsApp.UnitTests
 			var context = "экспериментальное значение";
 
 			// arrest
+            //TODO: Скобочки на разных строках
 			Assert.Throws<ArgumentException>(
 				() => { ValueValidator.AssertLengthInRange(wrongValue, 
 							minLimit, maxLimit, context); }, 
@@ -75,6 +77,7 @@ namespace ContactsApp.UnitTests
 			var context = "номер телефона";
 
 			// assert
+            //TODO: Скобочки на разных строках
 			Assert.Throws<ArgumentException>(()=> 
 			{ValueValidator.AssertRussianPhoneNumber(wrongNumber, 
 				context);}, message);
@@ -98,6 +101,7 @@ namespace ContactsApp.UnitTests
 			var context = "имя или фамилию";
 
 			// assert
+            //TODO: Скобочки на разных строках
 			Assert.Throws<ArgumentException>(
 				 () => { ValueValidator.AssertCorrectName(wrongString, 
 					 minLength, maxLength, context); }, message);
@@ -113,6 +117,7 @@ namespace ContactsApp.UnitTests
 			var context = "дату";
 
 			// assert
+            //TODO: Скобочки на разных строках
 			Assert.Throws<ArgumentException>(
 				() => {
 					ValueValidator.AssertCorrectDate(wrongDate,
