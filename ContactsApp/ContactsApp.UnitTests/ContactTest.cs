@@ -50,11 +50,13 @@ namespace ContactsApp.UnitTests
             var wrongId = 12345678910111213;
 
             // assert
-            Assert.Throws<ArgumentException>(
-                () => { Contact.Id = wrongId; },
-                "Должно возникать исключение, " +
-                "если идентификатор контакта состоит более чем" +
-                "из 15 символов");
+            Assert.Throws<ArgumentException>(() => 
+            { 
+                Contact.Id = wrongId; 
+            },
+            "Должно возникать исключение, " +
+            "если идентификатор контакта состоит более чем" +
+            "из 15 символов");
         }
 
         [Test(Description = "Позитивный тест геттера FirstName")]
@@ -86,9 +88,10 @@ namespace ContactsApp.UnitTests
             string message)
 		{
             // assert
-            Assert.Throws<ArgumentException>(
-                 () => { Contact.FirstName = wrongName; },
-                 message);
+            Assert.Throws<ArgumentException>(() => 
+            { 
+                Contact.FirstName = wrongName; 
+            }, message);
         }
 
         [Test(Description = "Позитивный тест геттера LastName")]
@@ -120,9 +123,10 @@ namespace ContactsApp.UnitTests
             string message)
         {
             // assert
-            Assert.Throws<ArgumentException>(
-                 () => { Contact.LastName = wrongName; },
-                 message);
+            Assert.Throws<ArgumentException>(() => 
+            { 
+                Contact.LastName = wrongName; 
+            }, message);
         }
 
         [Test(Description = "Позитивный тест геттера Number")]
@@ -162,11 +166,12 @@ namespace ContactsApp.UnitTests
                 "6+5+65+5+5+6+9+9+9+9+dfdfvsdfvsdfv";
 
             // assert
-            Assert.Throws<ArgumentException>(
-                () => { Contact.Email = wrongEmail; },
-                "Должно возникнуть исключение, " +
-                "если длина адреса электронной " +
-                "почты контакта превышает 50 символов");
+            Assert.Throws<ArgumentException>(() => 
+            { 
+                Contact.Email = wrongEmail; 
+            }, "Должно возникнуть исключение, " +
+            "если длина адреса электронной " +
+            "почты контакта превышает 50 символов");
         }
         
         [Test(Description = "Позитивный тест геттера BirthDate")]
@@ -190,11 +195,12 @@ namespace ContactsApp.UnitTests
             var wrongBirthDate = new DateTime(1899, 12, 5);
 
             // assert
-            Assert.Throws<ArgumentException>(
-                () => { Contact.BirthDate = wrongBirthDate; },
-                "Должно возникнуть исключение, " +
-                "если дата рождения контакта раньше 31.12.1900 " +
-                "или позже текужей даты");
+            Assert.Throws<ArgumentException>(() => 
+            { 
+                Contact.BirthDate = wrongBirthDate; 
+            }, "Должно возникнуть исключение, " +
+            "если дата рождения контакта раньше 31.12.1900 " +
+            "или позже текужей даты");
         }
 
         [Test(Description = "Позитивный тест конструктора без параметров")]
@@ -236,8 +242,9 @@ namespace ContactsApp.UnitTests
 
             // act
             var actual = new Contact("Сергей", "Пресняков",
-                new PhoneNumber(79521777644), "sergey@gmail.com",
-                new DateTime(1999, 12, 12));
+                                new PhoneNumber(79521777644), 
+                                "sergey@gmail.com",
+                                new DateTime(1999, 12, 12));
 
             // assert
             Assert.AreEqual(expected.Id, actual.Id,
@@ -353,14 +360,16 @@ namespace ContactsApp.UnitTests
             Contact[] contacts = new Contact[]
             {
                 new Contact("Алина", "Анаферова",
-                new PhoneNumber(79521777655), "alina@gmail.com",
-                new DateTime(1998, 12, 12)),
+                        new PhoneNumber(79521777655), 
+                        "alina@gmail.com",
+                        new DateTime(1998, 12, 12)),
 
                 Contact,
 
                 new Contact("Тарас", "Рыжков",
-                new PhoneNumber(79521777644), "taras@gmail.com",
-                new DateTime(1997, 12, 12))
+                        new PhoneNumber(79521777644), 
+                        "taras@gmail.com",
+                         new DateTime(1997, 12, 12))
             };
 
             for (int i = 2; i < 0; i++)

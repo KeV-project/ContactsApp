@@ -43,18 +43,18 @@ namespace ContactsApp.UnitTests
 		{
 			get
 			{
-                //TODO: Отступы
+                //TODO: Отступы +
 				FileInfo[] path = new FileInfo[POSITIVE_TESTS_COUNT]
 					{
-					new FileInfo(Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\ContactsApp1\\" + "file1.notes"),
-					new FileInfo(Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\ContactsApp2\\" + "file2.notes"),
-					new FileInfo(Environment.GetFolderPath(
-					Environment.SpecialFolder.ApplicationData) +
-					"\\ContactsApp3\\" + "file3.notes")
+						new FileInfo(Environment.GetFolderPath(
+								Environment.SpecialFolder.ApplicationData) +
+								"\\ContactsApp1\\" + "file1.notes"),
+						new FileInfo(Environment.GetFolderPath(
+								Environment.SpecialFolder.ApplicationData) +
+								"\\ContactsApp2\\" + "file2.notes"),
+						new FileInfo(Environment.GetFolderPath(
+								Environment.SpecialFolder.ApplicationData) +
+								"\\ContactsApp3\\" + "file3.notes")
 					};
 
 				path[0].Directory.Create();
