@@ -38,11 +38,13 @@ namespace ContactsApp.UnitTests
 			var context = "экспериментальное значение";
 
 			// assert
-            //TODO: Скобочки на разных строках
+            //TODO: Скобочки на разных строках +
 			Assert.Throws<ArgumentException>(() =>
-				{ ValueValidator.AssertValueInRange(wrongValue, minLimit,
-				maxLimit, context); }, "Должно возникать искючение, " +
-				"если проверяемое число не входит в допустимый диапазон");
+			{ 
+				ValueValidator.AssertValueInRange(wrongValue, minLimit,
+					maxLimit, context); 
+			}, "Должно возникать искючение, " +
+			"если проверяемое число не входит в допустимый диапазон");
 		}
 
 		[Test(Description = "Негативный тест метода AssertLengthInRange")]
@@ -55,12 +57,13 @@ namespace ContactsApp.UnitTests
 			var context = "экспериментальное значение";
 
 			// arrest
-            //TODO: Скобочки на разных строках
-			Assert.Throws<ArgumentException>(
-				() => { ValueValidator.AssertLengthInRange(wrongValue, 
-							minLimit, maxLimit, context); }, 
-				"Должно возникать искючение, если количество символов " +
-				"в проверяемой строке не входит в допустимый диапазон");
+            //TODO: Скобочки на разных строках +
+			Assert.Throws<ArgumentException>(() => 
+			{ 
+				ValueValidator.AssertLengthInRange(wrongValue, 
+							minLimit, maxLimit, context); 
+			}, "Должно возникать искючение, если количество символов " +
+			"в проверяемой строке не входит в допустимый диапазон");
 		}
 
 		[TestCase(799945514556, "Должно возникать исключение, " +
@@ -77,10 +80,12 @@ namespace ContactsApp.UnitTests
 			var context = "номер телефона";
 
 			// assert
-            //TODO: Скобочки на разных строках
+            //TODO: Скобочки на разных строках +
 			Assert.Throws<ArgumentException>(()=> 
-			{ValueValidator.AssertRussianPhoneNumber(wrongNumber, 
-				context);}, message);
+			{
+				ValueValidator.AssertRussianPhoneNumber(wrongNumber, 
+				context);
+			}, message);
 		}
 
 		[TestCase("СергейСергейСергейСергейСергейСергейСергей" +
@@ -101,10 +106,12 @@ namespace ContactsApp.UnitTests
 			var context = "имя или фамилию";
 
 			// assert
-            //TODO: Скобочки на разных строках
-			Assert.Throws<ArgumentException>(
-				 () => { ValueValidator.AssertCorrectName(wrongString, 
-					 minLength, maxLength, context); }, message);
+            //TODO: Скобочки на разных строках +
+			Assert.Throws<ArgumentException>(() => 
+			{ 
+				ValueValidator.AssertCorrectName(wrongString, 
+					 minLength, maxLength, context); 
+			}, message);
 		}
 
 		[Test(Description = "Негативный тест метода AssertCorrectDate")]
@@ -117,14 +124,13 @@ namespace ContactsApp.UnitTests
 			var context = "дату";
 
 			// assert
-            //TODO: Скобочки на разных строках
-			Assert.Throws<ArgumentException>(
-				() => {
-					ValueValidator.AssertCorrectDate(wrongDate,
+            //TODO: Скобочки на разных строках +
+			Assert.Throws<ArgumentException>(() => 
+			{
+				ValueValidator.AssertCorrectDate(wrongDate,
 						minDate, maxDate, context);
-				},
-				"Должно возникать искючение, если проверяемая дата " +
-				"не входит в допустимый диапазон");
+			}, "Должно возникать искючение, если проверяемая дата " +
+			"не входит в допустимый диапазон");
 		}
 	}
 }

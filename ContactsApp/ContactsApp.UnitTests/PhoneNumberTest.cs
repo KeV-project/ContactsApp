@@ -18,14 +18,8 @@ namespace ContactsApp.UnitTests
         /// <summary>
         /// Возвращает объект для тестирования
         /// </summary>
-        private PhoneNumber Number 
-        { 
-            //TODO: Переделать в =>
-            get
-			{
-                return new PhoneNumber(79521777644);
-            }
-        }
+        //TODO: Переделать в => +
+        private PhoneNumber Number => new PhoneNumber(79521777644);
 
         [Test(Description = "Позитивный тест геттера Number")]
         public void TestNumberGet_CorrectValue()
@@ -47,7 +41,8 @@ namespace ContactsApp.UnitTests
         [TestCase(89521777644, "Должно возникать исключение, " +
             "если номер телефона не начинается с цифры 7",
              TestName = "Присвоение числа, первая цифра которого не 7")]
-        public void TestNumberSet_ArgumentException(long wrongNumber, string message)
+        public void TestNumberSet_ArgumentException(long wrongNumber, 
+            string message)
         {
             // assert
             Assert.Throws<ArgumentException>(
@@ -103,11 +98,13 @@ namespace ContactsApp.UnitTests
                 }, message);
         }
 
-        //TODO: RSDN - длина строк
-        [TestCase(79994455661, 79994455661, 1, "Метод неверно стравнивает " +
-            "равные объекты", TestName = "Сравнение одинаковых объектов")]
-        [TestCase(79994455661, 79604466771, 0, "Метод неверно сравнивает " +
-            "разные объекты", TestName = "Сравнение разных объектов")]
+        //TODO: RSDN - длина строк +
+        [TestCase(79994455661, 79994455661, 1, 
+            "Метод неверно стравнивает равные объекты", 
+            TestName = "Сравнение одинаковых объектов")]
+        [TestCase(79994455661, 79604466771, 0, 
+            "Метод неверно сравнивает разные объекты", 
+            TestName = "Сравнение разных объектов")]
         public void TestCompareTo_CorrectValue(long firstNimber, 
             long secondNumber, int expectedResult, string message)
 		{

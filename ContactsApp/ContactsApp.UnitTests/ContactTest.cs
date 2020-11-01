@@ -18,21 +18,16 @@ namespace ContactsApp.UnitTests
         /// <summary>
         /// Возвращает объект для тестирования
         /// </summary>
-        private Contact Contact 
-        {
-			get
-			{
-                //TODO: Отступы
-                //TODO: Можно оптимизировать код в формат
-                //Contact => new Contact("Сергей", "Пресняков",
-                //              new PhoneNumber(79521777644), "sergey@gmail.com",
-                //              new DateTime(1999, 12, 12));
-                return new Contact("Сергей", "Пресняков",
-                new PhoneNumber(79521777644), "sergey@gmail.com",
-                new DateTime(1999, 12, 12));
-            }
-        } 
-
+        //TODO: Отступы +
+        //TODO: Можно оптимизировать код в формат
+        //Contact => new Contact("Сергей", "Пресняков",
+        //              new PhoneNumber(79521777644), "sergey@gmail.com",
+        //              new DateTime(1999, 12, 12)); +
+        private Contact Contact => new Contact("Сергей", "Пресняков", 
+                                        new PhoneNumber(79521777644), 
+                                        "sergey@gmail.com", 
+                                        new DateTime(1999, 12, 12));
+        
         [Test(Description = "Позитивный тест геттера Id")]
         public void TestIdGet_CorrectValue()
         {
