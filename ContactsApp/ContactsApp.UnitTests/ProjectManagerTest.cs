@@ -87,42 +87,52 @@ namespace ContactsApp.UnitTests
 				path[i].Directory.Delete();
 			}
 		}
-
-		[Test(Description = "Позитивный тест ReadProject")]
-		public void TestReadProject_CorrectValue()
+		//TODO: Почему два тестовых случая собраны в одном тесте? +
+		[Test(Description = 
+			"Позитивный тест ReadProject (чтение пустого файла)")]
+		public void TestReadProject_EmptyFile()
 		{
 			// arrange
 			FileInfo[] path = Path;
-			var expectedEmptyProject = new Project();
-			var expectedProject = InitProject.Project;
+			var expected = new Project();
 
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
-				//TODO: Почему два тестовых случая собраны в одном тесте?
                 // act
-				var actualEmptyProject = ProjectManager.
+				var actual = ProjectManager.
 					ReadProject(path[i]);
 
 				// assert
-				var resultEmptyProject = Convert.
-					ToBoolean(expectedEmptyProject.
-					CompareTo(actualEmptyProject));
-				Assert.IsTrue(resultEmptyProject,
+				var result = Convert.ToBoolean(expected.
+					CompareTo(actual));
+				Assert.IsTrue(result,
 					"Искажение данных при десериализации объекта");
 
+				path[i].Delete();
+				path[i].Directory.Delete();
+			}
+		}
+
+		[Test(Description = 
+			"Позитивный тест ReadProject (чтение проекта из файла)")]
+		public void TestReadProject_ReadProject()
+		{
+			// arrange
+			FileInfo[] path = Path;
+			var expected = InitProject.Project;
+
+			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
+			{
 				// arrange
-				ProjectManager.SaveProject(expectedProject,
-					path[i]);
+				ProjectManager.SaveProject(expected, path[i]);
 
 				// act
-				var actualProject = ProjectManager.
-					ReadProject(path[i]);
+				var actual = ProjectManager.ReadProject(path[i]);
 
 				// assert
-				var resultProject = Convert.ToBoolean(
-					expectedProject.CompareTo(actualProject));
-				Assert.IsTrue(resultProject,
-					"Искажение данных при десериализации объекта");
+				var result = Convert.ToBoolean(expected.CompareTo(actual));
+				Assert.IsTrue(result, "Искажение данных " +
+					"при десериализации объекта");
 
 				path[i].Delete();
 				path[i].Directory.Delete();
