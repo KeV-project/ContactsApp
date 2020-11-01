@@ -226,8 +226,9 @@ namespace ContactsApp.UnitTests
 				"Метод неверно сравнивает одинаковые объекты");
 		}
 
-		[Test(Description = "Негативный тест метода CompareTo")]
-		public void TestCompareTo_IncorrectValue()
+		[Test(Description = "Негативный тест метода CompareTo " +
+			"(проекты содержат список контактов разной длины)")]
+		public void TestCompareTo_DifferentListsLenght()
 		{
 			// arrange
 			int expectedResult = 0;
@@ -239,18 +240,25 @@ namespace ContactsApp.UnitTests
 			// assert
 			Assert.AreEqual(expectedResult, actualResult,
 				"Метод неверно сравнивает разные объекты");
+		}
 
+		[Test(Description = "Негативный тест метода CompareTo " +
+			"(списки контактов различны, но одинаковы по длине)")]
+		public void TestCompareTo_IncorrectValue()
+		{
 			// arrange
+			int expectedResult = 0;
+			Project project = new Project();
 			for (int i = 0; i < InitProject.Contacts.Length; i++)
 			{
 				project.AddContact(InitProject.Contacts[0]);
 			}
 
 			// act
-			int actualResult2 = InitProject.Project.CompareTo(project);
+			int actualResult = InitProject.Project.CompareTo(project);
 
 			// assert
-			Assert.AreEqual(expectedResult, actualResult2,
+			Assert.AreEqual(expectedResult, actualResult,
 				"Метод неверно сравнивает разные объекты");
 		}
 	}
