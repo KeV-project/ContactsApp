@@ -45,9 +45,10 @@ namespace ContactsApp.UnitTests
             string message)
         {
             // assert
-            Assert.Throws<ArgumentException>(
-                () => { Number.Number = wrongNumber; },
-                message);
+            Assert.Throws<ArgumentException>(() => 
+            { 
+                Number.Number = wrongNumber; 
+            }, message);
         }
 
         [Test(Description = "Позитивный тест конструктора без параметров")]
@@ -92,10 +93,10 @@ namespace ContactsApp.UnitTests
             long wrongNumber, string message)
 		{
             // assert
-            Assert.Throws<ArgumentException>(
-                () => {PhoneNumber phoneNumber = 
-                    new PhoneNumber(wrongNumber); 
-                }, message);
+            Assert.Throws<ArgumentException>(() => 
+            {
+                PhoneNumber phoneNumber = new PhoneNumber(wrongNumber); 
+            }, message);
         }
 
         //TODO: RSDN - длина строк +
