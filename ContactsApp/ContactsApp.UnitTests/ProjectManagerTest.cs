@@ -80,7 +80,8 @@ namespace ContactsApp.UnitTests
 
 				// assert
 				var result = Convert.ToBoolean(expected.CompareTo(actual));
-				Assert.IsTrue(result, "Искажение данных при сериализации объекта");
+				Assert.IsTrue(result, 
+					"Искажение данных при сериализации объекта");
 
 				path[i].Delete();
 				path[i].Directory.Delete();
