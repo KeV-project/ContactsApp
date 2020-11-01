@@ -369,8 +369,8 @@ namespace ContactsApp.UnitTests
                 int actualResult = contacts[1].CompareTo(contacts[i - 1]);
 
                 // assert
-                Assert.AreEqual(i, actualResult, "Метод возвращает неверный " +
-                    "результат сравнения объектов");
+                Assert.AreEqual(i, actualResult, "Метод возвращает " +
+                    "неверный результат сравнения объектов");
             }
         }
     }
