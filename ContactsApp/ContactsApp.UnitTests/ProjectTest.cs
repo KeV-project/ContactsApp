@@ -124,7 +124,9 @@ namespace ContactsApp.UnitTests
 		{
 			// assert
 			Assert.Throws<ArgumentException>(() =>
-			{ InitProject.Project.AddContact(null); }, "Должно генерироваться " +
+			{ 
+				InitProject.Project.AddContact(null); 
+			}, "Должно генерироваться " +
 			"исключение, если совершается попытка добавить в " +
 			"список значения null");
 		}
@@ -138,23 +140,25 @@ namespace ContactsApp.UnitTests
 			// act
 			project.RemoveContact(project[3]);
 
-            //TODO: Скобочки на разных строках
+            //TODO: Скобочки на разных строках +
 			// assert
 			Assert.Throws<ArgumentOutOfRangeException>(() =>
-				{ Contact removedContact = project[3]; },
-				"Должно генерироваться исключение при обращении к " +
-				"несуществующему элементу списка");
+			{ 
+				Contact removedContact = project[3]; 
+			}, "Должно генерироваться исключение при обращении к " +
+			"несуществующему элементу списка");
 		}
 
 		[Test(Description = "Негативный тест метода RemoveContact")]
 		public void TestRemoveContact_IncorrectValue()
 		{
-            //TODO: Скобочки на разных строках
+            //TODO: Скобочки на разных строках +
 			// assert
 			Assert.Throws<ArgumentException>(() =>
-			{ InitProject.Project.RemoveContact(null); },
-				"Должно генерироваться исключение при попытке удалить " +
-				"несуществующий элемент списка");
+			{ 
+				InitProject.Project.RemoveContact(null); 
+			}, "Должно генерироваться исключение при попытке удалить " +
+			"несуществующий элемент списка");
 		}
 
 		[Test(Description = "Позитивный тест метода GetContactsWithText")]
@@ -162,8 +166,11 @@ namespace ContactsApp.UnitTests
 		{
 			// arrange
 			Project project = InitProject.Project;
-            //TODO: Скобочки на разных строках
-			var expected = new List<Contact>() { project[1], project[2] };
+            //TODO: Скобочки на разных строках +
+			var expected = new List<Contact>() 
+			{ 
+				project[1], project[2] 
+			};
 			string text = "ев";
 
 			// act
@@ -183,8 +190,11 @@ namespace ContactsApp.UnitTests
 		{
 			// arrange
 			Project project = InitProject.Project;
-            //TODO: Скобочки на разных строках
-			var expected = new List<Contact>() { project[0], project[3] };
+            //TODO: Скобочки на разных строках +
+			var expected = new List<Contact>() 
+			{ 
+				project[0], project[3] 
+			};
 
 			// act
 			var actual = project.GetAllBirthContacts();
@@ -198,25 +208,34 @@ namespace ContactsApp.UnitTests
 				"некорректный список объектов");
 		}
 
+		//TODO: Почему три разных тестовых случая собраны в одном тесте? +
 		[Test(Description = "Позитивный тест метода CompareTo")]
 		public void TestCompareTo_CorrectValue()
 		{
-            //TODO: Почему три разных тестовых случая собраны в одном тесте?
 			// arrange
-			int positiveExpectedResult = 1;
-			// act
-			int positiveActualResult = InitProject.Project.CompareTo(InitProject.Project);
-			// assert
-			Assert.AreEqual(positiveExpectedResult, positiveActualResult,
-				"Метод неверно сравнивает одинаковые объекты");
+			int expectedResult = 1;
 
-			// arrange
-			Project project = new Project();
-			int negativeExpectedResult = 0;
 			// act
-			int newgativeActualResult = InitProject.Project.CompareTo(project);
+			int actualResult = InitProject.Project.
+				CompareTo(InitProject.Project);
+
 			// assert
-			Assert.AreEqual(negativeExpectedResult, newgativeActualResult, 
+			Assert.AreEqual(expectedResult, actualResult,
+				"Метод неверно сравнивает одинаковые объекты");
+		}
+
+		[Test(Description = "Негативный тест метода CompareTo")]
+		public void TestCompareTo_IncorrectValue()
+		{
+			// arrange
+			int expectedResult = 0;
+			Project project = new Project();
+
+			// act
+			int actualResult = InitProject.Project.CompareTo(project);
+
+			// assert
+			Assert.AreEqual(expectedResult, actualResult,
 				"Метод неверно сравнивает разные объекты");
 
 			// arrange
@@ -224,11 +243,12 @@ namespace ContactsApp.UnitTests
 			{
 				project.AddContact(InitProject.Contacts[0]);
 			}
-			int negativeExpectedResult2 = 0;
+
 			// act
-			int newgativeActualResult2 = InitProject.Project.CompareTo(project);
+			int actualResult2 = InitProject.Project.CompareTo(project);
+
 			// assert
-			Assert.AreEqual(negativeExpectedResult2, newgativeActualResult2,
+			Assert.AreEqual(expectedResult, actualResult2,
 				"Метод неверно сравнивает разные объекты");
 		}
 	}
