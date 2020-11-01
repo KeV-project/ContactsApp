@@ -169,7 +169,8 @@ namespace ContactsApp.UnitTests
             //TODO: Скобочки на разных строках +
 			var expected = new List<Contact>() 
 			{ 
-				project[1], project[2] 
+				project[1], 
+				project[2] 
 			};
 			string text = "ев";
 
@@ -193,7 +194,8 @@ namespace ContactsApp.UnitTests
             //TODO: Скобочки на разных строках +
 			var expected = new List<Contact>() 
 			{ 
-				project[0], project[3] 
+				project[0], 
+				project[3] 
 			};
 
 			// act

@@ -61,7 +61,7 @@ namespace ContactsApp.UnitTests
 			Assert.Throws<ArgumentException>(() => 
 			{ 
 				ValueValidator.AssertLengthInRange(wrongValue, 
-							minLimit, maxLimit, context); 
+					minLimit, maxLimit, context); 
 			}, "Должно возникать искючение, если количество символов " +
 			"в проверяемой строке не входит в допустимый диапазон");
 		}
@@ -84,7 +84,7 @@ namespace ContactsApp.UnitTests
 			Assert.Throws<ArgumentException>(()=> 
 			{
 				ValueValidator.AssertRussianPhoneNumber(wrongNumber, 
-				context);
+					context);
 			}, message);
 		}
 
