@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContactForm));
 			this.MakeContactTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
 			this.MakeContactEmailTextBox = new System.Windows.Forms.TextBox();
 			this.MakeContactNameTextBox = new System.Windows.Forms.TextBox();
@@ -221,6 +222,7 @@
 			this.Controls.Add(this.MakeContactOkButton);
 			this.Controls.Add(this.MakeContactTableLayoutPanel);
 			this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximumSize = new System.Drawing.Size(613, 320);
 			this.MinimumSize = new System.Drawing.Size(613, 320);
 			this.Name = "ContactForm";

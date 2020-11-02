@@ -456,6 +456,7 @@
 			this.Controls.Add(this.FindTextBox);
 			this.Controls.Add(this.menuStrip1);
 			this.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(1174, 636);
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
