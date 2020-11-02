@@ -20,10 +20,10 @@ namespace ContactsApp
         /// <summary>
         /// Возвращает и создает id контакта
         /// Id контакта должно состоять не более чем из 15 символом
-        /// </summary>
+        /// </summary> 
         public long Id
         {
-            get
+            get 
             {
                 return _id;
             }
@@ -41,6 +41,7 @@ namespace ContactsApp
         /// Cодержит имя контакта
         /// </summary>
         private string _firstName;
+
         /// <summary>
         /// Возвращает и создает имя контакта
         /// Имя контакта должна состоять не более чем из 50 символов,
@@ -67,6 +68,7 @@ namespace ContactsApp
         /// Содердит фамилию контакта
         /// </summary>
         private string _lastName;
+
         /// <summary>
         /// Возвращает и создает фамилию контакта.
         /// Фамилия контакта должна состоять не более чем из 50 символов.
@@ -126,6 +128,7 @@ namespace ContactsApp
         /// Содержит дату рождения контакта
         /// </summary>
         private DateTime _birthDate;
+
         /// <summary>
         /// Возвращает и создает дату рождения контакта
         /// Дата рождения не может быть раньше 1900 года и
