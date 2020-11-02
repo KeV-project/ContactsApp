@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Installation file folde
+/ContactsApp/InitiallScripts/Installer
+
 # User-specific files
 *.rsuser
 *.suo
@@ -264,6 +267,7 @@ ServiceFabricBackup/
 *- [Bb]ackup.rdl
 *- [Bb]ackup ([0-9]).rdl
 *- [Bb]ackup ([0-9][0-9]).rdl
+
 
 # Microsoft Fakes
 FakesAssemblies/
