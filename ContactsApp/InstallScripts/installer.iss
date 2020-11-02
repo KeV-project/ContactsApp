@@ -6,7 +6,7 @@
 #define MyAppPublisher "Kabanova Ekaterina"
 #define MyAppURL "http://www.example.com/"
 #define MyAppExeName "ContactsAppUI.exe"
-#define MyAppIconName = "i_con.ico"
+#define MyAppIconName = "icon.ico"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
