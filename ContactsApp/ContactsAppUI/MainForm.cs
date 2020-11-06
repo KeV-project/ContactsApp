@@ -24,7 +24,7 @@ namespace ContactsAppUI
         /// </summary>
         private Project _project;
 
-        //TODO: Вместо хранения строк лучше использовать .NETовские DirectoryInfo и FolderInfo +
+        //TODO: XML
         private FileInfo _path;
 
         /// <summary>

@@ -16,10 +16,8 @@ namespace ContactsApp.UnitTests
 		{
 			get
 			{
-				Contact[] contacts = new Contact[]
-				{
-					//TODO: Duplication +
-					//TODO: Отступами в коде показать кто куда передаётся +
+				Contact[] contacts = 
+                {
 					new Contact("Denis", "Malehin",
 							new PhoneNumber(79521145688), "malehin@gmail.com",
 							DateTime.Today),

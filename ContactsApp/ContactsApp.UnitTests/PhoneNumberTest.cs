@@ -18,7 +18,6 @@ namespace ContactsApp.UnitTests
         /// <summary>
         /// Возвращает объект для тестирования
         /// </summary>
-        //TODO: Переделать в => +
         private PhoneNumber Number => new PhoneNumber(79521777644);
 
         [Test(Description = "Позитивный тест геттера Number")]
@@ -99,7 +98,6 @@ namespace ContactsApp.UnitTests
             }, message);
         }
 
-        //TODO: RSDN - длина строк +
         [TestCase(79994455661, 79994455661, 1, 
             "Метод неверно стравнивает равные объекты", 
             TestName = "Сравнение одинаковых объектов")]
