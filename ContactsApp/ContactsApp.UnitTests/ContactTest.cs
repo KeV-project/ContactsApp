@@ -18,11 +18,6 @@ namespace ContactsApp.UnitTests
         /// <summary>
         /// Возвращает объект для тестирования
         /// </summary>
-        //TODO: Отступы +
-        //TODO: Можно оптимизировать код в формат
-        //Contact => new Contact("Сергей", "Пресняков",
-        //              new PhoneNumber(79521777644), "sergey@gmail.com",
-        //              new DateTime(1999, 12, 12)); +
         private Contact Contact => new Contact("Сергей", "Пресняков", 
                                         new PhoneNumber(79521777644), 
                                         "sergey@gmail.com", 

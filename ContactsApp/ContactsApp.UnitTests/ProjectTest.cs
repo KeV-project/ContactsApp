@@ -140,7 +140,6 @@ namespace ContactsApp.UnitTests
 			// act
 			project.RemoveContact(project[3]);
 
-            //TODO: Скобочки на разных строках +
 			// assert
 			Assert.Throws<ArgumentOutOfRangeException>(() =>
 			{ 
@@ -152,7 +151,6 @@ namespace ContactsApp.UnitTests
 		[Test(Description = "Негативный тест метода RemoveContact")]
 		public void TestRemoveContact_IncorrectValue()
 		{
-            //TODO: Скобочки на разных строках +
 			// assert
 			Assert.Throws<ArgumentException>(() =>
 			{ 
@@ -166,7 +164,6 @@ namespace ContactsApp.UnitTests
 		{
 			// arrange
 			Project project = InitProject.Project;
-            //TODO: Скобочки на разных строках +
 			var expected = new List<Contact>() 
 			{ 
 				project[1], 
@@ -191,7 +188,7 @@ namespace ContactsApp.UnitTests
 		{
 			// arrange
 			Project project = InitProject.Project;
-            //TODO: Скобочки на разных строках +
+
 			var expected = new List<Contact>() 
 			{ 
 				project[0], 
@@ -210,7 +207,6 @@ namespace ContactsApp.UnitTests
 				"некорректный список объектов");
 		}
 
-		//TODO: Почему три разных тестовых случая собраны в одном тесте? +
 		[Test(Description = "Позитивный тест метода CompareTo")]
 		public void TestCompareTo_CorrectValue()
 		{

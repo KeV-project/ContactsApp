@@ -39,11 +39,10 @@ namespace ContactsApp.UnitTests
 		/// сериализации и десериализации объектов
 		/// класса <see cref="Project">
 		/// </summary>
-		private FileInfo[] Path
+		private static FileInfo[] Path
 		{
 			get
 			{
-                //TODO: Отступы +
 				FileInfo[] path = new FileInfo[POSITIVE_TESTS_COUNT]
 					{
 						new FileInfo(Environment.GetFolderPath(
@@ -65,78 +64,56 @@ namespace ContactsApp.UnitTests
 			}
 		}
 
-		[Test(Description = "Позитивнынй тест SaveProject")]
-		public void TestSaveProject_CorrectValue()
+		//TODO: Обратите внимание - что я тут сделал, потом могу ответить на вопросы
+		[TestCaseSource(nameof(ProjectManagerTestData))]
+		public void TestSaveProject_CorrectValue(
+            Func<(FileInfo[], Project)> initFunc,
+			Action<Project, FileInfo> arrangeAction, 
+            string assertMessage)
 		{
 			// arrange
-			FileInfo[] path = Path;
-			var expected = InitProject.Project;
-
-			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
-			{
-				// act
-				ProjectManager.SaveProject(expected, path[i]);
-				var actual = ProjectManager.ReadProject(path[i]);
-
-				// assert
-				var result = Convert.ToBoolean(expected.CompareTo(actual));
-				Assert.IsTrue(result, 
-					"Искажение данных при сериализации объекта");
-
-				path[i].Delete();
-				path[i].Directory.Delete();
-			}
-		}
-		//TODO: Почему два тестовых случая собраны в одном тесте? +
-		[Test(Description = 
-			"Позитивный тест ReadProject (чтение пустого файла)")]
-		public void TestReadProject_EmptyFile()
-		{
-			// arrange
-			FileInfo[] path = Path;
-			var expected = new Project();
+			(FileInfo[] path, Project expected) = initFunc.Invoke();
 
 			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
 			{
                 // act
-				var actual = ProjectManager.
-					ReadProject(path[i]);
+				arrangeAction.Invoke(expected, path[i]);
 
-				// assert
-				var result = Convert.ToBoolean(expected.
-					CompareTo(actual));
-				Assert.IsTrue(result,
-					"Искажение данных при десериализации объекта");
-
-				path[i].Delete();
-				path[i].Directory.Delete();
-			}
-		}
-
-		[Test(Description = 
-			"Позитивный тест ReadProject (чтение проекта из файла)")]
-		public void TestReadProject_ReadProject()
-		{
-			// arrange
-			FileInfo[] path = Path;
-			var expected = InitProject.Project;
-
-			for (int i = 0; i < POSITIVE_TESTS_COUNT; i++)
-			{
-				// arrange
-				ProjectManager.SaveProject(expected, path[i]);
-
-				// act
 				var actual = ProjectManager.ReadProject(path[i]);
 
-				// assert
+                // assert
 				var result = Convert.ToBoolean(expected.CompareTo(actual));
-				Assert.IsTrue(result, "Искажение данных " +
-					"при десериализации объекта");
+				Assert.IsTrue(result, assertMessage);
 
 				path[i].Delete();
 				path[i].Directory.Delete();
 			}
 		}
+
+        private static IEnumerable<TestCaseData> ProjectManagerTestData
+        {
+            get
+            {	
+                var initFunc1 = new Func<(FileInfo[], Project)> (
+                    () => (Path, InitProject.Project));
+                var initFunc2 = new Func<(FileInfo[], Project)>(
+                    () => (Path, new Project()));
+				var arrangeAction = new Action<Project, FileInfo>(
+                        ProjectManager.SaveProject);
+                var arrangeEmpty = new Action<Project, FileInfo>(
+                    (project, info) => { });
+                var serializationMessage = 
+                    "Искажение данных при сериализации объекта";
+                var deserializationMessage =
+                    "Искажение данных при десериализации объекта";
+
+				yield return new TestCaseData(initFunc1, arrangeAction, serializationMessage)
+                    .SetName("Позитивнынй тест SaveProject");
+                yield return new TestCaseData(initFunc2, arrangeEmpty, deserializationMessage)
+                    .SetName("Позитивный тест ReadProject (чтение пустого файла)");
+                yield return new TestCaseData(initFunc1, arrangeAction, deserializationMessage)
+                    .SetName("Позитивный тест ReadProject (чтение проекта из файла)");
+            }
+        }
 	}
 }
