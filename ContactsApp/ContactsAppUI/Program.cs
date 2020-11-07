@@ -9,7 +9,7 @@ namespace ContactsAppUI
     static class Program
     {
         /// <summary>
-        /// Главная точка входа для приложения.
+        /// Создание и запуск стартового окна приложения
         /// </summary>
         [STAThread]
         static void Main()

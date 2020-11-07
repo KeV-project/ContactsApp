@@ -80,7 +80,7 @@ namespace ContactsApp.UnitTests
 			var context = "номер телефона";
 
 			// assert
-            //TODO: Скобочки на разных строках +
+			//TODO: Скобочки на разных строках +
 			Assert.Throws<ArgumentException>(()=> 
 			{
 				ValueValidator.AssertRussianPhoneNumber(wrongNumber, 
