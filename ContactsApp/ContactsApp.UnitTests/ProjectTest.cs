@@ -67,7 +67,6 @@ namespace ContactsApp.UnitTests
 			// assert
 			Assert.AreEqual(expectedLastId, actualLastId,
 				"Неверная инициализация LastId");
-
 			Assert.AreEqual(expectedContactsCount, actualContactsCount,
 				"Неверная инициализация списка контактов");
 		}
